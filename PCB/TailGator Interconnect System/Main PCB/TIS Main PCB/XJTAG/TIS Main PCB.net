@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NetList>
+  <Component Reference="J1">
+    <Description>CONN RCPT 60POS SMD GOLD</Description>
+  </Component>
+  <Net Name="+3V3">
+    <Pin Component="J1" Number="32" />
+    <Pin Component="J1" Number="34" />
+    <Pin Component="J1" Number="4" />
+    <Pin Component="J1" Number="55" />
+    <Pin Component="J1" Number="57" />
+    <Pin Component="J1" Number="6" />
+  </Net>
+  <Net Name="+5V">
+    <Pin Component="J1" Number="3" />
+    <Pin Component="J1" Number="31" />
+    <Pin Component="J1" Number="33" />
+    <Pin Component="J1" Number="5" />
+    <Pin Component="J1" Number="54" />
+    <Pin Component="J1" Number="56" />
+    <Pin Component="J1" Number="58" />
+    <Pin Component="J1" Number="7" />
+  </Net>
+  <Net Name="CAN_H">
+    <Pin Component="J1" Number="25" />
+  </Net>
+  <Net Name="CAN_L">
+    <Pin Component="J1" Number="27" />
+  </Net>
+  <Net Name="GND">
+    <Pin Component="J1" Number="1" />
+    <Pin Component="J1" Number="18" />
+    <Pin Component="J1" Number="2" />
+    <Pin Component="J1" Number="23" />
+    <Pin Component="J1" Number="24" />
+    <Pin Component="J1" Number="29" />
+    <Pin Component="J1" Number="30" />
+    <Pin Component="J1" Number="35" />
+    <Pin Component="J1" Number="36" />
+    <Pin Component="J1" Number="41" />
+    <Pin Component="J1" Number="42" />
+    <Pin Component="J1" Number="52" />
+    <Pin Component="J1" Number="53" />
+    <Pin Component="J1" Number="59" />
+    <Pin Component="J1" Number="60" />
+    <Pin Component="J1" Number="8" />
+    <Pin Component="J1" Number="9" />
+  </Net>
+  <Net Name="JTAG_DBGACK">
+    <Pin Component="J1" Number="16" />
+  </Net>
+  <Net Name="JTAG_DBGRQ">
+    <Pin Component="J1" Number="14" />
+  </Net>
+  <Net Name="JTAG_nSRST">
+    <Pin Component="J1" Number="12" />
+  </Net>
+  <Net Name="JTAG_nTRST">
+    <Pin Component="J1" Number="13" />
+  </Net>
+  <Net Name="JTAG_RTCK">
+    <Pin Component="J1" Number="21" />
+  </Net>
+  <Net Name="JTAG_TCK">
+    <Pin Component="J1" Number="19" />
+  </Net>
+  <Net Name="JTAG_TDI">
+    <Pin Component="J1" Number="15" />
+  </Net>
+  <Net Name="JTAG_TDO">
+    <Pin Component="J1" Number="10" />
+  </Net>
+  <Net Name="JTAG_TMS">
+    <Pin Component="J1" Number="17" />
+  </Net>
+  <Net Name="JTAG_VREF">
+    <Pin Component="J1" Number="11" />
+  </Net>
+  <Net Name="NetJ1_26">
+    <Pin Component="J1" Number="26" />
+  </Net>
+  <Net Name="NetJ1_28">
+    <Pin Component="J1" Number="28" />
+  </Net>
+  <Net Name="NetJ1_37">
+    <Pin Component="J1" Number="37" />
+  </Net>
+  <Net Name="NetJ1_39">
+    <Pin Component="J1" Number="39" />
+  </Net>
+  <Net Name="NetJ1_43">
+    <Pin Component="J1" Number="43" />
+  </Net>
+  <Net Name="NetJ1_44">
+    <Pin Component="J1" Number="44" />
+  </Net>
+  <Net Name="NetJ1_45">
+    <Pin Component="J1" Number="45" />
+  </Net>
+  <Net Name="NetJ1_46">
+    <Pin Component="J1" Number="46" />
+  </Net>
+  <Net Name="NetJ1_47">
+    <Pin Component="J1" Number="47" />
+  </Net>
+  <Net Name="NetJ1_48">
+    <Pin Component="J1" Number="48" />
+  </Net>
+  <Net Name="NetJ1_49">
+    <Pin Component="J1" Number="49" />
+  </Net>
+  <Net Name="NetJ1_50">
+    <Pin Component="J1" Number="50" />
+  </Net>
+  <Net Name="NetJ1_51">
+    <Pin Component="J1" Number="51" />
+  </Net>
+  <Net Name="SWDCLK">
+    <Pin Component="J1" Number="22" />
+  </Net>
+  <Net Name="SWDIO">
+    <Pin Component="J1" Number="20" />
+  </Net>
+  <Net Name="USB_D-">
+    <Pin Component="J1" Number="40" />
+  </Net>
+  <Net Name="USB_D+">
+    <Pin Component="J1" Number="38" />
+  </Net>
+</NetList>

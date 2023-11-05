@@ -1,0 +1,14 @@
+Change Component Designator: OldDesignator=J1 NewDesignator=J?
+Change Component Designator: OldDesignator=J2 NewDesignator=J?
+Change Component Designator: OldDesignator=J3 NewDesignator=J?
+Change Component Designator: OldDesignator=J4 NewDesignator=J?
+Change Component Designator: OldDesignator=J5 NewDesignator=J?
+Added Component: Designator=J?(SAMTEC_FTSH-110-01-L-DV-007)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "SAM9456-ND"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J?-11
+Added Pin To Net: NetName=GND Pin=J?-13
+Added Pin To Net: NetName=GND Pin=J?-15
+Added Pin To Net: NetName=GND Pin=J?-17
+Added Pin To Net: NetName=GND Pin=J?-19
+Added Member To Class: ClassName=MainPCB Member=Component J? FTSH-110

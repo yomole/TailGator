@@ -1,0 +1,12 @@
+Added Component: Designator=J5(AMPHENOL_RJHSE3381)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "RJHSE-3381-ND"; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=CAN_H New Net Name=CAN_P
+Change Net Name : Old Net Name=CAN_L New Net Name=CAN_N
+Added Class: Name=CAN
+Added Differential Pair: Name=CAN
+Added Member To Class: ClassName=MainPCB Member=Component J2 USB 3.1 TYPE C VERT
+Added Member To Class: ClassName=MainPCB Member=Component J5 RJHSE-3381
+Added Rule: Name=Schematic Differential Pairs Routing
+Added Rule: Name=Schematic Matched Net Lengths
+Added Class: Name=CAN_LINES
