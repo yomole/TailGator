@@ -8,12 +8,18 @@ Several other standards exist for modular electronics hardware, including the [A
 # Electrical Specifications
 
 The current design of TGIS can supply:
-- 3.3V @ 3A (9.9W)
+- 3.3V @ 4A (13.3W)
 - 5V @ 4A (20W)
 
 Reserved lines may be used to suppliment the 3.3V line. Board designs may also include a 5V to 3.3V LDO regulator to suppliment the 3.3V line.
 
 # Pinout
+
+![image](https://github.com/yomole/TailGator/assets/80288489/c363241c-c987-4117-98e1-8ad4f62a0eaa)
+
+# Time Tracking
+
+[Google Sheet](https://docs.google.com/document/d/1TKIdP1BIqdC8MU6n8R4Sn8ps7-wJigyKhLupdDVdEag/edit?usp=sharing)
 
 # Ackowledgements
 
