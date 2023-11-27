@@ -53,10 +53,10 @@ or other directories.
 # Software
 Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system. The prototype includes three major components, all connected to an RP2040:
 - OLED display, driven by an SSD1331 chip using 4-pin SPI to communicate *(still in development)*;
-- Micro SD card reader, using 4-pin SPI to communicate;
+- Micro SD card reader, using 4-pin SPI to communicate (note there is a known `cargo build` error with issues integrating it into the TailGator repository that we were unable to sort out in time);
 - LIS3DH IMU, using I2C to communicate.
 
-Additionally, a concurrency framework has been developed for 
+Additionally, the Embassy concurrency framework has been tested via their example project [here](https://github.com/embassy-rs/embassy/tree/main/examples/rp). Note that this example must be adapted to use the LED pin on the Feather (D13).
 
 Prototype code has been developed for each of them in the `hw-demo` (LIS3DH and OLED display) and `sd-card-demo` (SD Card reader).
 
