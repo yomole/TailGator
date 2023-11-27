@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=JTMS/SWDIO Pin=J1-15
+Removed Pin From Net: NetName=JTCK/SWDCLK Pin=J1-17
+Removed Pin From Net: NetName=JTDO/SWO Pin=J1-19
+Removed Pin From Net: NetName=JTDI Pin=J1-21
+Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144517-061802LF"; UniqueID = "\VRTBVSLG" ("\VRTBVSLG")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5433-1-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=JTDI Pin=J1-15
+Added Pin To Net: NetName=JTDO/SWO Pin=J1-17
+Added Pin To Net: NetName=JTCK/SWDCLK Pin=J1-19
+Added Pin To Net: NetName=JTMS/SWDIO Pin=J1-21
+Added Pin To Net: NetName=CAN_P Pin=J5-1
+Added Pin To Net: NetName=CAN_N Pin=J5-2
+Added Pin To Net: NetName=+5V Pin=J5-10
+Added Pin To Net: NetName=+5V Pin=J5-12
+Added Pin To Net: NetName=GND Pin=J5-S1
+Added Pin To Net: NetName=GND Pin=J5-S2
+Added Pin To Net: NetName=CAN_GND Pin=J5-3
+Added Pin To Net: NetName=CAN_GND Pin=J5-7
+Added Net: Name=CAN_GND
+Added Pin To Net: NetName=STAT_GRN Pin=J5-9
+Added Net: Name=STAT_GRN
+Added Pin To Net: NetName=STAT_YLW Pin=J5-11
+Added Net: Name=STAT_YLW

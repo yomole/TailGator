@@ -1,0 +1,9 @@
+Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144518-063802LF"; UniqueID = "\NJSKHXFQ" ("\NJSKHXFQ")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5451-1-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=JTCK/SWDCLK New Net Name=JTDO/SWO
+Change Net Name : Old Net Name=JTDI New Net Name=JTMS/SWDIO
+Change Net Name : Old Net Name=JTDO/SWO New Net Name=JTCK/SWDCLK
+Change Net Name : Old Net Name=JTMS/SWDIO New Net Name=JTDI
+Added Member To Class: ClassName=Protoboard Member=Component J1 10144518-063802LF

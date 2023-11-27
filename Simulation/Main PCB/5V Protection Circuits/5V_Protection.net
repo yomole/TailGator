@@ -1,0 +1,33 @@
+* C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\Simulation\Main PCB\5V Protection Circuits\5V_Protection.asc
+V2 VSupply 0 PWL(0 0 50m 0 51m -5.5 150m -6 151m -6 200m -24 201m -24 250m 5 251m 5 300m 5.6 301m 5.6 350m 24 351m 24)
+C2 VSupply 0 1µF
+XSCR1 5VRAW 0 N001 TN805-600B
+C3 N001 0 100nF
+R1 N001 0 3.3k
+XU2 VSupply 5VRAW F4A
+R§LOAD 0 5VLOAD 100k
+M2 5VRAW 5VLOAD 5VLOAD 5VLOAD AONR21321
+XU1 N001 5VLOAD BZT52C4V7
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\molyo\AppData\Local\LTspice\lib\cmp\standard.mos
+.tran 700m
+* REVERSE POLARITY PROTECTION
+* TAILGATOR INTERCONNECT SYSTEM
+* PROTECTION CIRCUIT SIMULATION
+* 11/19/2023
+* AUTHORS:
+* YOVANY MOLINA
+* BLAKE SANDERS
+* DATE:
+.lib "Zener_DiodesInc.lib"
+.lib "st_standard_sensitive_scr.lib"
+.lib "fuse2.lib"
+* SUPPLY
+* OVERVOLTAGE PROTECTION
+* TEST LOAD
+* NOTES:\n- REVERSE POLARITY PROTECTION USING AONR21321 HAS AN OFFSET OF 0.6V.\nCIRCUIT NEEDS 5.6V TO REACH 5V.
+.lib C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\Simulation\Main PCB\5V Protection Circuits\BZT52C4V7.spice.txt
+.lib fuse2.lib
+.backanno
+.end

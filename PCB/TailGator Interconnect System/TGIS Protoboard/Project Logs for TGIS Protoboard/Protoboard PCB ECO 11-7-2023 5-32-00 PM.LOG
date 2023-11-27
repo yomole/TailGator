@@ -1,0 +1,20 @@
+Added Component: Designator=J2(75x95VIAS)
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=+5V Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Pin To Net: NetName=+3V3 Pin=J2-3
+Added Member To Class: ClassName=Protoboard Member=Component J2 RAILS

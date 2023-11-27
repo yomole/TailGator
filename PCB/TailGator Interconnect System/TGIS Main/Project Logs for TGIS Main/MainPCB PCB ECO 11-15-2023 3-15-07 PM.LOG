@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=JTMS/SWDIO Pin=J1-15
+Removed Pin From Net: NetName=JTDO/SWO Pin=J1-19
+Added Pin To Net: NetName=JTDO/SWO Pin=J1-15
+Added Pin To Net: NetName=JTMS/SWDIO Pin=J1-19

@@ -1,0 +1,4 @@
+Change Footprint: Cannot match pads with new footprint in component :J? Footprint:75x95VIAS
+Change Component Designator: OldDesignator=J? NewDesignator=J1
+Change Component Designator: OldDesignator=J? NewDesignator=J2
+Added Member To Class: ClassName=Protoboard Member=Component J1 10144517-063802LF

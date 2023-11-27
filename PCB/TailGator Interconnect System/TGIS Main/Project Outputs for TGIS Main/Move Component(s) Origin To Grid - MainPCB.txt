@@ -1,0 +1,14 @@
+Move Component(s) Origin to Grid
+Filename     : C:\Users\molyo\AppData\Local\Temp\History\MainPCB.PcbDoc
+Date         : 11/15/2023
+Time         : 4:03:56 PM
+Time Elapsed : 00:00:00
+
+
+    Component J6-FTSH-110 (2580mil,600mil) on Top Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+    Component J5-RJHSE-3381 (1000mil,920mil) on Top Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+    Component J2-USB4115-03-C (900mil,600mil) on Top Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+    Small Component J4-1877285-2 (1600mil,1080mil) on Top Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+    Small Component J3-1877285-2 (2120mil,1080mil) on Top Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+    SOIC Component J1-10144517-061802LF (1700mil,600mil) on Bottom Layer - Component origin is already ON grid. - Component pads are OFF grid. No action taken.
+count : 6

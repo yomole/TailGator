@@ -1,0 +1,8 @@
+Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144517-063802LF"; UniqueID = "\NCQDCMJQ" ("\NCQDCMJQ")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5435-1-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J3" ("J3"); Footprint = "AMPHENOL_10144517-061802LF"; UniqueID = "\XTGGEJVX" ("\XTGGEJVX")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5433-1-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"
