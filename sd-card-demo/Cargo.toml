@@ -1,0 +1,50 @@
+[package]
+name = "sd-card-demo"
+version = "0.1.0"
+description = "demo for SD card reader on feather rp2040"
+
+[dependencies]
+cortex-m-rt = {version = "0.7.3", optional = true }
+rp2040-boot2 = { version = "0.3.0", optional = true }
+rp2040-hal = {version =  "0.9.0", features = [ "defmt" ] }
+defmt = "0.3.5"
+defmt-rtt = "0.4.0"
+adafruit-feather-rp2040 = "0.4.0"
+
+
+embedded-sdmmc = "0.5.0"
+
+
+
+[dev-dependencies]
+cortex-m = "0.7.7"
+panic-halt= "0.2.0"
+embedded-hal ="0.2.7"
+fugit = "0.3.7"
+nb = "1.1"
+
+[features]
+# This is the set of features we enable by default
+default = ["boot2", "rt", "critical-section-impl", "rom-func-cache"]
+
+# critical section that is safe for multicore use
+critical-section-impl = ["rp2040-hal/critical-section-impl"]
+
+# 2nd stage bootloaders for rp2040
+boot2 = ["rp2040-boot2"]
+
+# Minimal startup / runtime for Cortex-M microcontrollers
+rt = ["cortex-m-rt","rp2040-hal/rt"]
+
+# This enables a fix for USB errata 5: USB device fails to exit RESET state on busy USB bus.
+# Only required for RP2040 B0 and RP2040 B1, but it doesn't hurt to enable it
+rp2040-e5 = ["rp2040-hal/rp2040-e5"]
+
+# Memoize(cache) ROM function pointers on first use to improve performance
+rom-func-cache = ["rp2040-hal/rom-func-cache"]
+
+# Disable automatic mapping of language features (like floating point math) to ROM functions
+disable-intrinsics = ["rp2040-hal/disable-intrinsics"]
+
+# This enables ROM functions for f64 math that were not present in the earliest RP2040s
+rom-v2-intrinsics = ["rp2040-hal/rom-v2-intrinsics"]

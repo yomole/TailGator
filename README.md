@@ -20,11 +20,11 @@ The current design of TGIS can supply:
 
 Reserved lines may be used to supplement the 3.3V or 5V lines. Board designs may also include a 5V to 3.3V LDO regulator to suppliment the 3.3V line.
 
-# Pinout
+## Pinout
 
 ![image](Documents/Images/Pinout-11-26-23.jpg)
 
-# Simulations
+## Simulations
 
 These are LTSpice simulations for some parts of the circuits we designed. Libraries used are included.
 
@@ -50,6 +50,31 @@ To install these libraries, you must copy and paste them into your LTSpice subci
 
 or other directories.
 
+# Software
+Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system. The prototype includes three major components, all connected to an RP2040:
+- OLED display, driven by an SSD1331 chip using 4-pin SPI to communicate *(still in development)*;
+- Micro SD card reader, using 4-pin SPI to communicate (note there is a known `cargo build` error with issues integrating it into the TailGator repository that we were unable to sort out in time);
+- LIS3DH IMU, using I2C to communicate.
+
+Additionally, the Embassy concurrency framework has been tested via their example project [here](https://github.com/embassy-rs/embassy/tree/main/examples/rp). Note that this example must be adapted to use the LED pin on the Feather (D13).
+
+Prototype code has been developed for each of them in the `hw-demo` (LIS3DH and OLED display) and `sd-card-demo` (SD Card reader).
+
+## Installation
+
+Pre-requisites:
+- Working rust toolchain for embedded development on the RP2040 (e.g., capable of running the Embedded Rust lab code)
+- Adafruit Feather RP2040
+- Any of the above major components (LIS3DH, OLED, SD card reader) and connectivity to the feather (jumper cables and/or Feather boards)
+- SWD debug probe (for building the embassy example), e.g. an additional Feather with [Picoprobe](https://github.com/raspberrypi/picoprobe) installed.
+    - Embassy also requires setting up the [probe-rs](https://github.com/probe-rs/probe-rs) toolchain. Be sure to follow any more installation procedures on their [GitHub](https://github.com/embassy-rs/embassy#embassy)
+
+Clone this repository: `https://github.com/yomole/TailGator.git`, then open the appropriate demo (`hw-demo` or `sd-card-demo`) and inspect the code.
+- Note the LIS3DH code in the `hw-demo` is currently commented out. Comment out SPI/SSD1331-related code and uncomment LIS3DH-related code to demo that device instead of the OLED display.
+
+From within a demo, run `cargo run` with your Feather RP2040 set to accept a UF2 and the toolchain will automatically run the program on that chip.
+
+
 # Time Tracking
 
 [Google Sheet](https://docs.google.com/spreadsheets/d/1ABE5ELdahlYolHOQ2TSzXDdkT7J0JBhl6qDKFItKDu4/)
@@ -58,3 +83,5 @@ or other directories.
 
 This project is made in collaboration with:
 - [Machine Intelligence Laboratory](https://mil.ufl.edu/)
+
+Many thanks to [Carsten](https://github.com/shulltronics) for supporting our switch to the Rust embedded ecosystem and for providing a secondary Adafruit Feather RP2040 to use as an SWD debugger.
