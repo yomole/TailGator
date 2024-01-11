@@ -1,0 +1,8 @@
+Change Component Footprint: Designator=J1 Old Footprint=AMPHENOL_10144517-081802LF New Footprint=AMPHENOL_10144518-081802LF
+Change Component Comment : Designator=J1 Old Comment=10144517-081802LF New Comment=10144518-081802LF
+Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144517-081802LF"; UniqueID = "\IJMKOMSP" ("\IJMKOMSP")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5453-1-ND"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Breakout Member=Component J2 PRPC030DAAN-RC
+Added Member To Class: ClassName=Breakout Member=Component J3 1877285-2
+Added Member To Class: ClassName=Breakout Member=Component J4 1877285-2

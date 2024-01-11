@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=RSVD_40 Pin=J3-1
+Removed Pin From Net: NetName=TRACECLK Pin=J3-19
+Added Pin To Net: NetName=TRACECLK Pin=J3-1
+Added Pin To Net: NetName=RSVD_40 Pin=J3-19
