@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=J3 Old Footprint=AMPHENOL_10144518-081802LF New Footprint=AMPHENOL_10144518-082802LF
+Change Component Comment : Designator=J3 Old Comment=10144518-081802LF New Comment=10144518-082802LF
+Change component parameters: Designator = "J3" ("J3"); Footprint = "AMPHENOL_10144518-081802LF"; UniqueID = "\VLCNORVK" ("\VLCNORVK")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5454-1-ND"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Connectors Member=Component J3 10144518-082802LF

@@ -135,23 +135,6 @@ GenerateClassCluster=0
 DocumentUniqueId=CJAPYQNF
 
 [Document6]
-DocumentPath=Microcontroller.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=2
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=GUDGVZOR
-
-[Document7]
 DocumentPath=MainPCB.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -168,7 +151,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=MWOWOMBN
 
-[Document8]
+[Document7]
 DocumentPath=TGIS_Microcontrollers.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -185,7 +168,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=KIHJWXRD
 
-[Document9]
+[Document8]
 DocumentPath=TGIS_Microcontrollers.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -202,7 +185,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LSKBQWJU
 
-[Document10]
+[Document9]
 DocumentPath=..\..\Library\TGIS_Power.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -219,7 +202,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=XHZBJDSC
 
-[Document11]
+[Document10]
 DocumentPath=..\..\Library\TGIS_Power.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -236,14 +219,14 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LHDWCFWI
 
-[Document12]
-DocumentPath=Transcievers.SchDoc
+[Document11]
+DocumentPath=..\TGIS.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=3
+AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -251,9 +234,13 @@ ClassGenCCAutoRoomEnabled=0
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=QCNTKJEU
+DocumentUniqueId=
 
 [GeneratedDocument1]
+DocumentPath=Project Outputs for TGIS Main\Design Rule Check - MainPCB.html
+DItemRevisionGUID=
+
+[GeneratedDocument2]
 DocumentPath=Project Outputs for TGIS Main\Move Component(s) Origin To Grid - MainPCB.html
 DItemRevisionGUID=
 

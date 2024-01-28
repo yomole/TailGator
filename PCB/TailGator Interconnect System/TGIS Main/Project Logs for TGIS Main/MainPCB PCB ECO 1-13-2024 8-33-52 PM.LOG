@@ -1,0 +1,37 @@
+Removed Pin From Net: NetName=UART0_TX Pin=B1-1
+Removed Pin From Net: NetName=+5V_USB0 Pin=B1-4
+Removed Pin From Net: NetName=UART0_RX Pin=B1-5
+Removed Pin From Net: NetName=GND Pin=B1-7
+Removed Pin From Net: NetName=USB1_D_P Pin=B1-15
+Removed Pin From Net: NetName=USB1_D_N Pin=B1-16
+Removed Pin From Net: NetName=UART0_VCCD Pin=B1-17
+Removed Pin From Net: NetName=GND Pin=B1-18
+Removed Pin From Net: NetName=RESET Pin=B1-19
+Removed Pin From Net: NetName=+5V_USB0 Pin=B1-20
+Removed Pin From Net: NetName=GND Pin=B1-21
+Removed Pin From Net: NetName=UART0_RXLED Pin=B1-22
+Removed Pin From Net: NetName=UART0_TXLED Pin=B1-23
+Removed Member From Class: ClassName=Transcievers Member=B1
+Added Component: Designator=U5(SOP65P780X200-28N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "CY7C65213-28PVXIT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/cy7c65213-28pvxit/infineon-technologies-ag?region=nac"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://componentsearchengine.com/Datasheets/2/CY7C65213-28PVXIT.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "2mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Infineon"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "CY7C65213-28PVXIT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "727-CY7C6521328PVXIT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/CY7C65213-28PVXIT?qs=cwEsOGdHuFTfRgwUJVDa5g%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=UART0_TX Pin=U5-1
+Added Pin To Net: NetName=+5V_USB0 Pin=U5-4
+Added Pin To Net: NetName=UART0_RX Pin=U5-5
+Added Pin To Net: NetName=GND Pin=U5-7
+Added Pin To Net: NetName=USB1_D_P Pin=U5-15
+Added Pin To Net: NetName=USB1_D_N Pin=U5-16
+Added Pin To Net: NetName=UART0_VCCD Pin=U5-17
+Added Pin To Net: NetName=GND Pin=U5-18
+Added Pin To Net: NetName=RESET Pin=U5-19
+Added Pin To Net: NetName=+5V_USB0 Pin=U5-20
+Added Pin To Net: NetName=GND Pin=U5-21
+Added Pin To Net: NetName=UART0_RXLED Pin=U5-22
+Added Pin To Net: NetName=UART0_TXLED Pin=U5-23
+Added Member To Class: ClassName=Transcievers Member=Component U5 CY7C65213-28PVXIT

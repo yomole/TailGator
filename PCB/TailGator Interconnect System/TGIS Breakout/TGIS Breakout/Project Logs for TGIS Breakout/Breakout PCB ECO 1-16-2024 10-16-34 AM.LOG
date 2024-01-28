@@ -1,0 +1,4 @@
+Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144518-081802LF"; UniqueID = "\IJMKOMSP" ("\IJMKOMSP")
+Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5453-1-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"

@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\PCB\TailGator Interconnect System\TGIS Breakout\TGIS Breakout\Breakout.PcbDoc
-Date     : 1/11/2024
-Time     : 5:29:59 AM
+Date     : 1/18/2024
+Time     : 8:46:44 PM
 
 Processing Rule : Clearance Constraint (Gap=4mil) (All),(All)
 Rule Violations :0
@@ -10,11 +10,7 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Via (2700mil,1200mil) from Sig/5V to Sig/3V3 Dead Copper - Net Not Assigned.
-   Violation between Un-Routed Net Constraint: Via (2700mil,2050mil) from Sig/5V to Sig/3V3 Dead Copper - Net Not Assigned.
-   Violation between Un-Routed Net Constraint: Via (5300mil,1200mil) from Sig/5V to Sig/3V3 Dead Copper - Net Not Assigned.
-   Violation between Un-Routed Net Constraint: Via (5300mil,2050mil) from Sig/5V to Sig/3V3 Dead Copper - Net Not Assigned.
-Rule Violations :4
+Rule Violations :0
 
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
@@ -29,53 +25,7 @@ Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=11.811mil)
 Rule Violations :0
 
 Processing Rule : Minimum Annular Ring (Minimum=3mil) (All)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3385.827mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3385.827mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3417.323mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3448.819mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3448.819mil,1425.197mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3480.315mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3511.811mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3511.811mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3574.803mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3606.299mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3606.299mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3669.291mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3700.787mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3700.787mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3795.276mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3795.276mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3858.268mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3858.268mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3889.764mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3889.764mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3921.26mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3952.756mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3984.252mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (3984.252mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4015.748mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4078.74mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4078.74mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4141.732mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4173.228mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4173.228mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4267.717mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4267.717mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4362.205mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4362.205mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4393.701mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4425.197mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4425.888mil,1511.12mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4456.693mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4488.189mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4488.189mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4519.685mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4551.181mil,1476.378mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4551.181mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4582.677mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4614.173mil,1389.764mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-   Violation between Minimum Annular Ring: (2.953mil < 3mil) Via (4614.173mil,1511.811mil) from Sig/5V to Sig/3V3 (Annular Ring=2.953mil) On (Top Layer)
-Rule Violations :46
+Rule Violations :0
 
 Processing Rule : Hole Size Constraint (Min=7.874mil) (Max=248.031mil) (All)
 Rule Violations :0
@@ -87,12 +37,7 @@ Processing Rule : Minimum Solder Mask Sliver (Gap=0mil) (All),(All)
 Rule Violations :0
 
 Processing Rule : Silk To Solder Mask (Clearance=4mil) (IsPad),(All)
-   Violation between Silk To Solder Mask Clearance Constraint: (1.497mil < 4mil) Between Pad J1-70(3543.307mil,1536.614mil) on Sig/5V And Text "J2" (3427mil,1531mil) on Top Overlay [Top Overlay] to [Top Mask] clearance [1.497mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 4mil) Between Pad J1-72(3511.811mil,1536.614mil) on Sig/5V And Text "J2" (3427mil,1531mil) on Top Overlay [Top Overlay] to [Top Mask] clearance [0mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 4mil) Between Pad J1-74(3480.315mil,1536.614mil) on Sig/5V And Text "J2" (3427mil,1531mil) on Top Overlay [Top Overlay] to [Top Mask] clearance [0mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 4mil) Between Pad J1-76(3448.819mil,1536.614mil) on Sig/5V And Text "J2" (3427mil,1531mil) on Top Overlay [Top Overlay] to [Top Mask] clearance [0mil]
-   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 4mil) Between Pad J1-78(3417.323mil,1536.614mil) on Sig/5V And Text "J2" (3427mil,1531mil) on Top Overlay [Top Overlay] to [Top Mask] clearance [0mil]
-Rule Violations :5
+Rule Violations :0
 
 Processing Rule : Silk to Silk (Clearance=0mil) (All),(All)
 Rule Violations :0
@@ -104,12 +49,13 @@ Processing Rule : Board Clearance Constraint (Gap=0mil) (All)
 Rule Violations :0
 
 Processing Rule : Matched Lengths(Tolerance=5mil) (InNetClass('CAN0'))
-Rule Violations :0
+   Violation between Matched Net Lengths: Between Net CAN0_N And Net CAN0_P Actual Difference against CAN0_P is: 26.406mil, Tolerance : 5mil. 
+Rule Violations :1
 
 Processing Rule : Height Constraint (Min=0mil) (Max=71497.938mil) (Prefered=500mil) (All)
 Rule Violations :0
 
 
-Violations Detected : 55
+Violations Detected : 1
 Waived Violations : 0
-Time Elapsed        : 00:00:02
+Time Elapsed        : 00:00:01

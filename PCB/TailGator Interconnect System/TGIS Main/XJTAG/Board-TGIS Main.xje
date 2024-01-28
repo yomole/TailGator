@@ -1,0 +1,13 @@
+COMPAT_VERSION := 3; // AutomaticNetlistIdentification
+NETLIST := "C:\\Users\\molyo\\OneDrive\\Desktop\\MIL\\TailGator\\PCB\\TailGator Interconnect System\\TGIS Main\\XJTAG\\TGIS Main.net";
+
+POWER LIST
+  GROUND := "GND";
+  POWER := "+1V1_RP", "+3V3", "+3V3_RAW", "+3V3_RP", "+3V3_USB0", "+5V", "+5V_RAW", "+5V_USB0";
+END;
+
+JTAG LIST
+END;
+
+DEVICE LIST
+END;

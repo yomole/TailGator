@@ -1,4 +1,6 @@
+Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=1|Source=TGIS Breakout\TGIS Breakout\TGIS Breakout.PrjPcb
+Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS Breakout\TGIS Breakout\TGIS Breakout.PrjPcb
 Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=B1|Source=TGIS Main\TGIS Main.PrjPcb
 Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS Main\TGIS Main.PrjPcb
-Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=B2|Source=TGIS Protoboard\TGIS Protoboard.PrjPcb
-Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS Protoboard\TGIS Protoboard.PrjPcb
+Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=2|Source=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
+Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb

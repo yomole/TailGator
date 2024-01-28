@@ -100,7 +100,112 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document4]
+DocumentPath=TGIS.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\NC Drill\Breakout.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GD1
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GG1
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GM
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GM15
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GP1
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GP2
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GPB
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GPT
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\Gerber\Breakout.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\NC Drill\Breakout.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for TGIS Breakout\TGIS Breakout\NC Drill\Breakout.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument23]
 DocumentPath=Project Outputs for TGIS Breakout\Design Rule Check - Breakout.html
 DItemRevisionGUID=
 

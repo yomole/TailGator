@@ -1,0 +1,65 @@
+StiFile 1.2
+# File generated on Tue Jan 16 09:34:09 2024
+
+Electric 1:
+  name: "Q2"
+  voltage: 4.99599
+  current: -4.00001
+  pluspin: 2  voltage: 4.99598  current: -1.59828  name: "Q2-1"
+  pluspin: 4  voltage: 4.996  current: -0.47736  name: "Q2-2"
+  pluspin: 3  voltage: 4.996  current: -0.491739  name: "Q2-3"
+  pluspin: 1  voltage: 4.99599  current: -1.43263  name: "Q2-4"
+  minpin: 0  voltage: 0  current: 4.00001  name: "Q2.min"
+
+Electric 2:
+  name: "J1"
+  voltage: 4.99091
+  current: 4
+  pluspin: 6  voltage: 4.99091  current: 0.605453  name: "J1-3"
+  pluspin: 7  voltage: 4.99091  current: 0.478807  name: "J1-5"
+  pluspin: 8  voltage: 4.9909  current: 0.430249  name: "J1-7"
+  pluspin: 9  voltage: 4.9909  current: 0.24361  name: "J1-43"
+  pluspin: 10  voltage: 4.9909  current: 0.246879  name: "J1-45"
+  pluspin: 11  voltage: 4.99091  current: 0.60409  name: "J1-74"
+  pluspin: 12  voltage: 4.99091  current: 0.638775  name: "J1-76"
+  pluspin: 13  voltage: 4.99091  current: 0.752141  name: "J1-78"
+  minpin: 0  voltage: 0  current: -4  name: "J1.min"
+
+Electric 3:
+  name: "JMP2"
+  voltage: 1.62537e-13
+  current: 5.41789e-09
+  pluspin: 42  voltage: 4.99272  current: 5.41789e-09  name: "JMP2-2"
+  minpin: 43  voltage: 4.99272  current: -5.41789e-09  name: "JMP2-1"
+
+Electric 4:
+  name: "J1"
+  voltage: 3.29105
+  current: 4
+  pluspin: 44  voltage: 3.29105  current: 0.539158  name: "J1-4"
+  pluspin: 45  voltage: 3.29105  current: 0.509064  name: "J1-6"
+  pluspin: 46  voltage: 3.29105  current: 0.531483  name: "J1-8"
+  pluspin: 47  voltage: 3.29105  current: 0.508332  name: "J1-44"
+  pluspin: 48  voltage: 3.29105  current: 0.476068  name: "J1-46"
+  pluspin: 49  voltage: 3.29105  current: 0.467046  name: "J1-73"
+  pluspin: 50  voltage: 3.29105  current: 0.482065  name: "J1-75"
+  pluspin: 51  voltage: 3.29105  current: 0.486788  name: "J1-77"
+  minpin: 0  voltage: 0  current: -4  name: "J1.min"
+
+Electric 5:
+  name: "Q1"
+  voltage: 3.29599
+  current: -4
+  pluspin: 53  voltage: 3.29598  current: -1.58919  name: "Q1-1"
+  pluspin: 55  voltage: 3.296  current: -0.476338  name: "Q1-2"
+  pluspin: 54  voltage: 3.296  current: -0.471904  name: "Q1-3"
+  pluspin: 52  voltage: 3.29599  current: -1.46257  name: "Q1-4"
+  minpin: 0  voltage: 0  current: 4  name: "Q1.min"
+
+Electric 6:
+  name: "JMP1"
+  voltage: -1.15907e-13
+  current: -3.81917e-09
+  pluspin: 56  voltage: 3.29219  current: -3.90799e-09  name: "JMP1-2"
+  minpin: 57  voltage: 3.29219  current: 3.86358e-09  name: "JMP1-1"
+

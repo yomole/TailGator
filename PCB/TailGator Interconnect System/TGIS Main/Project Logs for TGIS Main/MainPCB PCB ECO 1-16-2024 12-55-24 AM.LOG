@@ -1,0 +1,7 @@
+Change Net Name : Old Net Name=NetR15_1 New Net Name=USB0_RP_N
+Change Net Name : Old Net Name=NetR17_1 New Net Name=USB0_RP_P
+Added Class: Name=USB0_RP
+Added Differential Pair: Name=USB0_RP
+Added Rule: Name=Schematic Differential Pairs Routing
+Added Rule: Name=Schematic Matched Net Lengths
+Added Class: Name=USB0_RP_LINES

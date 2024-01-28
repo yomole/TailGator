@@ -1,0 +1,67 @@
+Added Component: Designator=U2(QFN40P700X700X90-57N)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/SC0914(13)/Raspberry+Pi/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Raspberry Pi"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "SC0914(13)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "VFQFN-56 Raspberry Pi"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/SC0914(13)/Raspberry+Pi/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "2648-SC0914(13)CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3V3_RP Pin=U2-1
+Added Pin To Net: NetName=UART0_TX Pin=U2-2
+Added Pin To Net: NetName=UART0_RX Pin=U2-3
+Added Pin To Net: NetName=CAN0_YLW Pin=U2-4
+Added Pin To Net: NetName=CAN0_GRN Pin=U2-5
+Added Pin To Net: NetName=CAN0_TX Pin=U2-6
+Added Pin To Net: NetName=CAN0_RX Pin=U2-7
+Added Pin To Net: NetName=CAN0_STB Pin=U2-8
+Added Pin To Net: NetName=GPIO7 Pin=U2-9
+Added Pin To Net: NetName=+3V3_RP Pin=U2-10
+Added Pin To Net: NetName=GPIO8 Pin=U2-11
+Added Pin To Net: NetName=GPIO9 Pin=U2-12
+Added Pin To Net: NetName=GPIO10 Pin=U2-13
+Added Pin To Net: NetName=GPIO11 Pin=U2-14
+Added Pin To Net: NetName=GPIO12 Pin=U2-15
+Added Pin To Net: NetName=GPIO13 Pin=U2-16
+Added Pin To Net: NetName=GPIO14 Pin=U2-17
+Added Pin To Net: NetName=GPIO15 Pin=U2-18
+Added Pin To Net: NetName=GND Pin=U2-19
+Added Pin To Net: NetName=RP_XIN Pin=U2-20
+Added Pin To Net: NetName=RP_XOUT Pin=U2-21
+Added Pin To Net: NetName=+3V3_RP Pin=U2-22
+Added Pin To Net: NetName=+1V1_RP Pin=U2-23
+Added Pin To Net: NetName=SWDCLK_RP Pin=U2-24
+Added Pin To Net: NetName=SWDIO_RP Pin=U2-25
+Added Pin To Net: NetName=RESET Pin=U2-26
+Added Pin To Net: NetName=GPIO16 Pin=U2-27
+Added Pin To Net: NetName=GPIO17 Pin=U2-28
+Added Pin To Net: NetName=GPIO18 Pin=U2-29
+Added Pin To Net: NetName=GPIO19 Pin=U2-30
+Added Pin To Net: NetName=GPIO20 Pin=U2-31
+Added Pin To Net: NetName=GPIO21 Pin=U2-32
+Added Pin To Net: NetName=+3V3_RP Pin=U2-33
+Added Pin To Net: NetName=GPIO22 Pin=U2-34
+Added Pin To Net: NetName=GPIO23 Pin=U2-35
+Added Pin To Net: NetName=GPIO24 Pin=U2-36
+Added Pin To Net: NetName=GPIO25 Pin=U2-37
+Added Pin To Net: NetName=GPIO26 Pin=U2-38
+Added Pin To Net: NetName=GPIO27 Pin=U2-39
+Added Pin To Net: NetName=GPIO28 Pin=U2-40
+Added Pin To Net: NetName=GPIO29 Pin=U2-41
+Added Pin To Net: NetName=+3V3_RP Pin=U2-42
+Added Pin To Net: NetName=+3V3_RP Pin=U2-43
+Added Pin To Net: NetName=+3V3_RP Pin=U2-44
+Added Pin To Net: NetName=+1V1_RP Pin=U2-45
+Added Pin To Net: NetName=NetR15_1 Pin=U2-46
+Added Pin To Net: NetName=NetR17_1 Pin=U2-47
+Added Pin To Net: NetName=+3V3_RP Pin=U2-48
+Added Pin To Net: NetName=+3V3_RP Pin=U2-49
+Added Pin To Net: NetName=+1V1_RP Pin=U2-50
+Added Pin To Net: NetName=QSPI_SD3 Pin=U2-51
+Added Pin To Net: NetName=QSPI_CLK Pin=U2-52
+Added Pin To Net: NetName=QSPI_SD0 Pin=U2-53
+Added Pin To Net: NetName=QSPI_SD2 Pin=U2-54
+Added Pin To Net: NetName=QSPI_SD1 Pin=U2-55
+Added Pin To Net: NetName=QSPI_SS Pin=U2-56
+Added Pin To Net: NetName=GND Pin=U2-57
+Added Member To Class: ClassName=Microcontroller Member=Component U2 RP2040

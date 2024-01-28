@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=+5V Pin=R3-1
+Removed Pin From Net: NetName=+5V Pin=R6-1
+Added Pin To Net: NetName=+3V3_RP Pin=R3-1
+Added Pin To Net: NetName=+3V3_RP Pin=R6-1
+Added Member To Class: ClassName=Connectors Member=Component J1 FTSH-110

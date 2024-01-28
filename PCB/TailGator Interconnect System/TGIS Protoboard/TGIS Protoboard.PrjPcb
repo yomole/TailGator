@@ -32,6 +32,7 @@ ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
 IsProjectConflictPreventionWarningsEnabled=0
+ConstraintManagerFlow=0
 IsVirtualBomDocumentRemoved=0
 OutputPath=
 LogFolderPath=
@@ -167,6 +168,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=XEHAEHYE
 
+[Document8]
+DocumentPath=..\TGIS.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for TGIS Protoboard\Design Rule Check - Protoboard.html
 DItemRevisionGUID=
@@ -175,25 +193,101 @@ DItemRevisionGUID=
 DocumentPath=Project Outputs for TGIS Protoboard\Move Component(s) Origin To Grid - Protoboard.html
 DItemRevisionGUID=
 
+[GeneratedDocument3]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\NC Drill\Protoboard.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GM
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GM13
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GM15
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GPB
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GPT
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\Gerber\Protoboard.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\NC Drill\Protoboard.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\ExportSTEP\Protoboard.step
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=..\TGIS USB to CAN\TGIS USB to CAN\Project Outputs for TGIS USB to CAN\TGIS USB to CAN\NC Drill\Protoboard.TXT
+DItemRevisionGUID=
+
 [Parameter1]
-Name=VersionControl_Repository
-Value=https://github.com/yomole/TailGator
+Name=Author1
+Value=Yovany Molina
 
 [Parameter2]
-Name=Revision
-Value=A
+Name=Author2
+Value=Blake Sanders
 
 [Parameter3]
 Name=Project
 Value=TGIS - Protoboard
 
 [Parameter4]
-Name=Author2
-Value=Blake Sanders
+Name=Revision
+Value=A
 
 [Parameter5]
-Name=Author1
-Value=Yovany Molina
+Name=VersionControl_Repository
+Value=https://github.com/yomole/TailGator
 
 [Configuration1]
 Name=Sources
@@ -400,6 +494,18 @@ OutputDocumentPath13=
 OutputVariantName13=
 OutputDefault13=0
 PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
+OutputType14=PCBDrawing
+OutputName14=Draftsman
+OutputDocumentPath14=
+OutputVariantName14=[No Variations]
+OutputDefault14=0
+PageOptions14=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
+OutputType15=PCBDrawing
+OutputName15=Draftsman
+OutputDocumentPath15=
+OutputVariantName15=[No Variations]
+OutputDefault15=0
+PageOptions15=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
 
 [OutputGroup4]
 Name=Assembly Outputs
@@ -523,32 +629,32 @@ OutputDocumentPath4=
 OutputVariantName4=[No Variations]
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
-OutputType5=Export Project History
-OutputName5=Export Project History
+OutputType5=ReportHierarchy
+OutputName5=Report Project Hierarchy
 OutputDocumentPath5=
 OutputVariantName5=[No Variations]
 OutputDefault5=0
-PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
-OutputType6=ReportHierarchy
-OutputName6=Report Project Hierarchy
+OutputType6=Script
+OutputName6=Script Output
 OutputDocumentPath6=
 OutputVariantName6=[No Variations]
 OutputDefault6=0
-OutputType7=Script
-OutputName7=Script Output
+OutputType7=SimpleBOM
+OutputName7=Simple BOM
 OutputDocumentPath7=
 OutputVariantName7=[No Variations]
 OutputDefault7=0
-OutputType8=SimpleBOM
-OutputName8=Simple BOM
+OutputType8=SinglePinNetReporter
+OutputName8=Report Single Pin Nets
 OutputDocumentPath8=
 OutputVariantName8=[No Variations]
 OutputDefault8=0
-OutputType9=SinglePinNetReporter
-OutputName9=Report Single Pin Nets
+OutputType9=Project History
+OutputName9=Project History
 OutputDocumentPath9=
 OutputVariantName9=[No Variations]
 OutputDefault9=0
+PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
 
 [OutputGroup7]
 Name=Other Outputs
@@ -772,6 +878,36 @@ OutputName13=Web Review Data
 OutputDocumentPath13=
 OutputVariantName13=
 OutputDefault13=0
+OutputType14=Ansoft Neutral
+OutputName14=Ansoft Neutral (AutoPCB)
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=HyperLynx
+OutputName15=HyperLynx (AutoPCB)
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=Orcad v7 Capture Design
+OutputName16=Orcad v7 Capture Design (AutoSCH)
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=P-CAD ASCII
+OutputName17=P-CAD ASCII (AutoPCB)
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
+OutputType18=P-CAD V16 Schematic Design
+OutputName18=P-CAD V16 Schematic Design (AutoSCH)
+OutputDocumentPath18=
+OutputVariantName18=
+OutputDefault18=0
+OutputType19=SiSoft
+OutputName19=SiSoft (AutoPCB)
+OutputDocumentPath19=
+OutputVariantName19=
+OutputDefault19=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
@@ -905,6 +1041,22 @@ Type117=1
 Type118=1
 Type119=1
 Type120=1
+Type121=1
+Type122=1
+Type123=1
+Type124=1
+Type125=1
+Type126=1
+Type127=1
+Type128=1
+Type129=1
+Type130=1
+Type131=1
+Type132=1
+Type133=1
+Type134=1
+Type135=1
+Type136=1
 
 [Difference Levels]
 Type1=1
@@ -975,6 +1127,12 @@ Type65=1
 Type66=1
 Type67=1
 Type68=1
+Type69=1
+Type70=1
+Type71=1
+Type72=1
+Type73=1
+Type74=1
 
 [Electrical Rules Check]
 Type1=1
@@ -1096,6 +1254,7 @@ Type116=2
 Type117=3
 Type118=3
 Type119=3
+MultiChannelAlternate=0
 AlternateItemFail=3
 Type122=2
 Type123=1
@@ -1103,6 +1262,30 @@ Type124=1
 Type125=1
 Type126=1
 Type127=1
+Type128=2
+Type129=2
+Type130=2
+Type131=2
+Type132=2
+Type133=2
+Type134=2
+Type135=2
+Type136=2
+Type137=2
+Type138=1
+Type139=1
+Type140=1
+Type141=1
+Type142=1
+Type143=1
+Type144=1
+Type145=1
+Type146=1
+Type147=2
+Type148=2
+Type149=2
+Type150=2
+Type151=2
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW

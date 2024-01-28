@@ -1,0 +1,224 @@
+Added Component: Designator=C1(CAPC0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "1276-1000-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=C2(CAPC0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "1276-1000-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=D1(SOD3715X135N)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BZT52C4V7S R9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOD-323F-2 Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "BZT52C3V0-FDICT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=D2(DPAK_TN)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BZT52C4V7S R9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOD-323F-2 Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "497-6769-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=D3(SOD3715X135N)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BZT52C4V7S R9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOD-323F-2 Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "BZT52C4V7-13-FDICT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=D4(DPAK_TN)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BZT52C4V7S R9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOD-323F-2 Taiwan Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BZT52C4V7S%20R9/Taiwan+Semiconductor/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "497-6769-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=F1(FUSE_3568)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "3568"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=F2(FUSE_3568)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "3568"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J3(TE_1877285-2)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "A99845-ND"; VariantName = "[No Variations]"
+Added Component: Designator=JMP1(2PinJumper)
+Added Component: Designator=JMP2(2PinJumper)
+Added Component: Designator=LED1(LED0603)
+Add component (AddParameter): Name = "Color"; Value = "Yellow"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "754-1122-1-ND"; VariantName = "[No Variations]"
+Added Component: Designator=LED2(LED0603)
+Add component (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "754-1122-1-ND"; VariantName = "[No Variations]"
+Added Component: Designator=Q1(TRANS_AONR21321)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/AONR21321/Alpha+%2526+Omega+Semiconductor+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Alpha &"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "AONR21321"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "PowerVDFN-8 Alpha &amp; Omega Semiconductor Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/AONR21321/Alpha+%2526+Omega+Semiconductor+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "785-1797-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=Q2(TRANS_AONR21321)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/AONR21321/Alpha+%2526+Omega+Semiconductor+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Alpha &"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "AONR21321"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "PowerVDFN-8 Alpha &amp; Omega Semiconductor Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/AONR21321/Alpha+%2526+Omega+Semiconductor+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "785-1797-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R1(RES0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "RMCF0603JT10K0CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "3k3"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RES0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "RMCF0603JT10K0CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "3k3"; VariantName = "[No Variations]"
+Added Component: Designator=R3(RES0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "RMCF0603JT10K0CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1k"; VariantName = "[No Variations]"
+Added Component: Designator=R4(RES0603)
+Add component (AddParameter): Name = "Supplier 1"; Value = "Digi-Key"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "RMCF0603JT10K0CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1k"; VariantName = "[No Variations]"
+Added Component: Designator=TP1(TPTH-100mil)
+Added Component: Designator=TP2(TPTH-100mil)
+Added Component: Designator=TP3(TPTH-100mil)
+Added Component: Designator=TP4(TPTH-100mil)
+Added Component: Designator=TP5(TPTH-100mil)
+Added Component: Designator=TP6(TPTH-100mil)
+Added Component: Designator=TP7(TPTH-100mil)
+Added Component: Designator=TP9(TPTH-100mil)
+Added Component: Designator=TP10(TPTH-100mil)
+Added Component: Designator=TP12(TPTH-100mil)
+Added Pin To Net: NetName=+3V3_OVDETECT Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=+5V_OVDETECT Pin=C2-1
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=+3V3_OVDETECT Pin=D1-A
+Added Pin To Net: NetName=+3V3 Pin=D1-K
+Added Pin To Net: NetName=+3V3_OVP Pin=D2-A
+Added Pin To Net: NetName=+3V3_OVDETECT Pin=D2-G
+Added Pin To Net: NetName=GND Pin=D2-K
+Added Pin To Net: NetName=+5V_OVDETECT Pin=D3-A
+Added Pin To Net: NetName=+5V Pin=D3-K
+Added Pin To Net: NetName=+5V_OVP Pin=D4-A
+Added Pin To Net: NetName=+5V_OVDETECT Pin=D4-G
+Added Pin To Net: NetName=GND Pin=D4-K
+Added Pin To Net: NetName=+3V3_RAW Pin=F1-1
+Added Pin To Net: NetName=+3V3_OVP Pin=F1-2
+Added Pin To Net: NetName=+3V3_RAW Pin=F1-3
+Added Pin To Net: NetName=+3V3_OVP Pin=F1-4
+Added Pin To Net: NetName=+5V_RAW Pin=F2-1
+Added Pin To Net: NetName=+5V_OVP Pin=F2-2
+Added Pin To Net: NetName=+5V_RAW Pin=F2-3
+Added Pin To Net: NetName=+5V_OVP Pin=F2-4
+Added Pin To Net: NetName=+5V_RAW Pin=J3-1
+Added Pin To Net: NetName=GND Pin=J3-2
+Added Pin To Net: NetName=+3V3_RAW Pin=JMP1-1
+Added Pin To Net: NetName=+3V3 Pin=JMP1-2
+Added Pin To Net: NetName=+5V_RAW Pin=JMP2-1
+Added Pin To Net: NetName=+5V Pin=JMP2-2
+Added Pin To Net: NetName=NetLED1_A Pin=LED1-A
+Added Pin To Net: NetName=GND Pin=LED1-C
+Added Pin To Net: NetName=NetLED2_A Pin=LED2-A
+Added Pin To Net: NetName=GND Pin=LED2-C
+Added Pin To Net: NetName=+3V3 Pin=Q1-1
+Added Pin To Net: NetName=+3V3 Pin=Q1-2
+Added Pin To Net: NetName=+3V3 Pin=Q1-3
+Added Pin To Net: NetName=+3V3 Pin=Q1-4
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-5
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-6
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-7
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-8
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-9_1
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-9_2
+Added Pin To Net: NetName=+3V3_OVP Pin=Q1-9
+Added Pin To Net: NetName=+5V Pin=Q2-1
+Added Pin To Net: NetName=+5V Pin=Q2-2
+Added Pin To Net: NetName=+5V Pin=Q2-3
+Added Pin To Net: NetName=+5V Pin=Q2-4
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-5
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-6
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-7
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-8
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-9_1
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-9_2
+Added Pin To Net: NetName=+5V_OVP Pin=Q2-9
+Added Pin To Net: NetName=+3V3_OVDETECT Pin=R1-1
+Added Pin To Net: NetName=GND Pin=R1-2
+Added Pin To Net: NetName=+5V_OVDETECT Pin=R2-1
+Added Pin To Net: NetName=GND Pin=R2-2
+Added Pin To Net: NetName=+3V3 Pin=R3-1
+Added Pin To Net: NetName=NetLED1_A Pin=R3-2
+Added Pin To Net: NetName=+5V Pin=R4-1
+Added Pin To Net: NetName=NetLED2_A Pin=R4-2
+Added Pin To Net: NetName=+3V3_OVDETECT Pin=TP1-1
+Added Pin To Net: NetName=+5V_OVDETECT Pin=TP2-1
+Added Pin To Net: NetName=+3V3 Pin=TP3-1
+Added Pin To Net: NetName=+5V Pin=TP4-1
+Added Pin To Net: NetName=+3V3_RAW Pin=TP5-1
+Added Pin To Net: NetName=+5V_RAW Pin=TP6-1
+Added Pin To Net: NetName=GND Pin=TP7-1
+Added Pin To Net: NetName=GND Pin=TP9-1
+Added Pin To Net: NetName=GND Pin=TP10-1
+Added Pin To Net: NetName=GND Pin=TP12-1
+Added Member To Class: ClassName=Power Member=Component C1 Cap
+Added Member To Class: ClassName=Power Member=Component C2 Cap
+Added Member To Class: ClassName=Power Member=Component D1 3V0
+Added Member To Class: ClassName=Power Member=Component D2 TN805
+Added Member To Class: ClassName=Power Member=Component D3 4V7
+Added Member To Class: ClassName=Power Member=Component D4 TN805
+Added Member To Class: ClassName=Power Member=Component F1 Fuse Holder
+Added Member To Class: ClassName=Power Member=Component F2 Fuse Holder
+Added Member To Class: ClassName=Power Member=Component J3 1877285-2
+Added Member To Class: ClassName=Power Member=Component JMP1 2PINJUMPER
+Added Member To Class: ClassName=Power Member=Component JMP2 2PINJUMPER
+Added Member To Class: ClassName=Power Member=Component LED1 LED
+Added Member To Class: ClassName=Power Member=Component LED2 LED
+Added Member To Class: ClassName=Power Member=Component Q1 AONR21321
+Added Member To Class: ClassName=Power Member=Component Q2 AONR21321
+Added Member To Class: ClassName=Power Member=Component R1 Res
+Added Member To Class: ClassName=Power Member=Component R2 Res
+Added Member To Class: ClassName=Power Member=Component R3 Res
+Added Member To Class: ClassName=Power Member=Component R4 Res
+Added Member To Class: ClassName=Power Member=Component TP1 TP
+Added Member To Class: ClassName=Power Member=Component TP2 TP
+Added Member To Class: ClassName=Power Member=Component TP3 TP
+Added Member To Class: ClassName=Power Member=Component TP4 TP
+Added Member To Class: ClassName=Power Member=Component TP5 TP
+Added Member To Class: ClassName=Power Member=Component TP6 TP
+Added Member To Class: ClassName=Power Member=Component TP7 TP
+Added Member To Class: ClassName=Power Member=Component TP9 TP
+Added Member To Class: ClassName=Power Member=Component TP10 TP
+Added Member To Class: ClassName=Power Member=Component TP12 TP

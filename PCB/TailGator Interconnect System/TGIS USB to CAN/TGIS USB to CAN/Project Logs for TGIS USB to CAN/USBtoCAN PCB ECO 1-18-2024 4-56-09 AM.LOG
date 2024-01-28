@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=CAN0_RX Pin=U1-40
+Removed Pin From Net: NetName=CAN0_TX Pin=U1-41
+Added Pin To Net: NetName=CAN0_RX Pin=U1-5
+Added Pin To Net: NetName=CAN0_TX Pin=U1-6
+Added Pin To Net: NetName=GPIO28 Pin=J8-16
+Added Pin To Net: NetName=GPIO28 Pin=U1-40
+Added Net: Name=GPIO28
+Added Pin To Net: NetName=GPIO29 Pin=J8-25
+Added Pin To Net: NetName=GPIO29 Pin=U1-41
+Added Net: Name=GPIO29

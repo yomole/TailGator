@@ -1,0 +1,5 @@
+Change Net Name : Old Net Name=JTCK/SWDCLK New Net Name=JTCK
+Change Net Name : Old Net Name=JTDO/SWO New Net Name=JTDO
+Change Net Name : Old Net Name=JTMS/SWDIO New Net Name=JTMS
+Change Net Name : Old Net Name=RSVD_31 New Net Name=SWDCLK
+Change Net Name : Old Net Name=RSVD_33 New Net Name=SWDIO

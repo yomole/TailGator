@@ -1,0 +1,223 @@
+Teardrop Report Breakout.PcbDoc
+On 1/18/2024 at 8:46:24 PM
+
+Pads visited                : 138
+
+Vias visited                : 72
+
+Pad teardrops failed : 0
+
+Pad J5-(492.52mil,308.858mil) on Multi-Layer
+Pad J5-1(450mil,175mil) on Multi-Layer
+Pad J5-2(294.094mil,175mil) on Multi-Layer
+Pad Free-M3(0mil,925mil) on Multi-Layer
+Pad Free-M3(2600mil,925mil) on Multi-Layer
+Pad Free-M3(2600mil,75mil) on Multi-Layer
+Pad Free-M3(0mil,75mil) on Multi-Layer
+Pad J2-24(750mil,-50mil) on Multi-Layer
+Pad J2-23(850mil,-50mil) on Multi-Layer
+Pad J2-22(950mil,-50mil) on Multi-Layer
+Pad J2-21(1050mil,-50mil) on Multi-Layer
+Pad J2-20(1150mil,-50mil) on Multi-Layer
+Pad J2-19(1250mil,-50mil) on Multi-Layer
+Pad J2-18(1350mil,-50mil) on Multi-Layer
+Pad J2-17(1450mil,-50mil) on Multi-Layer
+Pad J2-16(1550mil,-50mil) on Multi-Layer
+Pad J2-15(1650mil,-50mil) on Multi-Layer
+Pad J2-14(1750mil,-50mil) on Multi-Layer
+Pad J2-13(1850mil,-50mil) on Multi-Layer
+Pad J2-12(750mil,50mil) on Multi-Layer
+Pad J2-11(850mil,50mil) on Multi-Layer
+Pad J2-10(950mil,50mil) on Multi-Layer
+Pad J2-9(1050mil,50mil) on Multi-Layer
+Pad J2-8(1150mil,50mil) on Multi-Layer
+Pad J2-7(1250mil,50mil) on Multi-Layer
+Pad J2-6(1350mil,50mil) on Multi-Layer
+Pad J2-5(1450mil,50mil) on Multi-Layer
+Pad J2-4(1550mil,50mil) on Multi-Layer
+Pad J2-3(1650mil,50mil) on Multi-Layer
+Pad J2-2(1750mil,50mil) on Multi-Layer
+Pad J2-1(1850mil,50mil) on Multi-Layer
+Pad J4-2(2150mil,175mil) on Multi-Layer
+Pad J4-1(2305.905mil,175mil) on Multi-Layer
+Pad J4-(2348.425mil,308.858mil) on Multi-Layer
+Pad J3-24(750mil,475mil) on Multi-Layer
+Pad J3-23(850mil,475mil) on Multi-Layer
+Pad J3-22(950mil,475mil) on Multi-Layer
+Pad J3-21(1050mil,475mil) on Multi-Layer
+Pad J3-20(1150mil,475mil) on Multi-Layer
+Pad J3-19(1250mil,475mil) on Multi-Layer
+Pad J3-18(1350mil,475mil) on Multi-Layer
+Pad J3-17(1450mil,475mil) on Multi-Layer
+Pad J3-16(1550mil,475mil) on Multi-Layer
+Pad J3-15(1650mil,475mil) on Multi-Layer
+Pad J3-14(1750mil,475mil) on Multi-Layer
+Pad J3-13(1850mil,475mil) on Multi-Layer
+Pad J3-12(750mil,575mil) on Multi-Layer
+Pad J3-11(850mil,575mil) on Multi-Layer
+Pad J3-10(950mil,575mil) on Multi-Layer
+Pad J3-9(1050mil,575mil) on Multi-Layer
+Pad J3-8(1150mil,575mil) on Multi-Layer
+Pad J3-7(1250mil,575mil) on Multi-Layer
+Pad J3-6(1350mil,575mil) on Multi-Layer
+Pad J3-5(1450mil,575mil) on Multi-Layer
+Pad J3-4(1550mil,575mil) on Multi-Layer
+Pad J3-3(1650mil,575mil) on Multi-Layer
+Pad J3-2(1750mil,575mil) on Multi-Layer
+Pad J3-1(1850mil,575mil) on Multi-Layer
+Pad J1-1(1914.173mil,163.386mil) on Sig/5V
+Pad J1-2(1914.173mil,336.614mil) on Sig/5V
+Pad J1-3(1882.677mil,163.386mil) on Sig/5V
+Pad J1-4(1882.677mil,336.614mil) on Sig/5V
+Pad J1-5(1851.181mil,163.386mil) on Sig/5V
+Pad J1-6(1851.181mil,336.614mil) on Sig/5V
+Pad J1-7(1819.685mil,163.386mil) on Sig/5V
+Pad J1-8(1819.685mil,336.614mil) on Sig/5V
+Pad J1-9(1788.189mil,163.386mil) on Sig/5V
+Pad J1-10(1788.189mil,336.614mil) on Sig/5V
+Pad J1-11(1756.693mil,163.386mil) on Sig/5V
+Pad J1-12(1756.693mil,336.614mil) on Sig/5V
+Pad J1-13(1725.197mil,163.386mil) on Sig/5V
+Pad J1-14(1725.197mil,336.614mil) on Sig/5V
+Pad J1-15(1693.701mil,163.386mil) on Sig/5V
+Pad J1-16(1693.701mil,336.614mil) on Sig/5V
+Pad J1-17(1662.205mil,163.386mil) on Sig/5V
+Pad J1-18(1662.205mil,336.614mil) on Sig/5V
+Pad J1-19(1630.709mil,163.386mil) on Sig/5V
+Pad J1-20(1630.709mil,336.614mil) on Sig/5V
+Pad J1-21(1599.213mil,163.386mil) on Sig/5V
+Pad J1-22(1599.213mil,336.614mil) on Sig/5V
+Pad J1-23(1567.716mil,163.386mil) on Sig/5V
+Pad J1-24(1567.716mil,336.614mil) on Sig/5V
+Pad J1-25(1536.22mil,163.386mil) on Sig/5V
+Pad J1-26(1536.22mil,336.614mil) on Sig/5V
+Pad J1-27(1504.724mil,163.386mil) on Sig/5V
+Pad J1-28(1504.724mil,336.614mil) on Sig/5V
+Pad J1-29(1473.228mil,163.386mil) on Sig/5V
+Pad J1-30(1473.228mil,336.614mil) on Sig/5V
+Pad J1-31(1441.732mil,163.386mil) on Sig/5V
+Pad J1-32(1441.732mil,336.614mil) on Sig/5V
+Pad J1-33(1410.236mil,163.386mil) on Sig/5V
+Pad J1-34(1410.236mil,336.614mil) on Sig/5V
+Pad J1-35(1378.74mil,163.386mil) on Sig/5V
+Pad J1-36(1378.74mil,336.614mil) on Sig/5V
+Pad J1-37(1347.244mil,163.386mil) on Sig/5V
+Pad J1-38(1347.244mil,336.614mil) on Sig/5V
+Pad J1-39(1315.748mil,163.386mil) on Sig/5V
+Pad J1-40(1315.748mil,336.614mil) on Sig/5V
+Pad J1-41(1284.252mil,163.386mil) on Sig/5V
+Pad J1-42(1284.252mil,336.614mil) on Sig/5V
+Pad J1-43(1252.756mil,163.386mil) on Sig/5V
+Pad J1-44(1252.756mil,336.614mil) on Sig/5V
+Pad J1-45(1221.26mil,163.386mil) on Sig/5V
+Pad J1-46(1221.26mil,336.614mil) on Sig/5V
+Pad J1-47(1189.764mil,163.386mil) on Sig/5V
+Pad J1-48(1189.764mil,336.614mil) on Sig/5V
+Pad J1-49(1158.268mil,163.386mil) on Sig/5V
+Pad J1-50(1158.268mil,336.614mil) on Sig/5V
+Pad J1-51(1126.772mil,163.386mil) on Sig/5V
+Pad J1-52(1126.772mil,336.614mil) on Sig/5V
+Pad J1-53(1095.276mil,163.386mil) on Sig/5V
+Pad J1-54(1095.276mil,336.614mil) on Sig/5V
+Pad J1-55(1063.78mil,163.386mil) on Sig/5V
+Pad J1-56(1063.78mil,336.614mil) on Sig/5V
+Pad J1-57(1032.284mil,163.386mil) on Sig/5V
+Pad J1-58(1032.284mil,336.614mil) on Sig/5V
+Pad J1-59(1000.787mil,163.386mil) on Sig/5V
+Pad J1-60(1000.787mil,336.614mil) on Sig/5V
+Pad J1-61(969.291mil,163.386mil) on Sig/5V
+Pad J1-62(969.291mil,336.614mil) on Sig/5V
+Pad J1-63(937.795mil,163.386mil) on Sig/5V
+Pad J1-64(937.795mil,336.614mil) on Sig/5V
+Pad J1-65(906.299mil,163.386mil) on Sig/5V
+Pad J1-66(906.299mil,336.614mil) on Sig/5V
+Pad J1-67(874.803mil,163.386mil) on Sig/5V
+Pad J1-68(874.803mil,336.614mil) on Sig/5V
+Pad J1-69(843.307mil,163.386mil) on Sig/5V
+Pad J1-70(843.307mil,336.614mil) on Sig/5V
+Pad J1-71(811.811mil,163.386mil) on Sig/5V
+Pad J1-72(811.811mil,336.614mil) on Sig/5V
+Pad J1-73(780.315mil,163.386mil) on Sig/5V
+Pad J1-74(780.315mil,336.614mil) on Sig/5V
+Pad J1-75(748.819mil,163.386mil) on Sig/5V
+Pad J1-76(748.819mil,336.614mil) on Sig/5V
+Pad J1-77(717.323mil,163.386mil) on Sig/5V
+Pad J1-78(717.323mil,336.614mil) on Sig/5V
+Pad J1-79(685.827mil,163.386mil) on Sig/5V
+Pad J1-80(685.827mil,336.614mil) on Sig/5V
+
+Via teardrops failed : 0
+
+Via (874.803mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1378.74mil,163.386mil) from Sig/5V to Sig/3V3
+Via (811.811mil,163.386mil) from Sig/5V to Sig/3V3
+Via (748.819mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1095.276mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1189.764mil,163.386mil) from Sig/5V to Sig/3V3
+Via (717.323mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1284.252mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1158.268mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1000.787mil,163.386mil) from Sig/5V to Sig/3V3
+Via (685.827mil,163.386mil) from Sig/5V to Sig/3V3
+Via (906.299mil,163.386mil) from Sig/5V to Sig/3V3
+Via (780.315mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1441.732mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1473.228mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1725.197mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1599.213mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1662.205mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1567.026mil,164.077mil) from Sig/5V to Sig/3V3
+Via (1914.173mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1788.189mil,163.386mil) from Sig/5V to Sig/3V3
+Via (1095.276mil,336.614mil) from Sig/5V to Sig/3V3
+Via (969.291mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1378.74mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1189.764mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1315.748mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1788.189mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1000.787mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1662.205mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1725.888mil,335.923mil) from Sig/5V to Sig/3V3
+Via (1819.685mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1693.701mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1567.716mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1473.228mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1284.252mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1158.268mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1221.26mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1252.756mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1756.693mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1851.181mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1914.173mil,336.614mil) from Sig/5V to Sig/3V3
+Via (1882.677mil,336.614mil) from Sig/5V to Sig/3V3
+Via (906.299mil,336.614mil) from Sig/5V to Sig/3V3
+Via (811.811mil,336.614mil) from Sig/5V to Sig/3V3
+Via (685.827mil,336.614mil) from Sig/5V to Sig/3V3
+Via (2550mil,550mil) from Sig/5V to Sig/3V3
+Via (2675mil,300mil) from Sig/5V to Sig/3V3
+Via (2425mil,800mil) from Sig/5V to Sig/3V3
+Via (2300mil,550mil) from Sig/5V to Sig/3V3
+Via (2425mil,300mil) from Sig/5V to Sig/3V3
+Via (2300mil,50mil) from Sig/5V to Sig/3V3
+Via (2175mil,800mil) from Sig/5V to Sig/3V3
+Via (2050mil,550mil) from Sig/5V to Sig/3V3
+Via (2175mil,300mil) from Sig/5V to Sig/3V3
+Via (2050mil,50mil) from Sig/5V to Sig/3V3
+Via (1925mil,800mil) from Sig/5V to Sig/3V3
+Via (1675mil,800mil) from Sig/5V to Sig/3V3
+Via (1425mil,800mil) from Sig/5V to Sig/3V3
+Via (1175mil,800mil) from Sig/5V to Sig/3V3
+Via (925mil,800mil) from Sig/5V to Sig/3V3
+Via (675mil,800mil) from Sig/5V to Sig/3V3
+Via (550mil,550mil) from Sig/5V to Sig/3V3
+Via (550mil,50mil) from Sig/5V to Sig/3V3
+Via (425mil,800mil) from Sig/5V to Sig/3V3
+Via (300mil,550mil) from Sig/5V to Sig/3V3
+Via (425mil,300mil) from Sig/5V to Sig/3V3
+Via (300mil,50mil) from Sig/5V to Sig/3V3
+Via (175mil,800mil) from Sig/5V to Sig/3V3
+Via (50mil,550mil) from Sig/5V to Sig/3V3
+Via (175mil,300mil) from Sig/5V to Sig/3V3
+Via (748.819mil,225.197mil) from Sig/5V to Sig/3V3
+Via (1851.181mil,276.378mil) from Sig/5V to Sig/3V3
+
