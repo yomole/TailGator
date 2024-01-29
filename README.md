@@ -36,10 +36,10 @@ Other folders contain incomplete designs for other planned boards.
 ## Documentation
 
 For those without access to [Altium Designer](https://www.altium.com/altium-designer), [Altium Designer Viewer](https://www.altium.com/altium-designer-viewer), or similar compatible applications, documentation for each produced hardware design is available under the `Project Outputs` folder for each respective project. Links are also provided here for convienience:
-- [Power Input Board](<PCB/Tailgator Interconnect System/TGIS Main/Project Outputs for TGIS Main/TGIS.PDF>)
-- [USB to CAN Board](<PCB/Tailgator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF>)
-- [Breakout Board](<PCB/Tailgator Interconnect System/TGIS Breakout/TGIS Breakout/Project Outputs for TGIS Breakout/TGIS.PDF>)
-
+- [Power Input Board](<PCB/TailGator Interconnect System/TGIS Main/Project Outputs for TGIS Main/TGIS.PDF>)
+- [USB to CAN Board](<PCB/TailGator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF>)
+- [Breakout Board](<PCB/TailGator Interconnect System/TGIS Breakout/TGIS Breakout/Project Outputs for TGIS Breakout/TGIS.PDF>)
+PCB/TailGator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF
 Handwritten [Development Notes](<Documents/Research/Backplane.pdf>) taken throughout the project are also available in PDF format.
 
 ## Libraries
