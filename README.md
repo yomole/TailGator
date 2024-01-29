@@ -18,22 +18,44 @@ The current design of TGIS can supply:
 - 3.3V @ 4A (13.3W)
 - 5V @ 4A (20W)
 
-Reserved lines may be used to supplement the 3.3V or 5V lines. Board designs may also include a 5V to 3.3V LDO regulator to suppliment the 3.3V line.
+Reserved lines may be used to supplement the 3.3V or 5V lines. Board designs may also include a 5V to 3.3V LDO regulator to suppliment the 3.3V line on a specific board in the system.
 
 ## Pinout
 
-![image](Documents/Images/Pinout-11-26-23.jpg)
+![image](Documents/Images/Pinout-1-28-24.jpg)
 
-## Simulations
+# Hardware
 
-These are LTSpice simulations for some parts of the circuits we designed. Libraries used are included.
+Currently, the project contains Altium schematics and layouts for three boards used for power, communications, and alpha-build testing. These can be found in the `PCB/TailGator Interconnect System` folder:
+- Power Input Board (`TGIS Main`) **V1**: Accepts power for the 3.3V and 5V rails used for TGIS boards while regulating it against reverse polarity and overvoltage. Also offers overcurrent protection.
+- USB to CAN Board (`TGIS USB to CAN`) **V1**: Transcribes USB serial messages into CAN packets that are sent to all connected boards in the TGIS system. This board has inputs for JTAG, external CAN connections using RJ45, and SWD for debugging the board's RP2040 microcontroller.
+- Breakout Board (`TGIS Breakout`) **V1**: Allows access to the TGIS connector lines using typical 0.1" (2.54mm) headers. This is going to be used for alpha-build testing of the different features currently implemented across all produced boards.  
 
-- `3V3_Protection.asc` is an LTSpice simulation of the 3.3V protection circuits. This circuit contains reverse polarity protection, overcurrent protection, and overvoltage protection.
-- `5V_Protection.asc` is an LTSpice simulation of the 5V protection circuits. This circuit contains reverse polarity protection, overcurrent protection, and overvoltage protection.
+Other folders contain incomplete designs for other planned boards.
+
+## Documentation
+
+For those without access to [Altium Designer](https://www.altium.com/altium-designer), [Altium Designer Viewer](https://www.altium.com/altium-designer-viewer), or similar compatible applications, documentation for each produced hardware design is available under the `Project Outputs` folder for each respective project. Links are also provided here for convienience:
+- [Power Input Board](<PCB/Tailgator Interconnect System/TGIS Main/Project Outputs for TGIS Main/TGIS.PDF>)
+- [USB to CAN Board](<PCB/Tailgator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF>)
+- [Breakout Board](<PCB/Tailgator Interconnect System/TGIS Breakout/TGIS Breakout/Project Outputs for TGIS Breakout/TGIS.PDF>)
+
+Handwritten [Development Notes](<Documents/Research/Backplane.pdf>) taken throughout the project are also available in PDF format.
 
 ## Libraries
 
-The libraries in this folder are used for some of the components in the LTSpice circuits.
+The Altium libraries used for the project have been compiled into an integrated library for use with your own projects involving the TailGator Interconnect System. You may find `TGIS.intlib` file in `PCB/Library/Project Outputs for TGIS`.
+
+## Simulations
+
+There are LTSpice simulations for some parts of the circuits we designed. Libraries used are included.
+
+- `3V3_Protection.asc` is an LTSpice simulation of the 3.3V protection circuits in the Power Input Board. This circuit contains reverse polarity protection, overcurrent protection, and overvoltage protection.
+- `5V_Protection.asc` is an LTSpice simulation of the 5V protection circuits in the Power Input Board. This circuit contains reverse polarity protection, overcurrent protection, and overvoltage protection.
+
+### LTSpice Libraries
+
+The libraries in the simulations folder are used for some of the components in the LTSpice circuits.
 
 - `fuse2.lib` is a library of fuses compiled by user aurvii based on a fuse model by Helmut Sennewald. It can be found in the [Official LTSpice Support Group](https://groups.io/g/LTspice).
 - `st_standard_sensitve_scr` is a library of sensitive and standard SCRs/Thyristors by STMicroelectronics. It can be found [here](https://www.st.com/resource/en/spice_model/standard_sensitive_scr_pspice.zip).
@@ -41,14 +63,20 @@ The libraries in this folder are used for some of the components in the LTSpice 
 
 All other models used come standard with LTSpiceXVII.
 
-### Installation
-
 To install these libraries, you must copy and paste them into your LTSpice subcircuit folder. Depending on your version of LTSpice, on Windows machines, this could be:
-- `%localappdata\LTspice\lib\sub`
+- `%localappdata%\LTspice\lib\sub`
 - `%userprofile%\Documents\LTSpiceXVII\lib\sub`
 - `%programfiles%\LTC\LTSpiceXVII\lib\sub`
 
 or other directories.
+
+### Simulation Results
+
+#### 5V_Protection.asc
+![Plot of 5V protection circuits](<Simulation/Main PCB/5V Protection Circuits/5V_Protection_Circuits_Plot.png>)
+
+#### 3V3_Protection.asc
+![Plot of 3.3V protection circuits](<Simulation/Main PCB/3V3 Protection Circuits/3V3_Protection_Circuits_Plot.png>)
 
 # Software
 Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system. The prototype includes three major components, all connected to an RP2040:
@@ -73,7 +101,6 @@ Clone this repository: `https://github.com/yomole/TailGator.git`, then open the 
 - Note the LIS3DH code in the `hw-demo` is currently commented out. Comment out SPI/SSD1331-related code and uncomment LIS3DH-related code to demo that device instead of the OLED display.
 
 From within a demo, run `cargo run` with your Feather RP2040 set to accept a UF2 and the toolchain will automatically run the program on that chip.
-
 
 # Time Tracking
 
