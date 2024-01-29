@@ -1,4 +1,4 @@
-# TailGator
+# [TailGator](https://github.com/yomole/TailGator)
 
 # Introduction
 
