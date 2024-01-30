@@ -1,5 +1,0 @@
-Change Component Footprint: Designator=J8 Old Footprint=PREC014DAAN-RC New Footprint=PH2RA-28-UA
-Change Component Comment : Designator=J8 Old Comment=PREC014DAAN-RC New Comment=PH2RA-28-UA
-Change component parameters: Designator = "J8" ("J8"); Footprint = "PREC014DAAN-RC"; UniqueID = "\VRCKHAHT" ("\VRCKHAHT")
-Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
-Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "2057-PH2RA-28-UA-ND"; VariantName = "[No Variations]"

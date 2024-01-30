@@ -1,2 +1,0 @@
-Added Rule: Name=Schematic Differential Pairs Routing_5
-Change Rule Scope 1 : Old Scope=InNetClass('CAN0') New Scope=InNet('CAN0_P')

@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=GPIO18 Pin=J8-14
-Removed Pin From Net: NetName=GPIO29 Pin=J8-25
-Added Pin To Net: NetName=GPIO29 Pin=J8-14
-Added Pin To Net: NetName=GPIO18 Pin=J8-25

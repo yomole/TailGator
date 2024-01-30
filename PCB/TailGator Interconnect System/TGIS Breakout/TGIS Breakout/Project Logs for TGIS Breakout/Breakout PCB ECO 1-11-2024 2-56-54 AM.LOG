@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=JnRST Pin=J2-9
-Removed Pin From Net: NetName=RSVD_55 Pin=J2-20
-Added Pin To Net: NetName=RSVD_55 Pin=J2-9
-Added Pin To Net: NetName=JnRST Pin=J2-20

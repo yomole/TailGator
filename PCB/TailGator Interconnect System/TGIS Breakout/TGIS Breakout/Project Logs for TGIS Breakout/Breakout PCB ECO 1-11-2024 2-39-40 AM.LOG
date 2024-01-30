@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=+5V Pin=J2-10
-Removed Pin From Net: NetName=RSVD_61 Pin=J2-21
-Removed Pin From Net: NetName=RSVD_34 Pin=J3-10
-Removed Pin From Net: NetName=RSVD_67 Pin=J3-21
-Added Pin To Net: NetName=RSVD_61 Pin=J2-10
-Added Pin To Net: NetName=+5V Pin=J2-21
-Added Pin To Net: NetName=RSVD_67 Pin=J3-10
-Added Pin To Net: NetName=RSVD_34 Pin=J3-21

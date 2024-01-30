@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=+3V3_OVP Pin=JMP3-1
-Removed Pin From Net: NetName=+5V_OVP Pin=JMP4-1
-Added Pin To Net: NetName=+3V3_RAW Pin=JMP3-1
-Added Pin To Net: NetName=+5V_RAW Pin=JMP4-1

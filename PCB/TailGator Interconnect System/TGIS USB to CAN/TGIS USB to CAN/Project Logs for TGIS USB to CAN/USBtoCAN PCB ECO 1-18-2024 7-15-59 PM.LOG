@@ -1,5 +1,0 @@
-Change Component Footprint: Designator=J3 Old Footprint=AMPHENOL_10144518-082802LF New Footprint=AMPHENOL_10144518-083802LF
-Change Component Comment : Designator=J3 Old Comment=10144518-082802LF New Comment=10144518-083802LF
-Change component parameters: Designator = "J3" ("J3"); Footprint = "AMPHENOL_10144518-082802LF"; UniqueID = "\ZCQPEGTR" ("\ZCQPEGTR")
-Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
-Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5455-1-ND"; VariantName = "[No Variations]"

@@ -1,5 +1,0 @@
-Change component parameters: Designator = "J1" ("J1"); Footprint = "AMPHENOL_10144517-081802LF"; UniqueID = "\OLVVJYWD" ("\OLVVJYWD")
-Change component parameters (AddParameter): Name = "Supplier 1"; Value = "Digikey"; VariantName = "[No Variations]"
-Change component parameters (AddParameter): Name = "Supplier Part Number 1"; Value = "609-5437-1-ND"; VariantName = "[No Variations]"
-Change component parameters (AddParameter): Name = "System"; Value = "Connector"; VariantName = "[No Variations]"
-Added Member To Class: ClassName=Power Member=Component JMP2 2PINJUMPER

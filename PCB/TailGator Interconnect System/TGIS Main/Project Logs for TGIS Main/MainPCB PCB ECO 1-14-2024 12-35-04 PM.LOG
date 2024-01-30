@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=+3V3 Pin=TP7-1
-Removed Pin From Net: NetName=+5V Pin=TP8-1
-Added Pin To Net: NetName=+3V3_OVDETECT Pin=TP7-1
-Added Pin To Net: NetName=+5V_OVDETECT Pin=TP8-1

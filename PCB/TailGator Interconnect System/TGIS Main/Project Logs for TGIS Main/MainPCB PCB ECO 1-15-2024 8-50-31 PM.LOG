@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=+3V3_RP Pin=TP21-1
-Removed Pin From Net: NetName=+1V1_RP Pin=TP23-1
-Removed Member From Class: ClassName=Power Member=TP21
-Removed Member From Class: ClassName=Microcontroller Member=TP23

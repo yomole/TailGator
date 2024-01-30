@@ -1,5 +1,0 @@
-Change Component Designator: OldDesignator=J? NewDesignator=J1
-Added Component: Designator=J2(GCT_USB4115-03-C_REVB2)
-Add component (AddParameter): Name = "Supplier 1"; Value = "Future Electronics"; VariantName = "[No Variations]"
-Add component (AddParameter): Name = "Supplier Part Number 1"; Value = "4134645"; VariantName = "[No Variations]"
-Added Member To Class: ClassName=MainPCB Member=Component J2 USB 3.1 TYPE C VERT

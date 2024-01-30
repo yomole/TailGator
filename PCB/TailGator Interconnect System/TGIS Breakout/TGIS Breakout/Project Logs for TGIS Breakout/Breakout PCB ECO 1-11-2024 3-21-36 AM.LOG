@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=GNDDetect Pin=J2-3
-Removed Pin From Net: NetName=JTDI Pin=J2-4
-Added Pin To Net: NetName=JTDI Pin=J2-3
-Added Pin To Net: NetName=GNDDetect Pin=J2-4
