@@ -236,6 +236,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document12]
+DocumentPath=TGIS Main.BomDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for TGIS Main\Design Rule Check - MainPCB.html
 DItemRevisionGUID=
@@ -625,6 +642,24 @@ OutputDocumentPath1=
 OutputVariantName1=[No Variations]
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
+Configuration1_Name1=ColumnNameFormat
+Configuration1_Item1=CaptionAsName
+Configuration1_Name2=ForceUpdateSettings
+Configuration1_Item2=False
+Configuration1_Name3=General
+Configuration1_Item3=OpenExported=False|AddToProject=False|ReportBOMViolationsInMessages=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePcbData=False|IncludeVaultData=True|IncludeCloudData=False|IncludeDocumentData=True|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|TemplateVaultGuid=|TemplateItemGuid=|TemplateRevisionGuid=|BatchMode=5|FormWidth=1200|FormHeight=710|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=USD|SolutionsPerItem=1|SuppliersPerSolution=1|ViewType=0|UseDirectApi=False|BomSetName=
+Configuration1_Name4=GroupOrder
+Configuration1_Item4=
+Configuration1_Name5=SortOrder
+Configuration1_Item5=Description=Up|Designator=Up
+Configuration1_Name6=VisibleOrder
+Configuration1_Item6=Line #=53|Comment=129|Description=100|Designator=100|Quantity=66|Value=54|Footprint=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name7=VisibleOrder_Base
+Configuration1_Item7=Line #=53|Comment=129|Description=100|Designator=100|Quantity=66|Value=54|Footprint=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name8=VisibleOrder_Consolidated
+Configuration1_Item8=Line #=100|Comment=100|Description=100|Designator=100|Quantity=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
+Configuration1_Name9=VisibleOrder_Flat
+Configuration1_Item9=Line #=100|Comment=100|Description=100|Designator=100|Manufacturer 1=100|Manufacturer Part Number 1=166|Manufacturer Lifecycle 1=142|Supplier 1=72|Supplier Part Number 1=138|Supplier Unit Price 1=122|Supplier Subtotal 1=116
 OutputType2=BOM_ReportCompare
 OutputName2=BOM Compare
 OutputDocumentPath2=
@@ -1316,11 +1351,17 @@ UpdateVariants=1
 UpdateToLatestRevision=1
 PartTypes=0
 ComponentLibIdentifierKind0=Library Name And Type
-ComponentLibraryIdentifier0=TGIS_Microcontrollers.SchLib
-ComponentDesignItemID0=SC0914(13)
-ComponentSymbolReference0=SC0914(13)
+ComponentLibraryIdentifier0=TGIS.IntLib
+ComponentDesignItemID0=TP
+ComponentSymbolReference0=TP
 ComponentUpdate0=1
 ComponentIsDeviceSheet0=0
+ComponentLibIdentifierKind1=Library Name And Type
+ComponentLibraryIdentifier1=TGIS_Connectors.SchLib
+ComponentDesignItemID1=TP
+ComponentSymbolReference1=TP
+ComponentUpdate1=1
+ComponentIsDeviceSheet1=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1334,35 +1375,22 @@ RemoveParameters=0
 AddModels=1
 RemoveModels=1
 UpdateCurrentModels=1
-ParameterName0=Check_prices
+ParameterName0=Comment
 ParameterUpdate0=1
-ParameterName1=Comment
+ParameterName1=Component Kind
 ParameterUpdate1=1
-ParameterName2=Component Kind
+ParameterName2=Description
 ParameterUpdate2=1
-ParameterName3=Description
+ParameterName3=Library Reference
 ParameterUpdate3=1
-ParameterName4=Library Reference
-ParameterUpdate4=1
-ParameterName5=MF
-ParameterUpdate5=1
-ParameterName6=MP
-ParameterUpdate6=1
-ParameterName7=Package
-ParameterUpdate7=1
-ParameterName8=SnapEDA_Link
-ParameterUpdate8=1
-ParameterName9=Supplier 1
-ParameterUpdate9=1
-ParameterName10=Supplier Part Number 1
-ParameterUpdate10=1
-ParameterName11=Value
-ParameterUpdate11=1
 ModelTypeGroup0=PCBLIB
 ModelTypeUpdate0=1
 ModelType0=PCBLIB
-ModelName0=QFN40P700X700X90-57N
+ModelName0=TPAD-60MIL
 ModelUpdate0=1
+ModelType1=PCBLIB
+ModelName1=TPTH-100mil
+ModelUpdate1=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
