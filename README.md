@@ -39,7 +39,7 @@ For those without access to [Altium Designer](https://www.altium.com/altium-desi
 - [Power Input Board](<PCB/TailGator Interconnect System/TGIS Main/Project Outputs for TGIS Main/TGIS.PDF>)
 - [USB to CAN Board](<PCB/TailGator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF>)
 - [Breakout Board](<PCB/TailGator Interconnect System/TGIS Breakout/TGIS Breakout/Project Outputs for TGIS Breakout/TGIS.PDF>)
-Handwritten [Development Notes](<Documents/Research/Backplane.pdf>) taken throughout the project are also available in PDF format.
+- Handwritten [Development Notes](<Documents/Research/Backplane.pdf>) taken throughout the project are also available in PDF format.
 
 ## Libraries
 
@@ -76,6 +76,17 @@ or other directories.
 
 #### 3V3_Protection.asc
 ![Plot of 3.3V protection circuits](<Simulation/Main PCB/3V3 Protection Circuits/3V3_Protection_Circuits_Plot.png>)
+
+### Hardware Test Results
+
+### V1
+
+Hardware testing for the power input board was performed using a ODP3122 power supply, DL3021 electric load, and an MSO7014A mixed signal oscilloscope. Most of this equipment was interfaced using python code to send SCPI messages.
+
+![Plot of 3.3V overvoltage protection](<Documents/Alpha Build Testing/ovp.png>)
+![Plot of 3.3V reverse polarity protection](<Documents/Alpha Build Testing/rpp.png>)
+
+The fuse did work in the overvoltage protection case, but activated after a very long amount of time. We will try to use fast acting automotive fuses in future revisions.
 
 # Software
 Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system. The prototype includes three major components, all connected to an RP2040:
