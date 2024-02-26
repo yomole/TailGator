@@ -2,10 +2,14 @@
 #![no_main]
 
 use rtic::app;
+use defmt_rtt as _;
 use panic_halt as _;
 
 #[app(device = adafruit_feather_rp2040::pac, peripherals = true, dispatchers = [RTC_IRQ])]
 mod app {
+
+    // Debug imports
+    use defmt::{info, error};
 
     // Board specific imports
     use adafruit_feather_rp2040::hal as hal;
@@ -87,6 +91,8 @@ mod app {
     **************************************************************************/
     #[init]
     fn init(cx: init::Context) -> (DataShared, DataLocal, init::Monotonics) {
+
+        info!("initializing");
         
         let mut resets = cx.device.RESETS;
         let mut watchdog = Watchdog::new(cx.device.WATCHDOG);
@@ -210,7 +216,7 @@ mod app {
     #[task]
     fn heartbeat(_cx: heartbeat::Context) {
         blink::spawn(2).unwrap();
-        // print::spawn("heartbeat!\n").unwrap();
+        info!("heartbeat");
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
@@ -270,14 +276,14 @@ mod app {
     //     // Source: https://github.com/BenBergman/lis3dh-rs/blob/master/examples/cpx.rs
     //     let accel: accelerometer::vector::I16x3 = cx.local.imu.accel_raw().unwrap();
     //     let orientation = cx.local.imu_tracker.update(accel);
-    //     //print::spawn_after(100.millis(),"Orientation: ").unwrap();
-    //     print::spawn(match orientation {
+    //     //info!("IMU orientation:");
+    //     info!(match {
     //         LandscapeUp     => "LandscapeUp\n",
     //         LandscapeDown   => "LandscapeDown\n",
     //         PortraitUp      => "PortraitUp\n",
     //         PortraitDown    => "PortraitDown\n",
     //         _ => "unknown\n"
-    //     }).unwrap();
+    //     });
     //     update_imu::spawn_after(1000.millis()).unwrap();
     // }
 
