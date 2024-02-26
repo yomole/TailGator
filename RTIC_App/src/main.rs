@@ -4,12 +4,8 @@
 use rtic::app;
 use panic_halt as _;
 
-mod usb_manager;
-
 #[app(device = adafruit_feather_rp2040::pac, peripherals = true, dispatchers = [RTC_IRQ])]
 mod app {
-
-    use core::fmt::Write;
 
     // Board specific imports
     use adafruit_feather_rp2040::hal as hal;
@@ -28,7 +24,7 @@ mod app {
         i2c::I2C,
         pio::PIOExt,
     };
-    use embedded_hal::digital::v2::{
+    use embedded_hal::digital::{
         StatefulOutputPin,
         OutputPin,
     };
@@ -42,7 +38,9 @@ mod app {
     };
     // A type alias to make things easier to read
     type OledDisplay = GraphicsMode<
-        I2cInterface<hal::i2c::I2C<hal::pac::I2C1, (Sda, Scl)>>
+        I2cInterface<hal::i2c::I2C<hal::pac::I2C1, 
+        (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::FunctionI2C, hal::gpio::PullDown>,
+            hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)>>
     >;
 
     // Imports for IMU
@@ -59,39 +57,25 @@ mod app {
     // IMU type alias
     type Lis3dhIMU = Lis3dh<
         lis3dh::Lis3dhI2C<I2C<hal::pac::I2C1,
-        (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::Function<hal::gpio::I2C>>,
-            hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::Function<hal::gpio::I2C>>)
+        (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::FunctionI2C, hal::gpio::PullDown>,
+            hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)
     >>>;
 
-    // Imports for the NeoPixels
-    use ws2812_pio::Ws2812Direct;
-    use smart_leds::{RGB8, SmartLedsWrite};
-    type PioNeopixel = Ws2812Direct<
-        hal::pac::PIO0,
-        hal::pio::SM0,
-        hal::gpio::pin::bank0::Gpio7,
-    >;
-
     /**************************************************************************
-    DATA STRUCTURE setup
+    Resources
     **************************************************************************/
-    use usb_device::class_prelude::*;
-    use crate::usb_manager::UsbManager;
+
     #[shared]
-    struct DataCommon {
-        usb_manager: UsbManager,
-    }
+    struct DataShared {}
 
     #[local]
     struct DataLocal {
-        led: hal::gpio::Pin<hal::gpio::pin::bank0::Gpio13, hal::gpio::ReadableOutput>,
+        led: hal::gpio::Pin<hal::gpio::bank0::Gpio13, hal::gpio::FunctionSioOutput, hal::gpio::PullDown>,
         display: OledDisplay,
         pixel: (u8, u8),
         dirs: (bool, bool),
         // imu:  Lis3dhIMU,
         // imu_tracker: Tracker,
-        // neopixel: PioNeopixel,
-        // neopixel_idx: u8,
     }
 
     use systick_monotonic::ExtU64;
@@ -99,10 +83,10 @@ mod app {
     type MyMono = systick_monotonic::Systick<1000>;
 
     /**************************************************************************
-    INIT ROUTINE
+    Init routine
     **************************************************************************/
-    #[init(local = [usb_bus: Option<usb_device::bus::UsbBusAllocator<hal::usb::UsbBus>> = None])]
-    fn init(cx: init::Context) -> (DataCommon, DataLocal, init::Monotonics) {
+    #[init]
+    fn init(cx: init::Context) -> (DataShared, DataLocal, init::Monotonics) {
         
         let mut resets = cx.device.RESETS;
         let mut watchdog = Watchdog::new(cx.device.WATCHDOG);
@@ -119,19 +103,6 @@ mod app {
         .unwrap();
 
         /**********************************************************************
-        Setup the USB driver and USB Manager for serial port printing
-        **********************************************************************/
-        let usb_bus: &'static _ =
-            cx.local.usb_bus.insert(UsbBusAllocator::new(hal::usb::UsbBus::new(
-                cx.device.USBCTRL_REGS,
-                cx.device.USBCTRL_DPRAM,
-                clocks.usb_clock,
-                true,
-                &mut resets,
-            )));
-        let mut usb_manager = UsbManager::new(usb_bus);
-
-        /**********************************************************************
         Setup the GPIO and led pin 
         **********************************************************************/
         // initialize the Single Cycle IO
@@ -143,12 +114,7 @@ mod app {
             sio.gpio_bank0,
             &mut resets,
         );
-        let led_pin = pins.d13.into_readable_output();
-        // let (x, y) = (2, 1.2);
-        /**********************************************************************
-        Setup the PIO NeoPixel driver
-        **********************************************************************/
-        // // let timer = hal::timer::Timer::new(cx.device.TIMER, &mut resets);
+        let led_pin = pins.d13.into_push_pull_output();
         // let (mut pio, sm0, _, _, _) = cx.device.PIO0.split(&mut resets);
         // // Since we're using Ws2812Direct, we need to be careful to not call our task too often below.
         // let mut neopixels = Ws2812Direct::new(
@@ -167,8 +133,8 @@ mod app {
         /**********************************************************************
         Setup the I2C peripheral 
         **********************************************************************/
-        let scl = pins.scl.into_mode::<FunctionI2C>();
-        let sda = pins.sda.into_mode::<FunctionI2C>();
+        let scl = pins.scl.into_function::<FunctionI2C>();
+        let sda = pins.sda.into_function::<FunctionI2C>();
         let i2c1 = I2C::i2c1(
             cx.device.I2C1,
             sda,
@@ -200,9 +166,7 @@ mod app {
         let text = Text::new("RTIC testing", Point::new(10, 10), style);
         text.draw(&mut display).unwrap();
         display.flush().unwrap();
-        let args = core::format_args!("testing {}", 1);
-        let _ = print_fmt::spawn_after(1500.millis(), (0, 1.2));
-        
+
         // Set up IMU
         // let mut imu = Lis3dh::new_i2c(i2c1, lis3dh::SlaveAddr::Default).unwrap();
 
@@ -215,23 +179,20 @@ mod app {
         /**********************************************************************
         Setup tasks!
         **********************************************************************/
-        // Blink 5 times on startup, and print a welcome message
-        
         blink::spawn(5).unwrap();
-        print::spawn_after(1000.millis(), "Welcome to Carsten's RTIC App!\n").unwrap();
-        // Start the heartbeat in 3 seconds
-        heartbeat::spawn_after(1500.millis()).unwrap();
-        // Start the OLED animation after 2 seconds
-        update_oled::spawn_after(2.secs()).unwrap();
-        // Clear the NeoMatrix after 3 seconds
-        //neomatrix_update::spawn_after(3.secs()).unwrap();
+        // info!(...);
+        heartbeat::spawn_after(3000.millis()).unwrap();
+        
+        // Start OLED animation
+        update_oled::spawn_after(2000.millis()).unwrap();
+        
         // Start IMU communication
         //update_imu::spawn_after(1600.millis()).unwrap();
 
         // Return the resource structs
         (
-            DataCommon {
-                usb_manager: usb_manager,
+            DataShared {
+
             },
             DataLocal {
                 led: led_pin,
@@ -240,67 +201,21 @@ mod app {
                 dirs: (true, true),
                 // imu: imu,
                 // imu_tracker: imu_tracker,
-                // neopixel: neopixels,
-                // neopixel_idx: 0,
             },
             init::Monotonics(systick_monotonic::Systick::new(cx.core.SYST, 125_000_000)),
         )
     }
 
 
-    /**************************************************************************
-    USB Interrupt task -- keeps the host happy and reads any available serial data
-    **************************************************************************/
-    #[task(binds = USBCTRL_IRQ, shared = [usb_manager])]
-    fn usb_task(cx: usb_task::Context) {
-        let mut usb_manager = cx.shared.usb_manager;
-        (usb_manager).lock(
-            |usb_manager_l| {
-                usb_manager_l.interrupt();
-            }
-        );
-    }
-
-    /**************************************************************************
-    Print Task -- toggle the LED and prints the state to the serial port.
-    **************************************************************************/
-    #[task(shared = [usb_manager])]
-    fn print(cx: print::Context, s: &'static str) {
-        let mut usb_manager = cx.shared.usb_manager;
-        usb_manager.lock(
-            |usb_manager_l| {
-                usb_manager_l.write(s);
-                //write!(usb_manager_l, "test {}", 1.2_f64);
-            }
-        );
-    }
-
-    #[task(shared = [usb_manager])]
-    fn print_fmt(cx: print_fmt::Context, args: (u8, f64)) {
-        let mut usb_manager = cx.shared.usb_manager;
-        usb_manager.lock(
-            |usb_manager_l| {
-                write!(usb_manager_l, "{}; {}\n", args.0, args.1);
-            }
-        );
-    }
-
-
-    // write!()
-
-    /**************************************************************************
-    Heartbeat Task -- once started, the heartbeat will print to serial port
-        every 2 seconds.
-    **************************************************************************/
     #[task]
     fn heartbeat(_cx: heartbeat::Context) {
-        // blink::spawn(3).unwrap();
-        print::spawn("heartbeat!\n").unwrap();
+        blink::spawn(2).unwrap();
+        // print::spawn("heartbeat!\n").unwrap();
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
     /**************************************************************************
-    LED Task -- Blinks the onboard LED n times
+    LED Blink Task
     **************************************************************************/
     const BLINK_DUR: u64 = 120;  // = on_time = off_time (in ms)
     #[task(local = [led])]
@@ -317,7 +232,7 @@ mod app {
     }
 
     /**************************************************************************
-    OLED Update Task -- clears the OLED and sets a pixel bouncing around
+    OLED Update Task
     **************************************************************************/
     #[task(local = [display, pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
@@ -364,26 +279,6 @@ mod app {
     //         _ => "unknown\n"
     //     }).unwrap();
     //     update_imu::spawn_after(1000.millis()).unwrap();
-    // }
-
-    /**************************************************************************
-    NeoMatrix update task --
-    **************************************************************************/
-    // const NM_UPDATE_DUR: u64 = 100; // refresh period for NeoMatrix in ms
-    // #[task(local = [neopixel, neopixel_idx])]
-    // fn neomatrix_update(cx: neomatrix_update::Context) {
-    //     let nm = cx.local.neopixel;
-    //     let mut idx = *cx.local.neopixel_idx;
-    //     if idx == 63 {
-    //         idx = 0;
-    //     } else {
-    //         idx += 1;
-    //     }
-    //     *cx.local.neopixel_idx = idx;
-    //     let mut pixels: [RGB8; 64] = [RGB8::new(0, 0, 0); 64];
-    //     (pixels[idx as usize].r, pixels[idx as usize].b) = (50, 100);
-    //     nm.write(pixels.iter().cloned()).unwrap();
-    //     neomatrix_update::spawn_after(NM_UPDATE_DUR.millis()).unwrap();
     // }
 
 } // mod app
