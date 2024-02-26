@@ -89,11 +89,15 @@ Hardware testing for the power input board was performed using a ODP3122 power s
 The fuse did work in the overvoltage protection case, but activated after a very long amount of time. We will try to use fast acting automotive fuses in future revisions.
 
 # Software
-Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system. The prototype includes three major components, all connected to an RP2040:
-- OLED display, prototyped on the [Adafruit OLED Feather](https://www.adafruit.com/product/4650);
-- LIS3DH IMU, using I2C to communicate;
+Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system.
+
+For the beta build, the prototype of this board includes four major components, all connected to an Adafruit Feather RP2040:
+- OLED display, prototyped on the [Adafruit OLED Feather](https://www.adafruit.com/product/4650) and communicating via I2C;
+- LIS3DH IMU (tested previously in the Alpha Build)
 - Micro SD card reader, using 4-pin SPI to communicate.
-    - Note that we have focused our time on the IMU and OLED for the Alpha build, so there are still existing issues with the SD card reader. We have ordered a Feather-compatible SD card reader board that should operate more easily with our setup.
+- Leak detector, prototyped via a push button connected to an input pin on the Feather RP2040.
+
+All of the above components have been updated to work concurrently on `embedded-hal` version 1.0 (except for the IMU which is still undergoing the port to `embedded-hal` 1.0; unfortunately we were unable to run Carsten's example in time to develop the shared I2C bus further).
 
 We are using the [RTIC Framework](https://rtic.rs/) to provide concurrent sensor access and display interfacing. This app can be seen in the `RTIC_App` directory of this repo.
 
@@ -105,12 +109,17 @@ Prerequisites:
 - Any of the above major components (LIS3DH, OLED, SD card reader) and connectivity to the feather (jumper cables and/or Feather boards)
 
 Clone this repository: `https://github.com/yomole/TailGator.git`, then open the app (`RTIC_App`) and inspect the code.
-- Note the LIS3DH code in the `RTIC_App` is currently commented out. Comment out the OLED-related code (except for the I2C instantiation) and uncomment LIS3DH-related code to demo the IMU instead of the OLED. Specifically,
-- Comment out lines `88-90`, `182-204`, `225`, `238-240`, and `322-347`.
-- Uncomment lines `91-92`, `207`, `229`, `241-242`, and `352-367`.
-- Note these code lines are up-to-date as of Jan. 28, 2024.
+- Note the LIS3DH code in the `RTIC_App` is currently commented out. Comment out the OLED-related code (except for the I2C instantiation) and uncomment LIS3DH-related code to demo the IMU instead of the OLED.
 
-From within the app, run `cargo run` with your Feather RP2040 set to accept a UF2 and the toolchain will automatically build, flash, and run the program on that chip.
+From within the app, run `cargo run` from within the `RTIC_App` directory with your Feather RP2040 connected to a debug probe over SWD. This will automatically flash the software to the Feather and run the program with rich debug output.
+
+Alternatively, in .cargo/config, you can set the runner to be `elf2uf2-rs` instead of `probe-rs` by commenting and uncommenting the appropriate lines. `cargo run` will then work with a Feather RP2040 set to receive a UF2 file, but of course you will need a debug probe to see the output.
+- Note that we currently are unable to build
+
+## Software Alpha Test Results
+We verified functionality of the IMU and OLED display in the RTIC app from our Alpha Build submission. Serial communication over USB turned out to be an unattractive solution as described in our Beta Test Plan, and we are replacing that functionality with debug messages over RTT using `defmt` and `probe-rs`.
+
+Further tests have been developed for the Beta Build, including base functionality for new components and performance metrics for the SD card reader and OLED display. Going forward, we plan to research and develop Continuous Integration workflows to keep our repository up-to-date while maintaining functionality and performance.
 
 
 # Time Tracking
@@ -122,4 +131,4 @@ From within the app, run `cargo run` with your Feather RP2040 set to accept a UF
 This project is made in collaboration with:
 - [Machine Intelligence Laboratory](https://mil.ufl.edu/)
 
-Many thanks to [Carsten](https://github.com/shulltronics) for supporting our switch to the Rust RTIC framework and for providing a secondary Adafruit Feather RP2040 to use as an SWD debugger, as well as an OLED display and associated connector cable.
+Thanks to [Carsten](https://github.com/shulltronics) for supporting our switch to the Rust RTIC framework and for providing a secondary Adafruit Feather RP2040 to use as an SWD debugger, as well as an OLED display and associated connector cable.
