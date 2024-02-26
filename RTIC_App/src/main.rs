@@ -28,7 +28,7 @@ mod app {
         XOSC_CRYSTAL_FREQ,
     };
     
-    use embedded_hal::digital::{StatefulOutputPin, OutputPin};
+    use embedded_hal::digital::{InputPin, OutputPin, StatefulOutputPin};
 
     // Imports for the OLED display
     use sh1107::{
@@ -68,10 +68,14 @@ mod app {
         }
     }
 
-    // SD-card-related types
     type LedPin = gpio::Pin<
         gpio::bank0::Gpio13,
         gpio::FunctionSioOutput,
+        gpio::PullDown>;
+
+    type LeakDetectorPin = gpio::Pin<
+        gpio::bank0::Gpio24,
+        gpio::FunctionSioInput,
         gpio::PullDown>;
 
 
@@ -123,6 +127,7 @@ mod app {
     #[local]
     struct DataLocal {
         led_pin: LedPin,
+        leak_detector_pin: LeakDetectorPin,
         display: OledDisplay,
         pixel: (u8, u8),
         dirs: (bool, bool),
@@ -168,6 +173,8 @@ mod app {
             &mut resets,
         );
         let led_pin = pins.d13.into_push_pull_output();
+        let leak_detector_pin = pins.d24.into_pull_down_input();
+
         
 
         // Peripheral setup -------------------------------------------------------------
@@ -278,6 +285,7 @@ mod app {
             },
             DataLocal {
                 led_pin: led_pin,
+                leak_detector_pin: leak_detector_pin,
                 display: display,
                 pixel: (10, 25),
                 dirs: (true, true),
@@ -290,10 +298,17 @@ mod app {
     }
 
 
-    #[task]
-    fn heartbeat(_cx: heartbeat::Context) {
-        blink::spawn(2).unwrap();
+    #[task (local=[leak_detector_pin])]
+    fn heartbeat(cx: heartbeat::Context) {
+        // blink::spawn(2).unwrap();
         info!("heartbeat");
+        if cx.local.leak_detector_pin.is_low().unwrap() {
+            info!("leak pin low");
+            blink::spawn(1).unwrap();
+        } else {
+            info!("leak pin high");
+            blink::spawn(2).unwrap();
+        }
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
