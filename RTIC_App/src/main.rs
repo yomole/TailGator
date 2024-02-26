@@ -12,26 +12,23 @@ mod app {
     use defmt::{info, error};
 
     // Board specific imports
-    use adafruit_feather_rp2040::hal as hal;
     use adafruit_feather_rp2040::{
+        hal,
+        hal::{
+            prelude::*,
+            clocks::init_clocks_and_plls,
+            Clock,
+            watchdog::Watchdog,
+            Sio,
+            gpio,
+            spi,
+            i2c,
+        },
         Pins,
-        Scl,        // __ these are type aliases for the configured pins
-        Sda,        //
         XOSC_CRYSTAL_FREQ,
     };
-    use hal::{
-        clocks::init_clocks_and_plls,
-        Clock,
-        watchdog::Watchdog,
-        Sio,
-        gpio::FunctionI2C,
-        i2c::I2C,
-        pio::PIOExt,
-    };
-    use embedded_hal::digital::{
-        StatefulOutputPin,
-        OutputPin,
-    };
+    
+    use embedded_hal::digital::{StatefulOutputPin, OutputPin};
 
     // Imports for the OLED display
     use sh1107::{
@@ -47,6 +44,57 @@ mod app {
             hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)>>
     >;
 
+    // SdCard imports
+    use embedded_sdmmc::{SdCard, TimeSource, Timestamp, VolumeIdx, VolumeManager};
+    use embedded_sdmmc::sdcard::DummyCsPin;
+    use embedded_sdmmc::filesystem::Mode;
+    use embedded_hal_bus::spi::{ExclusiveDevice, NoDelay};
+
+
+    // Dummy timesource for creating files
+    #[derive(Default)]
+    pub struct DummyTimesource();
+
+    impl TimeSource for DummyTimesource {
+        fn get_timestamp(&self) -> Timestamp {
+            Timestamp {
+                year_since_1970: 0,
+                zero_indexed_month: 0,
+                zero_indexed_day: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        }
+    }
+
+    // SD-card-related types
+    type LedPin = gpio::Pin<
+        gpio::bank0::Gpio13,
+        gpio::FunctionSioOutput,
+        gpio::PullDown>;
+
+
+    type Spi0Bus = hal::Spi<
+        spi::Enabled,
+        hal::pac::SPI0,
+        (   gpio::Pin<gpio::bank0::Gpio19, gpio::FunctionSpi, gpio::PullNone>,
+            gpio::Pin<gpio::bank0::Gpio20, gpio::FunctionSpi, gpio::PullUp>,
+            gpio::Pin<gpio::bank0::Gpio18, gpio::FunctionSpi, gpio::PullNone>)>;
+    
+    type SdCardReader = SdCard<
+        ExclusiveDevice<
+            Spi0Bus,
+            DummyCsPin,
+            NoDelay>,
+        gpio::Pin<gpio::bank0::Gpio25, gpio::FunctionSio<gpio::SioOutput>, gpio::PullDown>,
+        hal::Timer>;
+
+    type SdCardVolumeMgr = embedded_sdmmc::VolumeManager<
+        SdCardReader, 
+        DummyTimesource, 
+        4, 4, 1>;
+
     // Imports for IMU
     use fugit::RateExtU32;
     use lis3dh::Lis3dh;
@@ -60,7 +108,7 @@ mod app {
 
     // IMU type alias
     type Lis3dhIMU = Lis3dh<
-        lis3dh::Lis3dhI2C<I2C<hal::pac::I2C1,
+        lis3dh::Lis3dhI2C<i2c::I2C<hal::pac::I2C1,
         (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::FunctionI2C, hal::gpio::PullDown>,
             hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)
     >>>;
@@ -74,14 +122,16 @@ mod app {
 
     #[local]
     struct DataLocal {
-        led: hal::gpio::Pin<hal::gpio::bank0::Gpio13, hal::gpio::FunctionSioOutput, hal::gpio::PullDown>,
+        led_pin: LedPin,
         display: OledDisplay,
         pixel: (u8, u8),
         dirs: (bool, bool),
         // imu:  Lis3dhIMU,
         // imu_tracker: Tracker,
+        sd_card_volume_mgr: SdCardVolumeMgr,
     }
 
+    // Systick magic
     use systick_monotonic::ExtU64;
     #[monotonic(binds = SysTick, default = true)]
     type MyMono = systick_monotonic::Systick<1000>;
@@ -108,10 +158,7 @@ mod app {
         .ok()
         .unwrap();
 
-        /**********************************************************************
-        Setup the GPIO and led pin 
-        **********************************************************************/
-        // initialize the Single Cycle IO
+        // GPIO setup -------------------------------------------------------------------
         let sio = Sio::new(cx.device.SIO);
         // initialize the pins to default state
         let pins = Pins::new(
@@ -121,27 +168,14 @@ mod app {
             &mut resets,
         );
         let led_pin = pins.d13.into_push_pull_output();
-        // let (mut pio, sm0, _, _, _) = cx.device.PIO0.split(&mut resets);
-        // // Since we're using Ws2812Direct, we need to be careful to not call our task too often below.
-        // let mut neopixels = Ws2812Direct::new(
-        //     pins.d5.into_mode(),
-        //     &mut pio,
-        //     sm0,
-        //     clocks.peripheral_clock.freq(),
-        // );
-        // // Don't forget to drive the power enable pin high!
-        // let mut pwr_pin = pins.d10.into_push_pull_output();
-        // pwr_pin.set_high().unwrap();
-        // // Light up a few pixels
-        // let pixels: [RGB8; 3] = [RGB8::new(255, 0, 0), RGB8::new(0, 255, 0), RGB8::new(0, 0, 255)];
-        // neopixels.write(pixels.iter().cloned()).unwrap();
+        
 
-        /**********************************************************************
-        Setup the I2C peripheral 
-        **********************************************************************/
-        let scl = pins.scl.into_function::<FunctionI2C>();
-        let sda = pins.sda.into_function::<FunctionI2C>();
-        let i2c1 = I2C::i2c1(
+        // Peripheral setup -------------------------------------------------------------
+
+        // I2C
+        let scl = pins.scl.into_function::<gpio::FunctionI2C>();
+        let sda = pins.sda.into_function::<gpio::FunctionI2C>();
+        let i2c1 = i2c::I2C::i2c1(
             cx.device.I2C1,
             sda,
             scl,
@@ -150,7 +184,7 @@ mod app {
             &clocks.system_clock,
         );
 
-        // Setup the OLED display
+        // OLED display
         let display_size = DisplaySize::Display64x128;
         let display_rot  = DisplayRotation::Rotate270;
         
@@ -178,35 +212,78 @@ mod app {
 
         // source: https://github.com/BenBergman/lis3dh-rs/blob/master/examples/cpx.rs
         let mut imu_tracker = Tracker::new(3700.0);
+
+
+        // Set up SPI and SD Card reader
+        let spi_sclk: gpio::Pin<_, gpio::FunctionSpi, gpio::PullNone> = pins.sclk.reconfigure();
+        let spi_mosi: gpio::Pin<_, gpio::FunctionSpi, gpio::PullNone> = pins.mosi.reconfigure();
+        let spi_miso: gpio::Pin<_, gpio::FunctionSpi, gpio::PullUp> = pins.miso.reconfigure();
+        let spi_cs = pins.d25.into_push_pull_output();
         
+        let spi_bus = spi::Spi::<_, _, _, 8>::new(cx.device.SPI0, (spi_mosi, spi_miso, spi_sclk));
+
+        let spi_bus = spi_bus.init(
+            &mut resets,
+            clocks.peripheral_clock.freq(),
+            400.kHz(), // card initialization happens at low baud rate
+            embedded_hal::spi::MODE_0,
+        );
+
+        let spi_device = ExclusiveDevice::new(spi_bus, DummyCsPin, NoDelay);
+
+        let mut delay = rp2040_hal::Timer::new(
+            cx.device.TIMER,
+            &mut resets,
+            &clocks,
+        );
+        
+
+        let sdcard = SdCard::new(spi_device, spi_cs, delay);
+        let mut volume_mgr = VolumeManager::new(sdcard, DummyTimesource::default());
+        
+        info!("Init SD card controller and retrieve card size...");
+        match volume_mgr.device().num_bytes() {
+            Ok(size) => info!("card size is {} bytes", size),
+            Err(e) => {
+                error!("Error retrieving card size: {}", defmt::Debug2Format(&e));
+            }
+        }
+
+        volume_mgr
+            .device()
+            .spi(|spi_device| spi_device.bus_mut().set_baudrate(clocks.peripheral_clock.freq(), 16.MHz()));
 
         
 
-        /**********************************************************************
-        Setup tasks!
-        **********************************************************************/
+        // Task setup -------------------------------------------------------------------
+        info!("starting");
         blink::spawn(5).unwrap();
-        // info!(...);
-        heartbeat::spawn_after(3000.millis()).unwrap();
-        
+
         // Start OLED animation
         update_oled::spawn_after(2000.millis()).unwrap();
+
+        // Start heartbeat
+        heartbeat::spawn_after(3000.millis()).unwrap();
         
         // Start IMU communication
         //update_imu::spawn_after(1600.millis()).unwrap();
 
-        // Return the resource structs
+        // Test logging to SD card
+        test_log::spawn_after(3200.millis()).unwrap();
+
+        // Return the resources
         (
             DataShared {
 
             },
             DataLocal {
-                led: led_pin,
+                led_pin: led_pin,
                 display: display,
                 pixel: (10, 25),
                 dirs: (true, true),
                 // imu: imu,
                 // imu_tracker: imu_tracker,
+                sd_card_volume_mgr: volume_mgr,
             },
             init::Monotonics(systick_monotonic::Systick::new(cx.core.SYST, 125_000_000)),
         )
@@ -224,15 +301,15 @@ mod app {
     LED Blink Task
     **************************************************************************/
     const BLINK_DUR: u64 = 120;  // = on_time = off_time (in ms)
-    #[task(local = [led])]
+    #[task(local = [led_pin])]
     fn blink(cx: blink::Context, n: u8) {
         if n == 0 {
             return;
-        } else if cx.local.led.is_set_low().unwrap() {
-            cx.local.led.set_high().unwrap();
+        } else if cx.local.led_pin.is_set_low().unwrap() {
+            cx.local.led_pin.set_high().unwrap();
             blink::spawn_after(BLINK_DUR.millis(), n).unwrap();
         } else {
-            cx.local.led.set_low().unwrap();
+            cx.local.led_pin.set_low().unwrap();
             blink::spawn_after(BLINK_DUR.millis(), n-1).unwrap();
         }
     }
@@ -286,5 +363,39 @@ mod app {
     //     });
     //     update_imu::spawn_after(1000.millis()).unwrap();
     // }
+
+
+
+    // Write a test message to a log file via the volume manager.
+    #[task(local = [sd_card_volume_mgr])]
+    fn test_log(cx: test_log::Context) {
+        info!("Getting Volume 0...");
+        let mut volume = match cx.local.sd_card_volume_mgr.open_volume(VolumeIdx(0)) {
+            Ok(v) => v,
+            Err(e) => {
+                error!("Error getting volume 0: {}", defmt::Debug2Format(&e));
+                loop{}
+            }
+        };
+
+        let mut dir = match volume.open_root_dir() {
+            Ok(dir) => dir,
+            Err(e) => {
+                error!("Error opening root dir: {}", defmt::Debug2Format(&e));
+                loop{}
+            }
+        };
+
+        let _file = match dir.open_file_in_dir("log.txt", Mode::ReadWriteCreateOrTruncate) {
+            Ok(mut file) => {
+                file.write(b"test log data").unwrap();
+                info!("Wrote successfully to file!");
+            }
+            Err(e) => {
+                error!("Error opening file 'log.txt': {}", defmt::Debug2Format(&e));
+                loop{}
+            }
+        };
+    }
 
 } // mod app
