@@ -7,10 +7,15 @@ edition = "2021"
 
 [dependencies]
 
-adafruit-feather-rp2040 = "0.7.0"
-rp2040-hal              = { version = "0.9.0", features = ["rt", "critical-section-impl", "eh1_0_alpha", "defmt"] }
-embedded-hal            = "1.0.0"
-embedded-hal-bus        = "0.1.0"
+rp2040-boot2            = "0.3.0"
+critical-section        = "1.1.2"
+
+# adafruit-feather-rp2040 = "0.7.0"
+# rp2040-hal              = { version = "0.9.0", features = ["rt", "critical-section-impl", "eh1_0_alpha", "defmt"] }
+rp2040-hal              = { git = "https://github.com/shulltronics/rp-hal.git", features = ["rt", "critical-section-impl", "defmt"] }
+
+embedded-hal            = { version = "1.0.0", features = ["defmt-03"] }
+embedded-hal-bus        = { version = "0.1.0", features = ["defmt-03"] }
 
 panic-halt              = "0.2.0"
 cortex-m                = "0.7.2"
@@ -26,9 +31,10 @@ defmt-rtt               = "0.4.0"
 embedded-sdmmc          = "0.7.0"
 
 # OLED display
-sh1107                  = { git = "https://github.com/shulltronics/sh1107.git", branch = "embedded-graphics-fix" }
-embedded-graphics       = "0.7.1"
+sh1107                  = { git = "https://github.com/shulltronics/sh1107.git", branch = "eh1-updates" }
+embedded-graphics       = "0.8.1"
 
 # IMU
-lis3dh                  = "0.4.2"
-accelerometer           = "0.12.0"
+# lis3dh                  = "0.4.2"
+lis3dh                  = { git = "https://github.com/shulltronics/lis3dh-rs.git", branch = "eh1-updates" }
+# accelerometer           = "0.12.0"

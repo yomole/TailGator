@@ -5,51 +5,108 @@ use rtic::app;
 use defmt_rtt as _;
 use panic_halt as _;
 
-#[app(device = adafruit_feather_rp2040::pac, peripherals = true, dispatchers = [RTC_IRQ])]
-mod app {
+// Second-stage bootloader ------------------------------------------------------------------------
+#[link_section = ".boot2"]
+#[no_mangle]
+#[used]
+pub static BOOT2_FIRMWARE: [u8; 256] = rp2040_boot2::BOOT_LOADER_GD25Q64CS;
 
+// RTIC App ---------------------------------------------------------------------------------------
+#[app(device = rp2040_hal::pac, peripherals = true, dispatchers = [RTC_IRQ])]
+mod app {
     // Debug imports
     use defmt::{info, error};
 
-    // Board specific imports
-    use adafruit_feather_rp2040::{
-        hal,
-        hal::{
-            prelude::*,
-            clocks::init_clocks_and_plls,
-            Clock,
-            watchdog::Watchdog,
-            Sio,
-            gpio,
-            spi,
-            i2c,
-        },
-        Pins,
-        XOSC_CRYSTAL_FREQ,
-    };
-    
-    use embedded_hal::digital::{InputPin, OutputPin, StatefulOutputPin};
+    // Peripheral sharing imports
+    use core::cell::RefCell;
+    use critical_section::Mutex;
+    use embedded_hal_bus::i2c::CriticalSectionDevice as I2cCriticalSectionDev;
 
-    // Imports for the OLED display
+    // Board specific imports
+    use rp2040_hal as hal;
+    use rp2040_hal::pac as pac;
+
+    const XOSC_CRYSTAL_FREQ: u32 = 12_000_000;
+
+    use hal::{
+        Clock,
+        clocks::init_clocks_and_plls,
+        watchdog::Watchdog,
+        Sio,
+        gpio::bank0::{
+            Gpio2,      // Sda
+            Gpio3,      // Scl
+            Gpio13,     // LED
+            Gpio18,     // SPI0 SCK
+            Gpio19,     // SPI0 MOSI
+            Gpio20,     // SPI0 MISO
+            Gpio24,     // Leak Detector
+            Gpio25,     // SPI0 CS (custom)
+        },
+        gpio::{
+            Pin,
+            FunctionI2C,
+            FunctionSpi,
+            FunctionSioInput,
+            FunctionSioOutput,
+            PullUp,
+            PullDown,
+            PullNone,
+        },
+        i2c::I2C,
+        spi::Spi,
+        // pio::PIOExt,
+    };
+
+    // GPIO pin imports
+    use embedded_hal::digital::{
+        InputPin,
+        OutputPin,
+        StatefulOutputPin
+    };
+
+    // GPIO pin type aliases
+    type LedPin = Pin<
+        Gpio13,
+        FunctionSioOutput,
+        PullDown>;
+
+    type LeakDetectorPin = Pin<
+        Gpio24,
+        FunctionSioInput,
+        PullDown>;
+
+    // Timing imports
+    use fugit::RateExtU32;
+
+    // OLED imports
     use sh1107::{
         prelude::*,
         mode::GraphicsMode,
         interface::i2c::I2cInterface,
         Builder
     };
-    // A type alias to make things easier to read
-    type OledDisplay = GraphicsMode<
-        I2cInterface<hal::i2c::I2C<hal::pac::I2C1, 
-        (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::FunctionI2C, hal::gpio::PullDown>,
-            hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)>>
-    >;
+
+    // Type aliases for OLED display
+    type Scl = Pin<Gpio3, FunctionI2C, PullUp>;
+    type Sda = Pin<Gpio2, FunctionI2C, PullUp>;
+    type I2cWithPins = I2C<pac::I2C1, (Sda, Scl)>;
+    type OledDisplay = GraphicsMode<I2cInterface<I2cCriticalSectionDev<'static, I2cWithPins>>>;
+
+    // IMU imports
+    use lis3dh::{Lis3dh, Lis3dhI2C, SlaveAddr};
+    use lis3dh::accelerometer::Accelerometer;
+
+    // IMU type aliases
+    type I2cBus = Mutex<RefCell<I2cWithPins>>;
+    type Lis3dhAccelerometer = Lis3dh<Lis3dhI2C<I2cCriticalSectionDev<'static, I2cWithPins>>>;
+
 
     // SdCard imports
     use embedded_sdmmc::{SdCard, TimeSource, Timestamp, VolumeIdx, VolumeManager};
     use embedded_sdmmc::sdcard::DummyCsPin;
     use embedded_sdmmc::filesystem::Mode;
     use embedded_hal_bus::spi::{ExclusiveDevice, NoDelay};
-
 
     // Dummy timesource for creating files
     #[derive(Default)]
@@ -68,71 +125,43 @@ mod app {
         }
     }
 
-    type LedPin = gpio::Pin<
-        gpio::bank0::Gpio13,
-        gpio::FunctionSioOutput,
-        gpio::PullDown>;
-
-    type LeakDetectorPin = gpio::Pin<
-        gpio::bank0::Gpio24,
-        gpio::FunctionSioInput,
-        gpio::PullDown>;
-
-
+    // SdCard type aliases
     type Spi0Bus = hal::Spi<
-        spi::Enabled,
+        hal::spi::Enabled,
         hal::pac::SPI0,
-        (   gpio::Pin<gpio::bank0::Gpio19, gpio::FunctionSpi, gpio::PullNone>,
-            gpio::Pin<gpio::bank0::Gpio20, gpio::FunctionSpi, gpio::PullUp>,
-            gpio::Pin<gpio::bank0::Gpio18, gpio::FunctionSpi, gpio::PullNone>)>;
-    
+        (   Pin<Gpio19, FunctionSpi, PullNone>,
+            Pin<Gpio20, FunctionSpi, PullUp>,
+            Pin<Gpio18, FunctionSpi, PullNone>)
+    >;
     type SdCardReader = SdCard<
         ExclusiveDevice<
             Spi0Bus,
             DummyCsPin,
             NoDelay>,
-        gpio::Pin<gpio::bank0::Gpio25, gpio::FunctionSio<gpio::SioOutput>, gpio::PullDown>,
-        hal::Timer>;
-
+        Pin<Gpio25, FunctionSioOutput, PullDown>,
+        hal::Timer
+    >;
     type SdCardVolumeMgr = embedded_sdmmc::VolumeManager<
         SdCardReader, 
         DummyTimesource, 
-        4, 4, 1>;
+        4, 4, 1
+    >;
 
-    // Imports for IMU
-    use fugit::RateExtU32;
-    use lis3dh::Lis3dh;
-    use accelerometer::{
-        RawAccelerometer,
-        Tracker,
-        Orientation::{
-            LandscapeUp, LandscapeDown, PortraitUp, PortraitDown
-        }
-    };
 
-    // IMU type alias
-    type Lis3dhIMU = Lis3dh<
-        lis3dh::Lis3dhI2C<i2c::I2C<hal::pac::I2C1,
-        (   hal::gpio::Pin<hal::gpio::bank0::Gpio2, hal::gpio::FunctionI2C, hal::gpio::PullDown>,
-            hal::gpio::Pin<hal::gpio::bank0::Gpio3, hal::gpio::FunctionI2C, hal::gpio::PullDown>)
-    >>>;
 
-    /**************************************************************************
-    Resources
-    **************************************************************************/
-
+    // Resources ----------------------------------------------------------------------------------
     #[shared]
-    struct DataShared {}
+    struct DataShared {
+        accel: Lis3dhAccelerometer,
+        display: OledDisplay,
+    }
 
     #[local]
     struct DataLocal {
         led_pin: LedPin,
         leak_detector_pin: LeakDetectorPin,
-        display: OledDisplay,
         pixel: (u8, u8),
         dirs: (bool, bool),
-        // imu:  Lis3dhIMU,
-        // imu_tracker: Tracker,
         sd_card_volume_mgr: SdCardVolumeMgr,
     }
 
@@ -141,14 +170,12 @@ mod app {
     #[monotonic(binds = SysTick, default = true)]
     type MyMono = systick_monotonic::Systick<1000>;
 
-    /**************************************************************************
-    Init routine
-    **************************************************************************/
-    #[init]
+    // Init function ------------------------------------------------------------------------------
+    #[init(local = [i2c_bus: Option<I2cBus> = None])]
     fn init(cx: init::Context) -> (DataShared, DataLocal, init::Monotonics) {
-
-        info!("initializing");
         
+        info!("initializing");
+
         let mut resets = cx.device.RESETS;
         let mut watchdog = Watchdog::new(cx.device.WATCHDOG);
         let clocks = init_clocks_and_plls(
@@ -163,26 +190,27 @@ mod app {
         .ok()
         .unwrap();
 
-        // GPIO setup -------------------------------------------------------------------
+        // GPIO setup -----------------------------------------------------------------------------
         let sio = Sio::new(cx.device.SIO);
         // initialize the pins to default state
-        let pins = Pins::new(
+        let pins = hal::gpio::Pins::new(
             cx.device.IO_BANK0,
             cx.device.PADS_BANK0,
             sio.gpio_bank0,
             &mut resets,
         );
-        let led_pin = pins.d13.into_push_pull_output();
-        let leak_detector_pin = pins.d24.into_pull_down_input();
+        let led_pin = pins.gpio13.into_push_pull_output();
+        let leak_detector_pin = pins.gpio24.into_pull_down_input();
+
+        // Peripheral setup -----------------------------------------------------------------------
 
         
-
-        // Peripheral setup -------------------------------------------------------------
+        info!("test");
 
         // I2C
-        let scl = pins.scl.into_function::<gpio::FunctionI2C>();
-        let sda = pins.sda.into_function::<gpio::FunctionI2C>();
-        let i2c1 = i2c::I2C::i2c1(
+        let scl = pins.gpio3.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let sda = pins.gpio2.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let i2c1 = I2C::i2c1(
             cx.device.I2C1,
             sda,
             scl,
@@ -190,18 +218,23 @@ mod app {
             &mut resets,
             &clocks.system_clock,
         );
+        let i2c_bus: &'static _ =
+            cx.local.i2c_bus.insert(
+                critical_section::Mutex::new(RefCell::new(i2c1))
+            );
 
         // OLED display
+        let oled_i2c = I2cCriticalSectionDev::new(i2c_bus);
         let display_size = DisplaySize::Display64x128;
         let display_rot  = DisplayRotation::Rotate270;
-        
         let mut display: GraphicsMode<_> = Builder::new()
             .with_size(display_size)
             .with_rotation(display_rot)
-            .connect_i2c(i2c1)
+            .connect_i2c(oled_i2c)
             .into();
         display.init().unwrap();
-
+        display.clear();
+        display.flush().unwrap();
         use embedded_graphics::{
             // primitives::{Rectangle, PrimitiveStyle},
             mono_font::{ascii::FONT_6X9, MonoTextStyle},
@@ -209,25 +242,23 @@ mod app {
             prelude::*,
             text::Text,
         };
-        let style = MonoTextStyle::new(&FONT_6X9, BinaryColor::On);
-        let text = Text::new("RTIC testing", Point::new(10, 10), style);
-        text.draw(&mut display).unwrap();
-        display.flush().unwrap();
+        // let style = MonoTextStyle::new(&FONT_6X9, BinaryColor::On);
+        // let text = Text::new("RTIC testing", Point::new(10, 10), style);
+        // text.draw(&mut display).unwrap();
+        // display.flush().unwrap();
 
-        // Set up IMU
-        // let mut imu = Lis3dh::new_i2c(i2c1, lis3dh::SlaveAddr::Default).unwrap();
+        // IMU
+        let lis3dh_i2c = I2cCriticalSectionDev::new(i2c_bus);
+        let mut lis3dh = Lis3dh::new_i2c(lis3dh_i2c, SlaveAddr::Default).unwrap();
+        lis3dh.set_range(lis3dh::Range::G8).unwrap();
 
-        // source: https://github.com/BenBergman/lis3dh-rs/blob/master/examples/cpx.rs
-        let mut imu_tracker = Tracker::new(3700.0);
+        // SPI
+        let spi_sclk: Pin<_, FunctionSpi, PullNone> = pins.gpio18.reconfigure();
+        let spi_mosi: Pin<_, FunctionSpi, PullNone> = pins.gpio19.reconfigure();
+        let spi_miso: Pin<_, FunctionSpi, PullUp> = pins.gpio20.reconfigure();
+        let spi_cs = pins.gpio25.into_push_pull_output();
 
-
-        // Set up SPI and SD Card reader
-        let spi_sclk: gpio::Pin<_, gpio::FunctionSpi, gpio::PullNone> = pins.sclk.reconfigure();
-        let spi_mosi: gpio::Pin<_, gpio::FunctionSpi, gpio::PullNone> = pins.mosi.reconfigure();
-        let spi_miso: gpio::Pin<_, gpio::FunctionSpi, gpio::PullUp> = pins.miso.reconfigure();
-        let spi_cs = pins.d25.into_push_pull_output();
-        
-        let spi_bus = spi::Spi::<_, _, _, 8>::new(cx.device.SPI0, (spi_mosi, spi_miso, spi_sclk));
+        let spi_bus = Spi::<_, _, _, 8>::new(cx.device.SPI0, (spi_mosi, spi_miso, spi_sclk));
 
         let spi_bus = spi_bus.init(
             &mut resets,
@@ -243,8 +274,9 @@ mod app {
             &mut resets,
             &clocks,
         );
-        
+            
 
+        // SD Card reader
         let sdcard = SdCard::new(spi_device, spi_cs, delay);
         let mut volume_mgr = VolumeManager::new(sdcard, DummyTimesource::default());
         
@@ -260,20 +292,20 @@ mod app {
             .device()
             .spi(|spi_device| spi_device.bus_mut().set_baudrate(clocks.peripheral_clock.freq(), 16.MHz()));
 
-        
 
-        // Task setup -------------------------------------------------------------------
+
+        // Task setup -----------------------------------------------------------------------------
         info!("starting");
         blink::spawn(5).unwrap();
 
         // Start OLED animation
         update_oled::spawn_after(2000.millis()).unwrap();
-
+        
         // Start heartbeat
         heartbeat::spawn_after(3000.millis()).unwrap();
-        
+
         // Start IMU communication
-        //update_imu::spawn_after(1600.millis()).unwrap();
+        update_imu::spawn().unwrap();
 
         // Test logging to SD card
         test_log::spawn_after(3200.millis()).unwrap();
@@ -281,16 +313,14 @@ mod app {
         // Return the resources
         (
             DataShared {
-
+                accel: lis3dh,
+                display: display,
             },
             DataLocal {
                 led_pin: led_pin,
                 leak_detector_pin: leak_detector_pin,
-                display: display,
                 pixel: (10, 25),
                 dirs: (true, true),
-                // imu: imu,
-                // imu_tracker: imu_tracker,
                 sd_card_volume_mgr: volume_mgr,
             },
             init::Monotonics(systick_monotonic::Systick::new(cx.core.SYST, 125_000_000)),
@@ -298,6 +328,8 @@ mod app {
     }
 
 
+   
+    // Heartbeat task -----------------------------------------------------------------------------
     #[task (local=[leak_detector_pin])]
     fn heartbeat(cx: heartbeat::Context) {
         // blink::spawn(2).unwrap();
@@ -312,9 +344,7 @@ mod app {
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
-    /**************************************************************************
-    LED Blink Task
-    **************************************************************************/
+    // LED blink task -----------------------------------------------------------------------------
     const BLINK_DUR: u64 = 120;  // = on_time = off_time (in ms)
     #[task(local = [led_pin])]
     fn blink(cx: blink::Context, n: u8) {
@@ -329,59 +359,48 @@ mod app {
         }
     }
 
-    /**************************************************************************
-    OLED Update Task
-    **************************************************************************/
-    #[task(local = [display, pixel, dirs])]
+    // OLED update task ---------------------------------------------------------------------------
+    #[task(shared = [display], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
         // Get the display and its dimensions
-        let d = cx.local.display;
-        let (w, h) = d.get_dimensions();
-        // Get the current pixel position and direction
-        let (mut x, mut y) = cx.local.pixel;
-        let (mut x_dir, mut y_dir) = cx.local.dirs;
-        // increment or decrement the pixel location
-        // TODO -- learn about addition and subtraction 
-        let delta: u8 = 1;
-        if x_dir { x += delta } else { x -= delta }
-        if y_dir { y += delta } else { y -= delta }
-        // check the bounds
-        if x <= 0 || x >= w-1 { x_dir = !x_dir }
-        if y <= 0 || y >= h-1 { y_dir = !y_dir }
-        *cx.local.pixel = (x, y);
-        *cx.local.dirs  = (x_dir, y_dir);
-        d.clear();
-        d.set_pixel(x as u32, y as u32, 1u8);
-        match d.flush() {
-            Ok(_) => {},
-            Err(_) => {},
-        };
-        update_oled::spawn_after(5.millis()).unwrap();
+        let mut d = cx.shared.display;
+        d.lock(|d_l| {
+            let (w, h) = d_l.get_dimensions();
+            // Get the current pixel position and direction
+            let (mut x, mut y) = cx.local.pixel;
+            let (mut x_dir, mut y_dir) = cx.local.dirs;
+            // increment or decrement the pixel location
+            // TODO -- learn about addition and subtraction 
+            let delta: u8 = 1;
+            if x_dir { x += delta } else { x -= delta }
+            if y_dir { y += delta } else { y -= delta }
+            // check the bounds
+            if x <= 0 || x >= w-1 { x_dir = !x_dir }
+            if y <= 0 || y >= h-1 { y_dir = !y_dir }
+            *cx.local.pixel = (x, y);
+            *cx.local.dirs  = (x_dir, y_dir);
+            d_l.clear();
+            d_l.set_pixel(x as u32, y as u32, 1u8);
+            match d_l.flush() {
+                Ok(_) => {},
+                Err(_) => {},
+            };
+        });
+        update_oled::spawn_after(50.millis()).unwrap();
     }
 
-    /**************************************************************************
-    IMU update task
-    **************************************************************************/
-    // #[task(local = [imu, imu_tracker])]
-    // fn update_imu(cx: update_imu::Context) {
-    //     // Update accelerometer reading
-    //     // Source: https://github.com/BenBergman/lis3dh-rs/blob/master/examples/cpx.rs
-    //     let accel: accelerometer::vector::I16x3 = cx.local.imu.accel_raw().unwrap();
-    //     let orientation = cx.local.imu_tracker.update(accel);
-    //     //info!("IMU orientation:");
-    //     info!(match {
-    //         LandscapeUp     => "LandscapeUp\n",
-    //         LandscapeDown   => "LandscapeDown\n",
-    //         PortraitUp      => "PortraitUp\n",
-    //         PortraitDown    => "PortraitDown\n",
-    //         _ => "unknown\n"
-    //     });
-    //     update_imu::spawn_after(1000.millis()).unwrap();
-    // }
 
+    // IMU update task ----------------------------------------------------------------------------
+    #[task(shared = [accel])]
+    fn update_imu(cx: update_imu::Context) {
+        let mut accel = cx.shared.accel;
+        accel.lock(|accel_l| {
+            defmt::info!("accel x is now: {:?}", accel_l.accel_norm().unwrap().x);
+        });
+        update_imu::spawn_after(1000u64.millis()).unwrap();
+    }
 
-
-    // Write a test message to a log file via the volume manager.
+    // Write a test message to a log file via the volume manager. ---------------------------------
     #[task(local = [sd_card_volume_mgr])]
     fn test_log(cx: test_log::Context) {
         info!("Getting Volume 0...");
