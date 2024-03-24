@@ -15,7 +15,7 @@ pub static BOOT2_FIRMWARE: [u8; 256] = rp2040_boot2::BOOT_LOADER_GD25Q64CS;
 #[app(device = rp2040_hal::pac, peripherals = true, dispatchers = [RTC_IRQ])]
 mod app {
     // Debug imports
-    use defmt::{trace, info, error};
+    use defmt::{trace, info, warn, error};
 
     // Peripheral sharing imports
     use core::cell::RefCell;
@@ -205,9 +205,6 @@ mod app {
 
         // Peripheral setup -----------------------------------------------------------------------
 
-        
-        info!("test");
-
         // I2C
         let scl = pins.gpio3.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
         let sda = pins.gpio2.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
@@ -294,9 +291,8 @@ mod app {
         let mut v_mgr = VolumeManager::new(sdcard, DummyTimesource::default());
         let mut volume_mgr: Option<SdCardVolumeMgr> = None;
         
-        info!("Init SD card controller and retrieve card size...");
         match v_mgr.device().num_bytes() {
-            Ok(size) => { info!("card size is {} bytes", size); volume_mgr = Some(v_mgr) },
+            Ok(size) => { info!("SD card size is {} bytes", size); volume_mgr = Some(v_mgr) },
             Err(e) => {
                 error!("Error retrieving card size: {}", defmt::Debug2Format(&e));
             }
@@ -309,7 +305,7 @@ mod app {
         }
 
         // Task setup -----------------------------------------------------------------------------
-        info!("starting");
+        info!("Spawning tasks...");
         blink::spawn(5).unwrap();
 
         // Start OLED animation
@@ -347,12 +343,12 @@ mod app {
     #[task (local=[leak_detector_pin])]
     fn heartbeat(cx: heartbeat::Context) {
         // blink::spawn(2).unwrap();
-        info!("heartbeat");
+        trace!("heartbeat");
         if cx.local.leak_detector_pin.is_low().unwrap() {
-            info!("leak pin low");
+            trace!("leak pin low");
             blink::spawn(1).unwrap();
         } else {
-            info!("leak pin high");
+            warn!("leak pin high! leak detected!");
             blink::spawn(2).unwrap();
         }
         heartbeat::spawn_after(1000.millis()).unwrap();
@@ -421,7 +417,7 @@ mod app {
     // Write a test message to a log file via the volume manager. ---------------------------------
     #[task(local = [sd_card_volume_mgr])]
     fn test_log(cx: test_log::Context) {
-        info!("Getting Volume 0...");
+        trace!("Getting SD card volume 0...");
         if let Some(ref mut volume_mgr) = cx.local.sd_card_volume_mgr {
             let mut volume = match volume_mgr.open_volume(VolumeIdx(0)) {
                 Ok(v) => v,
