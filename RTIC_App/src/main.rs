@@ -153,14 +153,11 @@ mod app {
     #[shared]
     struct DataShared {
         accel: Option<Lis3dhAccelerometer>,
-        display: OledDisplay,
+        display: Option<OledDisplay>,
     }
 
     #[local]
     struct DataLocal {
-        // System state
-        oled_ok: bool,
-
         // Components
         led_pin: LedPin,
         leak_detector_pin: LeakDetectorPin,
@@ -179,9 +176,6 @@ mod app {
     fn init(cx: init::Context) -> (DataShared, DataLocal, init::Monotonics) {
         
         info!("initializing");
-
-        // System state
-        let mut oled_ok = false;
 
         let mut resets = cx.device.RESETS;
         let mut watchdog = Watchdog::new(cx.device.WATCHDOG);
@@ -234,13 +228,14 @@ mod app {
         let oled_i2c = I2cCriticalSectionDev::new(i2c_bus);
         let display_size = DisplaySize::Display64x128;
         let display_rot  = DisplayRotation::Rotate270;
-        let mut display: GraphicsMode<_> = Builder::new()
+        let mut disp: GraphicsMode<_> = Builder::new()
             .with_size(display_size)
             .with_rotation(display_rot)
             .connect_i2c(oled_i2c)
             .into();
-        match display.init() {
-            Ok(_)   => { trace!("OLED init succeeded"); oled_ok = true; },
+        let mut display: Option<OledDisplay> = None;
+        match disp.init() {
+            Ok(_)   => { trace!("OLED init succeeded"); display = Some(disp); },
             Err(e)  => error!("OLED init failed: {}", defmt::Debug2Format(&e)),
         }
         // display.clear();
@@ -336,8 +331,6 @@ mod app {
                 display: display,
             },
             DataLocal {
-                oled_ok: oled_ok,
-
                 led_pin: led_pin,
                 leak_detector_pin: leak_detector_pin,
                 pixel: (10, 25),
@@ -381,34 +374,33 @@ mod app {
     }
 
     // OLED update task ---------------------------------------------------------------------------
-    #[task(shared = [display], local = [oled_ok, pixel, dirs])]
+    #[task(shared = [display], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
-        if !(*cx.local.oled_ok) { trace!("OLED not ok; update_oled() will do nothing"); return }
-
         // Get the display and its dimensions
         let mut d = cx.shared.display;
         d.lock(|d_l| {
-            let (w, h) = d_l.get_dimensions();
-            // Get the current pixel position and direction
-            let (mut x, mut y) = cx.local.pixel;
-            let (mut x_dir, mut y_dir) = cx.local.dirs;
-            // increment or decrement the pixel location
-            // TODO -- learn about addition and subtraction 
-            let delta: u8 = 1;
-            if x_dir { x += delta } else { x -= delta }
-            if y_dir { y += delta } else { y -= delta }
-            // check the bounds
-            if x <= 0 || x >= w-1 { x_dir = !x_dir }
-            if y <= 0 || y >= h-1 { y_dir = !y_dir }
-            *cx.local.pixel = (x, y);
-            *cx.local.dirs  = (x_dir, y_dir);
-            d_l.clear();
-            d_l.set_pixel(x as u32, y as u32, 1u8);
-            match d_l.flush() {
-                Ok(_) => {},
-                Err(_) => {},
-            };
-
+            if let Some(ref mut d_l) = d_l {
+                let (w, h) = d_l.get_dimensions();
+                // Get the current pixel position and direction
+                let (mut x, mut y) = cx.local.pixel;
+                let (mut x_dir, mut y_dir) = cx.local.dirs;
+                // increment or decrement the pixel location
+                // TODO -- learn about addition and subtraction 
+                let delta: u8 = 1;
+                if x_dir { x += delta } else { x -= delta }
+                if y_dir { y += delta } else { y -= delta }
+                // check the bounds
+                if x <= 0 || x >= w-1 { x_dir = !x_dir }
+                if y <= 0 || y >= h-1 { y_dir = !y_dir }
+                *cx.local.pixel = (x, y);
+                *cx.local.dirs  = (x_dir, y_dir);
+                d_l.clear();
+                d_l.set_pixel(x as u32, y as u32, 1u8);
+                match d_l.flush() {
+                    Ok(_) => {},
+                    Err(_) => {},
+                };
+            }
         });
         update_oled::spawn_after(50.millis()).unwrap();
     }
