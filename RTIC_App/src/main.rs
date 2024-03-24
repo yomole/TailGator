@@ -15,7 +15,7 @@ pub static BOOT2_FIRMWARE: [u8; 256] = rp2040_boot2::BOOT_LOADER_GD25Q64CS;
 #[app(device = rp2040_hal::pac, peripherals = true, dispatchers = [RTC_IRQ])]
 mod app {
     // Debug imports
-    use defmt::{info, error};
+    use defmt::{trace, info, error};
 
     // Peripheral sharing imports
     use core::cell::RefCell;
@@ -87,7 +87,7 @@ mod app {
         Builder
     };
 
-    // Type aliases for OLED display
+    // OLED type aliases
     type Scl = Pin<Gpio3, FunctionI2C, PullUp>;
     type Sda = Pin<Gpio2, FunctionI2C, PullUp>;
     type I2cWithPins = I2C<pac::I2C1, (Sda, Scl)>;
@@ -152,17 +152,21 @@ mod app {
     // Resources ----------------------------------------------------------------------------------
     #[shared]
     struct DataShared {
-        accel: Lis3dhAccelerometer,
+        accel: Option<Lis3dhAccelerometer>,
         display: OledDisplay,
     }
 
     #[local]
     struct DataLocal {
+        // System state
+        oled_ok: bool,
+
+        // Components
         led_pin: LedPin,
         leak_detector_pin: LeakDetectorPin,
         pixel: (u8, u8),
         dirs: (bool, bool),
-        sd_card_volume_mgr: SdCardVolumeMgr,
+        sd_card_volume_mgr: Option<SdCardVolumeMgr>,
     }
 
     // Systick magic
@@ -175,6 +179,9 @@ mod app {
     fn init(cx: init::Context) -> (DataShared, DataLocal, init::Monotonics) {
         
         info!("initializing");
+
+        // System state
+        let mut oled_ok = false;
 
         let mut resets = cx.device.RESETS;
         let mut watchdog = Watchdog::new(cx.device.WATCHDOG);
@@ -232,16 +239,19 @@ mod app {
             .with_rotation(display_rot)
             .connect_i2c(oled_i2c)
             .into();
-        display.init().unwrap();
-        display.clear();
-        display.flush().unwrap();
-        use embedded_graphics::{
-            // primitives::{Rectangle, PrimitiveStyle},
-            mono_font::{ascii::FONT_6X9, MonoTextStyle},
-            pixelcolor::BinaryColor,
-            prelude::*,
-            text::Text,
-        };
+        match display.init() {
+            Ok(_)   => { trace!("OLED init succeeded"); oled_ok = true; },
+            Err(e)  => error!("OLED init failed: {}", defmt::Debug2Format(&e)),
+        }
+        // display.clear();
+        // display.flush().unwrap();
+        // use embedded_graphics::{
+        //     // primitives::{Rectangle, PrimitiveStyle},
+        //     mono_font::{ascii::FONT_6X9, MonoTextStyle},
+        //     pixelcolor::BinaryColor,
+        //     prelude::*,
+        //     text::Text,
+        // };
         // let style = MonoTextStyle::new(&FONT_6X9, BinaryColor::On);
         // let text = Text::new("RTIC testing", Point::new(10, 10), style);
         // text.draw(&mut display).unwrap();
@@ -249,8 +259,17 @@ mod app {
 
         // IMU
         let lis3dh_i2c = I2cCriticalSectionDev::new(i2c_bus);
-        let mut lis3dh = Lis3dh::new_i2c(lis3dh_i2c, SlaveAddr::Default).unwrap();
-        lis3dh.set_range(lis3dh::Range::G8).unwrap();
+        let mut lis3dh: Option<Lis3dhAccelerometer> = None;
+        match Lis3dh::new_i2c(lis3dh_i2c, SlaveAddr::Default) {
+            Ok(imu) => { trace!("IMU init suceeded"); lis3dh = Some(imu) },
+            Err(e)  => error!("IMU init failed: {}", defmt::Debug2Format(&e)),
+        }
+        if let Some(ref mut imu) = lis3dh {
+            match imu.set_range(lis3dh::Range::G8) {
+                Ok(_)   => trace!("IMU set range succeeded"),
+                Err(e)  => error!("IMU set range failed: {}", defmt::Debug2Format(&e))
+            };
+        }
 
         // SPI
         let spi_sclk: Pin<_, FunctionSpi, PullNone> = pins.gpio18.reconfigure();
@@ -274,25 +293,25 @@ mod app {
             &mut resets,
             &clocks,
         );
-            
 
         // SD Card reader
         let sdcard = SdCard::new(spi_device, spi_cs, delay);
-        let mut volume_mgr = VolumeManager::new(sdcard, DummyTimesource::default());
+        let mut v_mgr = VolumeManager::new(sdcard, DummyTimesource::default());
+        let mut volume_mgr: Option<SdCardVolumeMgr> = None;
         
         info!("Init SD card controller and retrieve card size...");
-        match volume_mgr.device().num_bytes() {
-            Ok(size) => info!("card size is {} bytes", size),
+        match v_mgr.device().num_bytes() {
+            Ok(size) => { info!("card size is {} bytes", size); volume_mgr = Some(v_mgr) },
             Err(e) => {
                 error!("Error retrieving card size: {}", defmt::Debug2Format(&e));
             }
         }
 
-        volume_mgr
-            .device()
-            .spi(|spi_device| spi_device.bus_mut().set_baudrate(clocks.peripheral_clock.freq(), 16.MHz()));
-
-
+        if let Some(ref mut volume_mgr) = volume_mgr {
+            volume_mgr
+                .device()
+                .spi(|spi_device| spi_device.bus_mut().set_baudrate(clocks.peripheral_clock.freq(), 16.MHz()));
+        }
 
         // Task setup -----------------------------------------------------------------------------
         info!("starting");
@@ -317,6 +336,8 @@ mod app {
                 display: display,
             },
             DataLocal {
+                oled_ok: oled_ok,
+
                 led_pin: led_pin,
                 leak_detector_pin: leak_detector_pin,
                 pixel: (10, 25),
@@ -360,8 +381,10 @@ mod app {
     }
 
     // OLED update task ---------------------------------------------------------------------------
-    #[task(shared = [display], local = [pixel, dirs])]
+    #[task(shared = [display], local = [oled_ok, pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
+        if !(*cx.local.oled_ok) { trace!("OLED not ok; update_oled() will do nothing"); return }
+
         // Get the display and its dimensions
         let mut d = cx.shared.display;
         d.lock(|d_l| {
@@ -385,6 +408,7 @@ mod app {
                 Ok(_) => {},
                 Err(_) => {},
             };
+
         });
         update_oled::spawn_after(50.millis()).unwrap();
     }
@@ -395,7 +419,9 @@ mod app {
     fn update_imu(cx: update_imu::Context) {
         let mut accel = cx.shared.accel;
         accel.lock(|accel_l| {
-            defmt::info!("accel x is now: {:?}", accel_l.accel_norm().unwrap().x);
+            if let Some(ref mut accel_l) = accel_l {
+                defmt::info!("accel x is now: {:?}", accel_l.accel_norm().unwrap().x);
+            }
         });
         update_imu::spawn_after(1000u64.millis()).unwrap();
     }
@@ -404,32 +430,35 @@ mod app {
     #[task(local = [sd_card_volume_mgr])]
     fn test_log(cx: test_log::Context) {
         info!("Getting Volume 0...");
-        let mut volume = match cx.local.sd_card_volume_mgr.open_volume(VolumeIdx(0)) {
-            Ok(v) => v,
-            Err(e) => {
-                error!("Error getting volume 0: {}", defmt::Debug2Format(&e));
-                loop{}
-            }
-        };
-
-        let mut dir = match volume.open_root_dir() {
-            Ok(dir) => dir,
-            Err(e) => {
-                error!("Error opening root dir: {}", defmt::Debug2Format(&e));
-                loop{}
-            }
-        };
-
-        let _file = match dir.open_file_in_dir("log.txt", Mode::ReadWriteCreateOrTruncate) {
-            Ok(mut file) => {
-                file.write(b"test log data").unwrap();
-                info!("Wrote successfully to file!");
-            }
-            Err(e) => {
-                error!("Error opening file 'log.txt': {}", defmt::Debug2Format(&e));
-                loop{}
-            }
-        };
+        if let Some(ref mut volume_mgr) = cx.local.sd_card_volume_mgr {
+            let mut volume = match volume_mgr.open_volume(VolumeIdx(0)) {
+                Ok(v) => v,
+                Err(e) => {
+                    error!("Error getting volume 0: {}", defmt::Debug2Format(&e));
+                    loop{}
+                }
+            };
+    
+            let mut dir = match volume.open_root_dir() {
+                Ok(dir) => dir,
+                Err(e) => {
+                    error!("Error opening root dir: {}", defmt::Debug2Format(&e));
+                    loop{}
+                }
+            };
+    
+            let _file = match dir.open_file_in_dir("log.txt", Mode::ReadWriteCreateOrTruncate) {
+                Ok(mut file) => {
+                    file.write(b"test log data").unwrap();
+                    info!("Wrote successfully to file!");
+                }
+                Err(e) => {
+                    error!("Error opening file 'log.txt': {}", defmt::Debug2Format(&e));
+                    loop{}
+                }
+            };
+        }
+        
     }
 
 } // mod app
