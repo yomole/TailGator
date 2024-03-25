@@ -87,6 +87,20 @@ mod app {
         Builder
     };
 
+    use embedded_graphics::{
+        mono_font::{
+            ascii::FONT_6X9 as font,
+            MonoTextStyleBuilder,
+        },
+        primitives::{
+            Line,
+            PrimitiveStyle,
+        },
+        pixelcolor::BinaryColor,
+        prelude::*,
+        text::Text,
+    };
+
     // OLED type aliases
     type Scl = Pin<Gpio3, FunctionI2C, PullUp>;
     type Sda = Pin<Gpio2, FunctionI2C, PullUp>;
@@ -329,7 +343,6 @@ mod app {
     // Heartbeat task -----------------------------------------------------------------------------
     #[task (local=[leak_detector_pin])]
     fn heartbeat(cx: heartbeat::Context) {
-        // blink::spawn(2).unwrap();
         trace!("heartbeat");
         if cx.local.leak_detector_pin.is_low().unwrap() {
             trace!("leak pin low");
@@ -357,31 +370,96 @@ mod app {
     }
 
     // OLED update task ---------------------------------------------------------------------------
+    const FEATHER_DISPLAY_SIZE: Size = Size::new(128, 64);
+    const START_POSITION_1: Point = Point::new(0, font.character_size.height as i32 - 3);
+    const SEPARATOR_POSITION: Point = Point::new(START_POSITION_1.x, START_POSITION_1.y + 4);
+    const START_POSITION_2: Point = Point::new(SEPARATOR_POSITION.x, SEPARATOR_POSITION.y + font.character_size.height as i32);
+    const START_POSITION_3: Point = Point::new(START_POSITION_2.x, START_POSITION_2.y + font.character_size.height as i32);
+    
     #[task(shared = [display], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
-        // Get the display and its dimensions
+        // Change these values to view the interface prototypes //
+        let num_can_devices: u8 = 1;                            //
+        let leak_detected: bool = true;                         //
+        // ---------------------------------------------------- //
+
+        // 0 = nominal, 1 = warn, 2 = err
+        let mut system_state = 0;
+        if num_can_devices == 0 { system_state = 1;}
+        if leak_detected { system_state = 2; }
+
+        // Font styles
+        let normal = MonoTextStyleBuilder::new()
+            .font(&font)
+            .text_color(BinaryColor::On)
+            .build();
+
+        let underline = MonoTextStyleBuilder::from(&normal)
+            .underline()
+            .build();
+
+        let highlight = MonoTextStyleBuilder::from(&normal)
+            .background_color(BinaryColor::On)
+            .text_color(BinaryColor::Off)
+            .build();
+
+
         let mut d = cx.shared.display;
         d.lock(|d_l| {
             if let Some(ref mut d_l) = d_l {
-                let (w, h) = d_l.get_dimensions();
-                // Get the current pixel position and direction
-                let (mut x, mut y) = cx.local.pixel;
-                let (mut x_dir, mut y_dir) = cx.local.dirs;
-                // increment or decrement the pixel location
-                // TODO -- learn about addition and subtraction 
-                let delta: u8 = 1;
-                if x_dir { x += delta } else { x -= delta }
-                if y_dir { y += delta } else { y -= delta }
-                // check the bounds
-                if x <= 0 || x >= w-1 { x_dir = !x_dir }
-                if y <= 0 || y >= h-1 { y_dir = !y_dir }
-                *cx.local.pixel = (x, y);
-                *cx.local.dirs  = (x_dir, y_dir);
+                
+                // Clear the display buffer
                 d_l.clear();
-                d_l.set_pixel(x as u32, y as u32, 1u8);
+
+                // Process system state
+                let mut position = Point::new(0, 0);
+                match Text::new("Status: ", START_POSITION_1, normal).draw(d_l) {
+                    Ok(pos) => position = pos,
+                    Err(e) => error!("{}", defmt::Debug2Format(&e))
+                };
+                match system_state {
+                    0 => match Text::new("nominal", position, normal).draw(d_l) { Ok(_) => (), Err(e) => error!("{}", defmt::Debug2Format(&e))},
+                    1 => match Text::new("warning", position, underline).draw(d_l) { Ok(_) => (), Err(e) => error!("{}", defmt::Debug2Format(&e))},
+                    2 => match Text::new("critical", position, underline).draw(d_l) { Ok(_) => (), Err(e) => error!("{}", defmt::Debug2Format(&e))},
+                    _ => match Text::new("", position, normal).draw(d_l) { Ok(_) => (), Err(e) => error!("{}", defmt::Debug2Format(&e))},
+                };
+
+                // Draw a separating line
+                match Line::new(
+                    SEPARATOR_POSITION, 
+                    Point::new(SEPARATOR_POSITION.x + FEATHER_DISPLAY_SIZE.width as i32, SEPARATOR_POSITION.y))
+                    .into_styled(PrimitiveStyle::with_stroke(BinaryColor::On, 1))
+                    .draw(d_l) {
+                    Ok(_) => (),
+                    Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                };
+
+                // List the number of CAN devices
+                // Note we expect to have 3-4 devices in practice, so fully supporting up to 10 (with partial support for more) is sufficient
+                match Text::new("CAN devices: ", START_POSITION_2, normal).draw(d_l) {
+                    Ok(pos) => position = pos,
+                    Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                }
+
+                let can_dev_msg = match num_can_devices {
+                    0 => "0", 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10",
+                    _ => ">10"
+                };
+                match Text::new(can_dev_msg, position, normal).draw(d_l) {
+                    Ok(_) => (),
+                    Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                }
+            
+                if leak_detected {
+                    match Text::new("LEAK DETECTED!", START_POSITION_3, highlight).draw(d_l) {
+                            Ok(pos) => position = pos,
+                            Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                        }
+                    }
+
                 match d_l.flush() {
-                    Ok(_) => {},
-                    Err(_) => {},
+                    Ok(_) => { trace!("OLED flush succeeded"); },
+                    Err(e) => {error!("OLED flush failed: {}", defmt::Debug2Format(&e))},
                 };
             }
         });
@@ -427,8 +505,10 @@ mod app {
     
             let _file = match dir.open_file_in_dir("log.txt", Mode::ReadWriteCreateOrTruncate) {
                 Ok(mut file) => {
-                    file.write(b"test log data").unwrap();
-                    info!("Wrote successfully to file!");
+                    match file.write(b"test log data") {
+                        Ok(_) => info!("Wrote successfully to file!"),
+                        Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                    }
                 }
                 Err(e) => {
                     error!("Error opening file 'log.txt': {}", defmt::Debug2Format(&e));
@@ -438,5 +518,4 @@ mod app {
         }
         
     }
-
 } // mod app
