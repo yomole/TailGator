@@ -1,0 +1,18 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=TailGator Interconnect System\TailGator Interconnect System.PrjMbd
+[Project2]
+ProjectPath=TailGator Interconnect System\TGIS Protoboard\TGIS Protoboard.PrjPcb
+[Project3]
+ProjectPath=TailGator Interconnect System\TGIS CAN Termination\TGIS CAN Termination.PrjPcb
+[Project4]
+ProjectPath=Library\TGIS.LibPkg
+[Project5]
+ProjectPath=..\..\Useful-Documents\Altium\Common Libraries\PartsDB.PrjPcb
+[Project6]
+ProjectPath=..\..\SubjuGator9\Thrust-Kill Board\2024-\COTS-Relay-Control\COTS-Relay-Control.PrjPcb
+[Project7]
+ProjectPath=TailGator Interconnect System\TGIS Main\TGIS Power Distribution Board.PrjPcb
+[Project8]
+ProjectPath=TailGator Interconnect System\TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb

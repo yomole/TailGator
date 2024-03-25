@@ -1,0 +1,326 @@
+Teardrop Report Board.PcbDoc
+On 3/22/2024 at 12:23:54 AM
+
+Pads visited                : 228
+
+Vias visited                : 85
+
+Pad teardrops failed : 0
+
+Pad J5-2(787.5mil,375mil) on Multi-Layer
+Pad J5-1(866.24mil,375mil) on Multi-Layer
+Pad J6-1(512.5mil,375mil) on Multi-Layer
+Pad J6-2(433.76mil,375mil) on Multi-Layer
+Pad J4-1(-433.76mil,375mil) on Multi-Layer
+Pad J4-2(-512.5mil,375mil) on Multi-Layer
+Pad J3-2(-866.24mil,375mil) on Multi-Layer
+Pad J3-1(-787.5mil,375mil) on Multi-Layer
+Pad JMP1-2(925mil,100mil) on Multi-Layer
+Pad JMP1-1(1025mil,100mil) on Multi-Layer
+Pad JMP2-1(1025mil,-375mil) on Multi-Layer
+Pad JMP2-2(925mil,-375mil) on Multi-Layer
+Pad Free-M3(-1300mil,-300mil) on Multi-Layer
+Pad Free-M3(1300mil,-300mil) on Multi-Layer
+Pad Free-M3(1300mil,575mil) on Multi-Layer
+Pad Free-M3(-1300mil,575mil) on Multi-Layer
+Pad R8-1(-653.543mil,111.103mil) on Top GND
+Pad R8-2(-716.535mil,111.103mil) on Top GND
+Pad R14-1(-653.543mil,181.102mil) on Top GND
+Pad R14-2(-716.535mil,181.102mil) on Top GND
+Pad R7-1(-371.496mil,180mil) on Top GND
+Pad R7-2(-308.504mil,180mil) on Top GND
+Pad R10-1(-168.504mil,307.5mil) on Top GND
+Pad R10-2(-231.496mil,307.5mil) on Top GND
+Pad C4-2(-25mil,270mil) on Top GND
+Pad C4-1(-87.992mil,270mil) on Top GND
+Pad R12-1(-168.504mil,232.5mil) on Top GND
+Pad R12-2(-231.496mil,232.5mil) on Top GND
+Pad R5-2(232.992mil,-350mil) on Top GND
+Pad R5-1(170mil,-350mil) on Top GND
+Pad R6-2(17.008mil,-350mil) on Top GND
+Pad R6-1(80mil,-350mil) on Top GND
+Pad U1-8(1062mil,-12mil) on Top GND
+Pad U1-7(1062mil,-37mil) on Top GND
+Pad U1-6(1062mil,-63mil) on Top GND
+Pad U1-5(1062mil,-88mil) on Top GND
+Pad U1-4(888mil,-88mil) on Top GND
+Pad U1-3(888mil,-63mil) on Top GND
+Pad U1-2(888mil,-37mil) on Top GND
+Pad U1-1(888mil,-12mil) on Top GND
+Pad C2-1(1212.992mil,-137mil) on Top GND
+Pad C2-2(1150mil,-137mil) on Top GND
+Pad C1-1(1212.992mil,38mil) on Top GND
+Pad C1-2(1150mil,38mil) on Top GND
+Pad U2-8(1062mil,-187mil) on Top GND
+Pad U2-7(1062mil,-212mil) on Top GND
+Pad U2-6(1062mil,-238mil) on Top GND
+Pad U2-5(1062mil,-263mil) on Top GND
+Pad U2-4(888mil,-263mil) on Top GND
+Pad U2-3(888mil,-238mil) on Top GND
+Pad U2-2(888mil,-212mil) on Top GND
+Pad U2-1(888mil,-187mil) on Top GND
+Pad R2-2(929.232mil,250mil) on Top GND
+Pad R2-1(866.24mil,250mil) on Top GND
+Pad R1-2(724.508mil,250mil) on Top GND
+Pad R1-1(787.5mil,250mil) on Top GND
+Pad R4-2(575.492mil,250mil) on Top GND
+Pad R4-1(512.5mil,250mil) on Top GND
+Pad R3-2(370.768mil,250mil) on Top GND
+Pad R3-1(433.76mil,250mil) on Top GND
+Pad R9-2(-1068.504mil,310mil) on Top GND
+Pad R9-1(-1131.496mil,310mil) on Top GND
+Pad R11-2(-1068.504mil,235mil) on Top GND
+Pad R11-1(-1131.496mil,235mil) on Top GND
+Pad C3-1(-1212.008mil,272.5mil) on Top GND
+Pad C3-2(-1275mil,272.5mil) on Top GND
+Pad J2-80(-614.173mil,-13.386mil) on Top GND
+Pad J2-79(-614.173mil,-186.614mil) on Top GND
+Pad J2-78(-582.677mil,-13.386mil) on Top GND
+Pad J2-77(-582.677mil,-186.614mil) on Top GND
+Pad J2-76(-551.181mil,-13.386mil) on Top GND
+Pad J2-75(-551.181mil,-186.614mil) on Top GND
+Pad J2-74(-519.685mil,-13.386mil) on Top GND
+Pad J2-73(-519.685mil,-186.614mil) on Top GND
+Pad J2-72(-488.189mil,-13.386mil) on Top GND
+Pad J2-71(-488.189mil,-186.614mil) on Top GND
+Pad J2-70(-456.693mil,-13.386mil) on Top GND
+Pad J2-69(-456.693mil,-186.614mil) on Top GND
+Pad J2-68(-425.197mil,-13.386mil) on Top GND
+Pad J2-67(-425.197mil,-186.614mil) on Top GND
+Pad J2-66(-393.701mil,-13.386mil) on Top GND
+Pad J2-65(-393.701mil,-186.614mil) on Top GND
+Pad J2-64(-362.205mil,-13.386mil) on Top GND
+Pad J2-63(-362.205mil,-186.614mil) on Top GND
+Pad J2-62(-330.709mil,-13.386mil) on Top GND
+Pad J2-61(-330.709mil,-186.614mil) on Top GND
+Pad J2-60(-299.213mil,-13.386mil) on Top GND
+Pad J2-59(-299.213mil,-186.614mil) on Top GND
+Pad J2-58(-267.716mil,-13.386mil) on Top GND
+Pad J2-57(-267.716mil,-186.614mil) on Top GND
+Pad J2-56(-236.22mil,-13.386mil) on Top GND
+Pad J2-55(-236.22mil,-186.614mil) on Top GND
+Pad J2-54(-204.724mil,-13.386mil) on Top GND
+Pad J2-53(-204.724mil,-186.614mil) on Top GND
+Pad J2-52(-173.228mil,-13.386mil) on Top GND
+Pad J2-51(-173.228mil,-186.614mil) on Top GND
+Pad J2-50(-141.732mil,-13.386mil) on Top GND
+Pad J2-49(-141.732mil,-186.614mil) on Top GND
+Pad J2-48(-110.236mil,-13.386mil) on Top GND
+Pad J2-47(-110.236mil,-186.614mil) on Top GND
+Pad J2-46(-78.74mil,-13.386mil) on Top GND
+Pad J2-45(-78.74mil,-186.614mil) on Top GND
+Pad J2-44(-47.244mil,-13.386mil) on Top GND
+Pad J2-43(-47.244mil,-186.614mil) on Top GND
+Pad J2-42(-15.748mil,-13.386mil) on Top GND
+Pad J2-41(-15.748mil,-186.614mil) on Top GND
+Pad J2-40(15.748mil,-13.386mil) on Top GND
+Pad J2-39(15.748mil,-186.614mil) on Top GND
+Pad J2-38(47.244mil,-13.386mil) on Top GND
+Pad J2-37(47.244mil,-186.614mil) on Top GND
+Pad J2-36(78.74mil,-13.386mil) on Top GND
+Pad J2-35(78.74mil,-186.614mil) on Top GND
+Pad J2-34(110.236mil,-13.386mil) on Top GND
+Pad J2-33(110.236mil,-186.614mil) on Top GND
+Pad J2-32(141.732mil,-13.386mil) on Top GND
+Pad J2-31(141.732mil,-186.614mil) on Top GND
+Pad J2-30(173.228mil,-13.386mil) on Top GND
+Pad J2-29(173.228mil,-186.614mil) on Top GND
+Pad J2-28(204.724mil,-13.386mil) on Top GND
+Pad J2-27(204.724mil,-186.614mil) on Top GND
+Pad J2-26(236.22mil,-13.386mil) on Top GND
+Pad J2-25(236.22mil,-186.614mil) on Top GND
+Pad J2-24(267.716mil,-13.386mil) on Top GND
+Pad J2-23(267.716mil,-186.614mil) on Top GND
+Pad J2-22(299.213mil,-13.386mil) on Top GND
+Pad J2-21(299.213mil,-186.614mil) on Top GND
+Pad J2-20(330.709mil,-13.386mil) on Top GND
+Pad J2-19(330.709mil,-186.614mil) on Top GND
+Pad J2-18(362.205mil,-13.386mil) on Top GND
+Pad J2-17(362.205mil,-186.614mil) on Top GND
+Pad J2-16(393.701mil,-13.386mil) on Top GND
+Pad J2-15(393.701mil,-186.614mil) on Top GND
+Pad J2-14(425.197mil,-13.386mil) on Top GND
+Pad J2-13(425.197mil,-186.614mil) on Top GND
+Pad J2-12(456.693mil,-13.386mil) on Top GND
+Pad J2-11(456.693mil,-186.614mil) on Top GND
+Pad J2-10(488.189mil,-13.386mil) on Top GND
+Pad J2-9(488.189mil,-186.614mil) on Top GND
+Pad J2-8(519.685mil,-13.386mil) on Top GND
+Pad J2-7(519.685mil,-186.614mil) on Top GND
+Pad J2-6(551.181mil,-13.386mil) on Top GND
+Pad J2-5(551.181mil,-186.614mil) on Top GND
+Pad J2-4(582.677mil,-13.386mil) on Top GND
+Pad J2-3(582.677mil,-186.614mil) on Top GND
+Pad J2-2(614.173mil,-13.386mil) on Top GND
+Pad J2-1(614.173mil,-186.614mil) on Top GND
+Pad R13-1(-371.496mil,110mil) on Top GND
+Pad R13-2(-308.504mil,110mil) on Top GND
+Pad J1-80(-614.173mil,-13.386mil) on Bottom GND
+Pad J1-79(-614.173mil,-186.614mil) on Bottom GND
+Pad J1-78(-582.677mil,-13.386mil) on Bottom GND
+Pad J1-77(-582.677mil,-186.614mil) on Bottom GND
+Pad J1-76(-551.181mil,-13.386mil) on Bottom GND
+Pad J1-75(-551.181mil,-186.614mil) on Bottom GND
+Pad J1-74(-519.685mil,-13.386mil) on Bottom GND
+Pad J1-73(-519.685mil,-186.614mil) on Bottom GND
+Pad J1-72(-488.189mil,-13.386mil) on Bottom GND
+Pad J1-71(-488.189mil,-186.614mil) on Bottom GND
+Pad J1-70(-456.693mil,-13.386mil) on Bottom GND
+Pad J1-69(-456.693mil,-186.614mil) on Bottom GND
+Pad J1-68(-425.197mil,-13.386mil) on Bottom GND
+Pad J1-67(-425.197mil,-186.614mil) on Bottom GND
+Pad J1-66(-393.701mil,-13.386mil) on Bottom GND
+Pad J1-65(-393.701mil,-186.614mil) on Bottom GND
+Pad J1-64(-362.205mil,-13.386mil) on Bottom GND
+Pad J1-63(-362.205mil,-186.614mil) on Bottom GND
+Pad J1-62(-330.709mil,-13.386mil) on Bottom GND
+Pad J1-61(-330.709mil,-186.614mil) on Bottom GND
+Pad J1-60(-299.213mil,-13.386mil) on Bottom GND
+Pad J1-59(-299.213mil,-186.614mil) on Bottom GND
+Pad J1-58(-267.716mil,-13.386mil) on Bottom GND
+Pad J1-57(-267.716mil,-186.614mil) on Bottom GND
+Pad J1-56(-236.22mil,-13.386mil) on Bottom GND
+Pad J1-55(-236.22mil,-186.614mil) on Bottom GND
+Pad J1-54(-204.724mil,-13.386mil) on Bottom GND
+Pad J1-53(-204.724mil,-186.614mil) on Bottom GND
+Pad J1-52(-173.228mil,-13.386mil) on Bottom GND
+Pad J1-51(-173.228mil,-186.614mil) on Bottom GND
+Pad J1-50(-141.732mil,-13.386mil) on Bottom GND
+Pad J1-49(-141.732mil,-186.614mil) on Bottom GND
+Pad J1-48(-110.236mil,-13.386mil) on Bottom GND
+Pad J1-47(-110.236mil,-186.614mil) on Bottom GND
+Pad J1-46(-78.74mil,-13.386mil) on Bottom GND
+Pad J1-45(-78.74mil,-186.614mil) on Bottom GND
+Pad J1-44(-47.244mil,-13.386mil) on Bottom GND
+Pad J1-43(-47.244mil,-186.614mil) on Bottom GND
+Pad J1-42(-15.748mil,-13.386mil) on Bottom GND
+Pad J1-41(-15.748mil,-186.614mil) on Bottom GND
+Pad J1-40(15.748mil,-13.386mil) on Bottom GND
+Pad J1-39(15.748mil,-186.614mil) on Bottom GND
+Pad J1-38(47.244mil,-13.386mil) on Bottom GND
+Pad J1-37(47.244mil,-186.614mil) on Bottom GND
+Pad J1-36(78.74mil,-13.386mil) on Bottom GND
+Pad J1-35(78.74mil,-186.614mil) on Bottom GND
+Pad J1-34(110.236mil,-13.386mil) on Bottom GND
+Pad J1-33(110.236mil,-186.614mil) on Bottom GND
+Pad J1-32(141.732mil,-13.386mil) on Bottom GND
+Pad J1-31(141.732mil,-186.614mil) on Bottom GND
+Pad J1-30(173.228mil,-13.386mil) on Bottom GND
+Pad J1-29(173.228mil,-186.614mil) on Bottom GND
+Pad J1-28(204.724mil,-13.386mil) on Bottom GND
+Pad J1-27(204.724mil,-186.614mil) on Bottom GND
+Pad J1-26(236.22mil,-13.386mil) on Bottom GND
+Pad J1-25(236.22mil,-186.614mil) on Bottom GND
+Pad J1-24(267.716mil,-13.386mil) on Bottom GND
+Pad J1-23(267.716mil,-186.614mil) on Bottom GND
+Pad J1-22(299.213mil,-13.386mil) on Bottom GND
+Pad J1-21(299.213mil,-186.614mil) on Bottom GND
+Pad J1-20(330.709mil,-13.386mil) on Bottom GND
+Pad J1-19(330.709mil,-186.614mil) on Bottom GND
+Pad J1-18(362.205mil,-13.386mil) on Bottom GND
+Pad J1-17(362.205mil,-186.614mil) on Bottom GND
+Pad J1-16(393.701mil,-13.386mil) on Bottom GND
+Pad J1-15(393.701mil,-186.614mil) on Bottom GND
+Pad J1-14(425.197mil,-13.386mil) on Bottom GND
+Pad J1-13(425.197mil,-186.614mil) on Bottom GND
+Pad J1-12(456.693mil,-13.386mil) on Bottom GND
+Pad J1-11(456.693mil,-186.614mil) on Bottom GND
+Pad J1-10(488.189mil,-13.386mil) on Bottom GND
+Pad J1-9(488.189mil,-186.614mil) on Bottom GND
+Pad J1-8(519.685mil,-13.386mil) on Bottom GND
+Pad J1-7(519.685mil,-186.614mil) on Bottom GND
+Pad J1-6(551.181mil,-13.386mil) on Bottom GND
+Pad J1-5(551.181mil,-186.614mil) on Bottom GND
+Pad J1-4(582.677mil,-13.386mil) on Bottom GND
+Pad J1-3(582.677mil,-186.614mil) on Bottom GND
+Pad J1-2(614.173mil,-13.386mil) on Bottom GND
+Pad J1-1(614.173mil,-186.614mil) on Bottom GND
+
+Via teardrops failed : 0
+
+Via (1275mil,450mil) from Top GND to Bottom GND
+Via (1425mil,150mil) from Top GND to Bottom GND
+Via (1275mil,-150mil) from Top GND to Bottom GND
+Via (975mil,450mil) from Top GND to Bottom GND
+Via (1125mil,150mil) from Top GND to Bottom GND
+Via (975mil,-150mil) from Top GND to Bottom GND
+Via (675mil,450mil) from Top GND to Bottom GND
+Via (825mil,150mil) from Top GND to Bottom GND
+Via (675mil,-150mil) from Top GND to Bottom GND
+Via (375mil,450mil) from Top GND to Bottom GND
+Via (75mil,450mil) from Top GND to Bottom GND
+Via (225mil,150mil) from Top GND to Bottom GND
+Via (-225mil,450mil) from Top GND to Bottom GND
+Via (-75mil,150mil) from Top GND to Bottom GND
+Via (-525mil,450mil) from Top GND to Bottom GND
+Via (-825mil,450mil) from Top GND to Bottom GND
+Via (-825mil,-150mil) from Top GND to Bottom GND
+Via (-1125mil,450mil) from Top GND to Bottom GND
+Via (-975mil,150mil) from Top GND to Bottom GND
+Via (-1125mil,-150mil) from Top GND to Bottom GND
+Via (-1425mil,450mil) from Top GND to Bottom GND
+Via (-1275mil,150mil) from Top GND to Bottom GND
+Via (-1425mil,-150mil) from Top GND to Bottom GND
+Via (-446.26mil,250mil) from Top GND to Bottom GND
+Via (-250mil,180mil) from Top GND to Bottom GND
+Via (-78.74mil,-250mil) from Top GND to Bottom GND
+Via (-47.244mil,-250mil) from Top GND to Bottom GND
+Via (519.685mil,-250mil) from Top GND to Bottom GND
+Via (519.685mil,50mil) from Top GND to Bottom GND
+Via (-47.244mil,50mil) from Top GND to Bottom GND
+Via (-78.74mil,50mil) from Top GND to Bottom GND
+Via (-519.685mil,50mil) from Top GND to Bottom GND
+Via (-551.181mil,50mil) from Top GND to Bottom GND
+Via (-582.677mil,50mil) from Top GND to Bottom GND
+Via (-519.685mil,-250mil) from Top GND to Bottom GND
+Via (-582.677mil,-250mil) from Top GND to Bottom GND
+Via (-551.181mil,-250mil) from Top GND to Bottom GND
+Via (582.677mil,50mil) from Top GND to Bottom GND
+Via (551.181mil,50mil) from Top GND to Bottom GND
+Via (582.677mil,-250mil) from Top GND to Bottom GND
+Via (551.181mil,-250mil) from Top GND to Bottom GND
+Via (-320mil,290mil) from Top GND to Bottom GND
+Via (-980mil,292.5mil) from Top GND to Bottom GND
+Via (-320mil,250mil) from Top GND to Bottom GND
+Via (-446.26mil,210mil) from Top GND to Bottom GND
+Via (-980mil,252.5mil) from Top GND to Bottom GND
+Via (-800mil,250mil) from Top GND to Bottom GND
+Via (-800mil,210mil) from Top GND to Bottom GND
+Via (-595.039mil,111.103mil) from Top GND to Bottom GND
+Via (-595.039mil,181.102mil) from Top GND to Bottom GND
+Via (47.244mil,-259.842mil) from Top GND to Bottom GND
+Via (15.748mil,-259.842mil) from Top GND to Bottom GND
+Via (47.244mil,-98.425mil) from Top GND to Bottom GND
+Via (15.748mil,-98.425mil) from Top GND to Bottom GND
+Via (-210mil,180mil) from Top GND to Bottom GND
+Via (-210mil,110mil) from Top GND to Bottom GND
+Via (-250mil,110mil) from Top GND to Bottom GND
+Via (-446.26mil,175mil) from Top GND to Bottom GND
+Via (-32.992mil,-350mil) from Top GND to Bottom GND
+Via (282.992mil,-350mil) from Top GND to Bottom GND
+Via (1150mil,-87mil) from Top GND to Bottom GND
+Via (1150mil,88mil) from Top GND to Bottom GND
+Via (787.116mil,200.384mil) from Top GND to Bottom GND
+Via (865.856mil,200.384mil) from Top GND to Bottom GND
+Via (433.376mil,200.384mil) from Top GND to Bottom GND
+Via (512.116mil,200.384mil) from Top GND to Bottom GND
+Via (1000mil,-25mil) from Top GND to Bottom GND
+Via (1000mil,-75mil) from Top GND to Bottom GND
+Via (1000mil,-250mil) from Top GND to Bottom GND
+Via (1000mil,-200mil) from Top GND to Bottom GND
+Via (170mil,-300mil) from Top GND to Bottom GND
+Via (80mil,-300mil) from Top GND to Bottom GND
+Via (820mil,-65mil) from Top GND to Bottom GND
+Via (790mil,-35mil) from Top GND to Bottom GND
+Via (790mil,-210mil) from Top GND to Bottom GND
+Via (820mil,-240mil) from Top GND to Bottom GND
+Via (1150mil,-200mil) from Top GND to Bottom GND
+Via (1150mil,-25mil) from Top GND to Bottom GND
+Via (-446.26mil,285mil) from Top GND to Bottom GND
+Via (-800mil,285mil) from Top GND to Bottom GND
+Via (-800mil,175mil) from Top GND to Bottom GND
+Via (930mil,200mil) from Top GND to Bottom GND
+Via (370mil,200mil) from Top GND to Bottom GND
+Via (575mil,200mil) from Top GND to Bottom GND
+Via (725mil,200mil) from Top GND to Bottom GND
+

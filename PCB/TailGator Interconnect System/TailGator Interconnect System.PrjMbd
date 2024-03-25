@@ -84,75 +84,6 @@ GenerateClassCluster=0
 DocumentUniqueId=6717fa0c-f619-4f05-9dab-266fc2dd7801
 
 [Document3]
-DocumentPath=TGIS Main\TGIS Main.PrjPcb
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-VaultGUID=
-ManagedProjectGUID=
-RevisionGUID=
-ProjectName=TGIS Main.PrjPcb
-VaultURL=
-VaultName=
-
-[Document4]
-DocumentPath=TGIS Breakout\TGIS Breakout\TGIS Breakout.PrjPcb
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-VaultGUID=
-ManagedProjectGUID=
-RevisionGUID=
-ProjectName=TGIS Breakout.PrjPcb
-VaultURL=
-VaultName=
-
-[Document5]
-DocumentPath=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-VaultGUID=
-ManagedProjectGUID=
-RevisionGUID=
-ProjectName=TGIS USB to CAN.PrjPcb
-VaultURL=
-VaultName=
-
-[Document6]
 DocumentPath=TGIS Protoboard\TGIS Protoboard.PrjPcb
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -172,6 +103,73 @@ VaultGUID=
 ManagedProjectGUID=
 RevisionGUID=
 ProjectName=TGIS Protoboard.PrjPcb
+VaultURL=
+VaultName=
+
+[Document4]
+DocumentPath=TGIS CAN Termination\TGIS CAN Termination.PrjPcb
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+VaultGUID=
+ManagedProjectGUID=
+RevisionGUID=
+ProjectName=TGIS CAN Termination.PrjPcb
+VaultURL=
+VaultName=
+
+[Document5]
+DocumentPath=TGIS Main\TGIS Power Distribution Board.PrjPcb
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+VaultGUID=
+ManagedProjectGUID=
+RevisionGUID=
+ProjectName=TGIS Power Distribution Board.PrjPcb
+
+[Document6]
+DocumentPath=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+VaultGUID=
+ManagedProjectGUID=
+RevisionGUID=
+ProjectName=TGIS USB to CAN.PrjPcb
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -901,6 +899,8 @@ Type133=1
 Type134=1
 Type135=1
 Type136=1
+Type137=1
+Type138=1
 
 [Difference Levels]
 Type1=1
@@ -1130,6 +1130,8 @@ Type148=2
 Type149=2
 Type150=2
 Type151=2
+Type152=1
+Type153=1
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW
