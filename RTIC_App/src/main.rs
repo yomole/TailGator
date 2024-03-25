@@ -235,19 +235,6 @@ mod app {
             Ok(_)   => { trace!("OLED init succeeded"); display = Some(disp); },
             Err(e)  => error!("OLED init failed: {}", defmt::Debug2Format(&e)),
         }
-        // display.clear();
-        // display.flush().unwrap();
-        // use embedded_graphics::{
-        //     // primitives::{Rectangle, PrimitiveStyle},
-        //     mono_font::{ascii::FONT_6X9, MonoTextStyle},
-        //     pixelcolor::BinaryColor,
-        //     prelude::*,
-        //     text::Text,
-        // };
-        // let style = MonoTextStyle::new(&FONT_6X9, BinaryColor::On);
-        // let text = Text::new("RTIC testing", Point::new(10, 10), style);
-        // text.draw(&mut display).unwrap();
-        // display.flush().unwrap();
 
         // IMU
         let lis3dh_i2c = I2cCriticalSectionDev::new(i2c_bus);
@@ -280,7 +267,7 @@ mod app {
 
         let spi_device = ExclusiveDevice::new(spi_bus, DummyCsPin, NoDelay);
 
-        let mut delay = rp2040_hal::Timer::new(
+        let delay = rp2040_hal::Timer::new(
             cx.device.TIMER,
             &mut resets,
             &clocks,
@@ -308,14 +295,14 @@ mod app {
         info!("Spawning tasks...");
         blink::spawn(5).unwrap();
 
+        // Start IMU communication
+        update_imu::spawn().unwrap();
+
         // Start OLED animation
         update_oled::spawn_after(2000.millis()).unwrap();
         
         // Start heartbeat
         heartbeat::spawn_after(3000.millis()).unwrap();
-
-        // Start IMU communication
-        update_imu::spawn().unwrap();
 
         // Test logging to SD card
         test_log::spawn_after(3200.millis()).unwrap();
