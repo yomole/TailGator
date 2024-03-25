@@ -108,15 +108,13 @@ We are using the [RTIC Framework](https://rtic.rs/) to provide concurrent sensor
 Prerequisites:
 - Working Rust toolchain for embedded development on the RP2040 (e.g., capable of running the Embedded Rust lab code)
 - Adafruit Feather RP2040
-- Any of the above major components (LIS3DH, OLED, SD card reader) and connectivity to the feather (jumper cables and/or Feather boards)
+- All of the above major components (LIS3DH, OLED, SD card reader) and connectivity to the feather (jumper cables and/or Feather boards)
 
 Clone this repository: `https://github.com/yomole/TailGator.git`, then open the app (`RTIC_App`) and inspect the code.
-- Note the LIS3DH code in the `RTIC_App` is currently commented out. Comment out the OLED-related code (except for the I2C instantiation) and uncomment LIS3DH-related code to demo the IMU instead of the OLED.
 
 From within the app, run `cargo run` from within the `RTIC_App` directory with your Feather RP2040 connected to a debug probe over SWD. This will automatically flash the software to the Feather and run the program with rich debug output.
 
 Alternatively, in .cargo/config, you can set the runner to be `elf2uf2-rs` instead of `probe-rs` by commenting and uncommenting the appropriate lines. `cargo run` will then work with a Feather RP2040 set to receive a UF2 file, but of course you will need a debug probe to see the output.
-- Note that we currently are unable to build
 
 ## Known Issues
 1. Software will hang if interfacing with the SD card reader fails (e.g., if power is not supplied or the card isn't inserted). This will be improved in the future to fail gracefully when unable to interact with the SD card, allowing the rest of the program to continue as normal. Debug output errors are included to help determine if and when this issue occurs.
