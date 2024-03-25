@@ -12,7 +12,7 @@ Several other standards exist for modular electronics hardware, including:
 
 However, no single standard contains the pin density, physical dimensions, signal integrity, power delivery, and cost effectiveness we are looking for. The TailGator Interconnect System aims to solve this problem for the Machine Intelligence Laboratories' [SubjuGator 9 Autonomous Underwater Vehicle](http://subjugator.org/?page_id=3390) platform while making the design open source to help the robotics community.
 
-Our beta build demonstration can be found here: https://youtu.be/0dGkKYxjW8g
+Our release candidate demonstration can be found here: https://youtu.be/-oDCMslNhLU
 
 # Electrical Specifications
 
