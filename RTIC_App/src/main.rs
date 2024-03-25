@@ -395,7 +395,10 @@ mod app {
         let mut accel = cx.shared.accel;
         accel.lock(|accel_l| {
             if let Some(ref mut accel_l) = accel_l {
-                defmt::info!("accel x is now: {:?}", accel_l.accel_norm().unwrap().x);
+                match accel_l.accel_norm() {
+                    Ok(accel_vec)   => info!("accel x is now: {:?}", accel_vec.x),
+                    Err(e)  => warn!("unable to read accel from IMU: {}", defmt::Debug2Format(&e)),
+                }
             }
         });
         update_imu::spawn_after(1000u64.millis()).unwrap();
