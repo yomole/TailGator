@@ -452,7 +452,7 @@ mod app {
             
                 if leak_detected {
                     match Text::new("LEAK DETECTED!", START_POSITION_3, highlight).draw(d_l) {
-                            Ok(pos) => position = pos,
+                            Ok(_) => (),
                             Err(e) => error!("{}", defmt::Debug2Format(&e)),
                         }
                     }
