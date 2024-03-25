@@ -117,12 +117,7 @@ From within the app, run `cargo run` from within the `RTIC_App` directory with y
 Alternatively, in .cargo/config, you can set the runner to be `elf2uf2-rs` instead of `probe-rs` by commenting and uncommenting the appropriate lines. `cargo run` will then work with a Feather RP2040 set to receive a UF2 file, but of course you will need a debug probe to see the output.
 
 ## Known Issues
-1. Software will hang if interfacing with the SD card reader fails (e.g., if power is not supplied or the card isn't inserted). This will be improved in the future to fail gracefully when unable to interact with the SD card, allowing the rest of the program to continue as normal. Debug output errors are included to help determine if and when this issue occurs.
-
-## Software Alpha Test Results
-We verified functionality of the IMU and OLED display in the RTIC app from our Alpha Build submission. Serial communication over USB turned out to be an unattractive solution as described in our Beta Test Plan, and we are replacing that functionality with debug messages over RTT using `defmt` and `probe-rs`.
-
-Further tests have been developed for the Beta Build, including base functionality for new components and performance metrics for the SD card reader and OLED display. Going forward, we plan to research and develop Continuous Integration workflows to keep our repository up-to-date while maintaining functionality and performance.
+1. While error handling is in place and largely functional, we have still experienced crashes in testing when disconnecting the OLED. This will be further debugged in future builds. Disconnect handling is functional for the IMU and SD Card (and not required for the leak detector as it is a digital input).
 
 
 # Time Tracking
