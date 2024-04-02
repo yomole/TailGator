@@ -149,6 +149,8 @@ VaultGUID=
 ManagedProjectGUID=
 RevisionGUID=
 ProjectName=TGIS Power Distribution Board.PrjPcb
+VaultURL=
+VaultName=
 
 [Document6]
 DocumentPath=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
@@ -170,6 +172,29 @@ VaultGUID=
 ManagedProjectGUID=
 RevisionGUID=
 ProjectName=TGIS USB to CAN.PrjPcb
+VaultURL=
+VaultName=
+
+[Document7]
+DocumentPath=TGIS System Status\TGIS System Status.PrjPcb
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+VaultGUID=
+ManagedProjectGUID=
+RevisionGUID=
+ProjectName=TGIS System Status.PrjPcb
 
 [OutputGroup1]
 Name=Netlist Outputs

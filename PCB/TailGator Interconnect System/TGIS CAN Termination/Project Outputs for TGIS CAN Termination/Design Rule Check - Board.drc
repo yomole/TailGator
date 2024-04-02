@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\PCB\TailGator Interconnect System\TGIS CAN Termination\Board.PcbDoc
-Date     : 3/24/2024
-Time     : 1:52:06 AM
+Date     : 3/29/2024
+Time     : 3:37:31 PM
 
 Processing Rule : Clearance Constraint (Gap=4mil) (All),(All)
 Rule Violations :0
@@ -63,4 +63,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:02
+Time Elapsed        : 00:00:01

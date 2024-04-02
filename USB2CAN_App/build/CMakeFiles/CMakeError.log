@@ -393,3 +393,357 @@ mingw32-make.exe: *** [cmTC_90b85/fast] Error 2
 
 
 
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -c 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -Aa 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: -c 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+g++.exe: error: unrecognized command line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+g++.exe: error: unrecognized command line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_7ef18/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_7ef18.dir\build.make CMakeFiles/cmTC_7ef18.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ef18.dir/CMakeCCompilerABI.c.obj
+C:\MinGW\bin\gcc.exe   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles\cmTC_7ef18.dir\CMakeCCompilerABI.c.obj -c C:\CMake\share\cmake-3.24\Modules\CMakeCCompilerABI.c
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+Using built-in specs.
+COLLECT_GCC=C:\MinGW\bin\gcc.exe
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+Target: mingw32
+Configured with: ../src/gcc-6.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --target=mingw32 --with-gmp=/mingw --with-mpfr --with-mpc=/mingw --with-isl=/mingw --prefix=/mingw --disable-win32-registry --with-arch=i586 --with-tune=generic --enable-languages=c,c++,objc,obj-c++,fortran,ada --with-pkgversion='MinGW.org GCC-6.3.0-1' --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 6.3.0 (MinGW.org GCC-6.3.0-1) 
+CMakeFiles\cmTC_7ef18.dir\build.make:76: recipe for target 'CMakeFiles/cmTC_7ef18.dir/CMakeCCompilerABI.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_7ef18.dir/CMakeCCompilerABI.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7ef18/fast' failed
+mingw32-make.exe: *** [cmTC_7ef18/fast] Error 2
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_c3543/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_c3543.dir\build.make CMakeFiles/cmTC_c3543.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c3543.dir/testCCompiler.c.obj
+C:\MinGW\bin\gcc.exe   -mcpu=cortex-m0plus -mthumb  -o CMakeFiles\cmTC_c3543.dir\testCCompiler.c.obj -c C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\USB2CAN_App\build\CMakeFiles\CMakeTmp\testCCompiler.c
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+CMakeFiles\cmTC_c3543.dir\build.make:76: recipe for target 'CMakeFiles/cmTC_c3543.dir/testCCompiler.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_c3543.dir/testCCompiler.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c3543/fast' failed
+mingw32-make.exe: *** [cmTC_c3543/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -c 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -Aa 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: C:/MinGW/bin/gcc.exe 
+Build flags: -mcpu=cortex-m0plus;-mthumb
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags:  
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: -c 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --c++ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+g++.exe: error: unrecognized command line option '--c++'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --ec++ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+g++.exe: error: unrecognized command line option '--ec++'; did you mean '-Weffc++'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: C:/MinGW/bin/g++.exe 
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
+Id flags: -c;-I__does_not_exist__ 
+
+The output was:
+1
+g++.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+g++.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_48eca/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_48eca.dir\build.make CMakeFiles/cmTC_48eca.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_48eca.dir/CMakeCCompilerABI.c.obj
+C:\MinGW\bin\gcc.exe   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles\cmTC_48eca.dir\CMakeCCompilerABI.c.obj -c C:\CMake\share\cmake-3.24\Modules\CMakeCCompilerABI.c
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+Using built-in specs.
+COLLECT_GCC=C:\MinGW\bin\gcc.exe
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+Target: mingw32
+Configured with: ../src/gcc-6.3.0/configure --build=x86_64-pc-linux-gnu --host=mingw32 --target=mingw32 --with-gmp=/mingw --with-mpfr --with-mpc=/mingw --with-isl=/mingw --prefix=/mingw --disable-win32-registry --with-arch=i586 --with-tune=generic --enable-languages=c,c++,objc,obj-c++,fortran,ada --with-pkgversion='MinGW.org GCC-6.3.0-1' --enable-static --enable-shared --enable-threads --with-dwarf2 --disable-sjlj-exceptions --enable-version-specific-runtime-libs --with-libiconv-prefix=/mingw --with-libintl-prefix=/mingw --enable-libstdcxx-debug --enable-libgomp --disable-libvtv --enable-nls
+Thread model: win32
+gcc version 6.3.0 (MinGW.org GCC-6.3.0-1) 
+CMakeFiles\cmTC_48eca.dir\build.make:76: recipe for target 'CMakeFiles/cmTC_48eca.dir/CMakeCCompilerABI.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_48eca.dir/CMakeCCompilerABI.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_48eca/fast' failed
+mingw32-make.exe: *** [cmTC_48eca/fast] Error 2
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_39c0d/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_39c0d.dir\build.make CMakeFiles/cmTC_39c0d.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_39c0d.dir/testCCompiler.c.obj
+C:\MinGW\bin\gcc.exe   -mcpu=cortex-m0plus -mthumb  -o CMakeFiles\cmTC_39c0d.dir\testCCompiler.c.obj -c C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\USB2CAN_App\build\CMakeFiles\CMakeTmp\testCCompiler.c
+gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+gcc.exe: error: unrecognized command line option '-mthumb'; did you mean '-mtbm'?
+CMakeFiles\cmTC_39c0d.dir\build.make:76: recipe for target 'CMakeFiles/cmTC_39c0d.dir/testCCompiler.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_39c0d.dir/testCCompiler.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/molyo/OneDrive/Desktop/MIL/TailGator/USB2CAN_App/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_39c0d/fast' failed
+mingw32-make.exe: *** [cmTC_39c0d/fast] Error 2
+
+
+

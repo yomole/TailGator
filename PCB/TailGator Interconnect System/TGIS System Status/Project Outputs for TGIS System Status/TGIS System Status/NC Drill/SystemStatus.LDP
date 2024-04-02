@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: C:\Users\molyo\OneDrive\Desktop\MIL\TailGator\PCB\TailGator Interconnect System\TGIS System Status\SystemStatus.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=systemstatus-roundholes.txt|DrillLayers=gtl,gp1,gp2,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=systemstatus-slotholes.txt|DrillLayers=gtl,gp1,gp2,gbl

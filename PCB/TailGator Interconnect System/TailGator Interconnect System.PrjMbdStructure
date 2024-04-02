@@ -4,5 +4,7 @@ Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Sche
 Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS CAN Termination\TGIS CAN Termination.PrjPcb
 Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=2|Source=TGIS Main\TGIS Power Distribution Board.PrjPcb
 Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS Main\TGIS Power Distribution Board.PrjPcb
+Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=5|Source=TGIS System Status\TGIS System Status.PrjPcb
+Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS System Status\TGIS System Status.PrjPcb
 Record=DiagramHierarchy|SourceDocument=TGIS Example.MbsDoc|Kind=Multi-board Schematic Module|Designator=3|Source=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
 Record=SubProject|SourceDocument=TGIS Example.MbsDoc|ProjectPath=TGIS USB to CAN\TGIS USB to CAN\TGIS USB to CAN.PrjPcb
