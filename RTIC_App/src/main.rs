@@ -98,7 +98,7 @@ mod app {
         },
         pixelcolor::BinaryColor,
         prelude::*,
-        text::Text,
+        text::Text
     };
 
     // OLED type aliases
@@ -172,6 +172,7 @@ mod app {
         display: Option<OledDisplay>,
         
         accel_mag: f32,
+        leak_detected: bool,
     }
 
     #[local]
@@ -317,6 +318,9 @@ mod app {
         // Start IMU communication
         update_imu::spawn().unwrap();
 
+        // Start leak detection
+        update_leak_detector::spawn_after(1000.millis()).unwrap();
+
         // Start OLED animation
         update_oled::spawn_after(2000.millis()).unwrap();
         
@@ -333,6 +337,7 @@ mod app {
                 display: display,
                 
                 accel_mag: 0.0f32,
+                leak_detected: false,
             },
             DataLocal {
                 led_pin: led_pin,
@@ -348,16 +353,11 @@ mod app {
 
    
     // Heartbeat task -----------------------------------------------------------------------------
-    #[task (local=[leak_detector_pin])]
-    fn heartbeat(cx: heartbeat::Context) {
+    #[task]
+    fn heartbeat(_cx: heartbeat::Context) {
         trace!("heartbeat");
-        if cx.local.leak_detector_pin.is_low().unwrap() {
-            trace!("leak pin low");
-            blink::spawn(1).unwrap();
-        } else {
-            warn!("leak pin high! leak detected!");
-            blink::spawn(2).unwrap();
-        }
+        blink::spawn(1).unwrap();
+
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
@@ -376,6 +376,23 @@ mod app {
         }
     }
 
+    // Leak detector task -------------------------------------------------------------------------
+    #[task (shared=[leak_detected], local=[leak_detector_pin])]
+    fn update_leak_detector(cx: update_leak_detector::Context) {
+        // Read the pin
+        let leak = cx.local.leak_detector_pin.is_high().unwrap();
+
+        // Update status
+        if leak { warn!("leak pin high! leak detected!"); } 
+        else { trace!("leak pin low"); }
+
+        // Update shared resource
+        let mut leak_detected = cx.shared.leak_detected;
+        leak_detected.lock(|leak_detected_l| {*leak_detected_l = leak});
+
+        update_leak_detector::spawn_after(1000.millis()).unwrap();
+    }
+
     // OLED update task ---------------------------------------------------------------------------
     const FEATHER_DISPLAY_SIZE: Size = Size::new(128, 64);
     const START_POSITION_1: Point = Point::new(0, font.character_size.height as i32 - 3);
@@ -383,17 +400,22 @@ mod app {
     const START_POSITION_2: Point = Point::new(SEPARATOR_POSITION.x, SEPARATOR_POSITION.y + font.character_size.height as i32);
     const START_POSITION_3: Point = Point::new(START_POSITION_2.x, START_POSITION_2.y + font.character_size.height as i32);
     
-    #[task(shared = [display, accel_mag], local = [pixel, dirs])]
+    const VIBRATION_THRESHOLD: f32 = 2.0f32;
+    
+    #[task(shared = [display, accel_mag, leak_detected], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
         // Change these values to view the interface prototypes //
         let num_can_devices: u8 = 1;                            //
-        let leak_detected: bool = false;                         //
         // ---------------------------------------------------- //
 
         // 0 = nominal, 1 = warn, 2 = err
         let mut system_state = 0;
         if num_can_devices == 0 { system_state = 1;}
-        if leak_detected { system_state = 2; }
+        
+        let mut leak_detected = cx.shared.leak_detected;
+        let mut is_leak = false;
+        leak_detected.lock(|leak_l| { is_leak = *leak_l; });
+        if is_leak { system_state = 2; }
 
         // Font styles
         let normal = MonoTextStyleBuilder::new()
@@ -460,7 +482,6 @@ mod app {
                 // Vibration detection
                 let mut vibration_detected = false;
                 let mut accel_mag = cx.shared.accel_mag;
-                const VIBRATION_THRESHOLD: f32 = 2.0f32;
                 accel_mag.lock(|accel_mag_l| {
                     if *accel_mag_l < VIBRATION_THRESHOLD { trace!("acceleration magnitude: {:?}", accel_mag_l); }
                     else { warn!("Vibration detected! Magnitude: {:?}", accel_mag_l); vibration_detected = true; }
@@ -468,7 +489,7 @@ mod app {
                 });
             
                 // Order implies priority
-                if leak_detected {
+                if is_leak {
                     match Text::new("LEAK DETECTED!", START_POSITION_3, highlight).draw(d_l) {
                             Ok(_) => (),
                             Err(e) => error!("{}", defmt::Debug2Format(&e)),
