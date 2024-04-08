@@ -110,6 +110,8 @@ mod app {
     // IMU imports
     use lis3dh::{Lis3dh, Lis3dhI2C, SlaveAddr};
     use lis3dh::accelerometer::Accelerometer;
+    use accelerometer::vector::VectorExt;
+
 
     // IMU type aliases
     type I2cBus = Mutex<RefCell<I2cWithPins>>;
@@ -168,6 +170,8 @@ mod app {
     struct DataShared {
         accel: Option<Lis3dhAccelerometer>,
         display: Option<OledDisplay>,
+        
+        accel_mag: f32,
     }
 
     #[local]
@@ -264,6 +268,7 @@ mod app {
             };
         }
 
+
         // SPI
         let spi_sclk: Pin<_, FunctionSpi, PullNone> = pins.gpio18.reconfigure();
         let spi_mosi: Pin<_, FunctionSpi, PullNone> = pins.gpio19.reconfigure();
@@ -326,6 +331,8 @@ mod app {
             DataShared {
                 accel: lis3dh,
                 display: display,
+                
+                accel_mag: 0.0f32,
             },
             DataLocal {
                 led_pin: led_pin,
@@ -376,11 +383,11 @@ mod app {
     const START_POSITION_2: Point = Point::new(SEPARATOR_POSITION.x, SEPARATOR_POSITION.y + font.character_size.height as i32);
     const START_POSITION_3: Point = Point::new(START_POSITION_2.x, START_POSITION_2.y + font.character_size.height as i32);
     
-    #[task(shared = [display], local = [pixel, dirs])]
+    #[task(shared = [display, accel_mag], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
         // Change these values to view the interface prototypes //
         let num_can_devices: u8 = 1;                            //
-        let leak_detected: bool = true;                         //
+        let leak_detected: bool = false;                         //
         // ---------------------------------------------------- //
 
         // 0 = nominal, 1 = warn, 2 = err
@@ -449,13 +456,29 @@ mod app {
                     Ok(_) => (),
                     Err(e) => error!("{}", defmt::Debug2Format(&e)),
                 }
+
+                // Vibration detection
+                let mut vibration_detected = false;
+                let mut accel_mag = cx.shared.accel_mag;
+                const VIBRATION_THRESHOLD: f32 = 2.0f32;
+                accel_mag.lock(|accel_mag_l| {
+                    if *accel_mag_l < VIBRATION_THRESHOLD { trace!("acceleration magnitude: {:?}", accel_mag_l); }
+                    else { warn!("Vibration detected! Magnitude: {:?}", accel_mag_l); vibration_detected = true; }
+
+                });
             
+                // Order implies priority
                 if leak_detected {
                     match Text::new("LEAK DETECTED!", START_POSITION_3, highlight).draw(d_l) {
                             Ok(_) => (),
                             Err(e) => error!("{}", defmt::Debug2Format(&e)),
-                        }
                     }
+                } else if vibration_detected {
+                    match Text::new("Vibration detected!", START_POSITION_3, underline).draw(d_l) {
+                        Ok(_) => (),
+                        Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                    }
+                }
 
                 match d_l.flush() {
                     Ok(_) => { trace!("OLED flush succeeded"); },
@@ -468,15 +491,21 @@ mod app {
 
 
     // IMU update task ----------------------------------------------------------------------------
-    #[task(shared = [accel])]
+    #[task(shared = [accel, accel_mag])]
     fn update_imu(cx: update_imu::Context) {
         let mut accel = cx.shared.accel;
         accel.lock(|accel_l| {
             if let Some(ref mut accel_l) = accel_l {
-                match accel_l.accel_norm() {
-                    Ok(accel_vec)   => info!("accel x is now: {:?}", accel_vec.x),
-                    Err(e)  => warn!("unable to read accel from IMU: {}", defmt::Debug2Format(&e)),
-                }
+                let mut accel_mag = cx.shared.accel_mag;
+                accel_mag.lock(|accel_mag_l| {
+                    match accel_l.accel_norm() {
+                        Ok(accel_vec)   => {
+                            *accel_mag_l = accel_vec.magnitude();
+                            trace!("accel magnitude: {:?}", *accel_mag_l);
+                        },
+                        Err(e)  => warn!("unable to read accel from IMU: {}", defmt::Debug2Format(&e)),
+                    };
+                });
             }
         });
         update_imu::spawn_after(1000u64.millis()).unwrap();
