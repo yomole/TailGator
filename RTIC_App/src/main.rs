@@ -34,14 +34,15 @@ mod app {
         watchdog::Watchdog,
         Sio,
         gpio::bank0::{
-            Gpio2,      // Sda
-            Gpio3,      // Scl
+            Gpio22,     // I2C1 Sda
+            Gpio23,     // I2C1 Scl
             Gpio13,     // LED
             Gpio18,     // SPI0 SCK
             Gpio19,     // SPI0 MOSI
             Gpio20,     // SPI0 MISO
-            Gpio24,     // Leak Detector
-            Gpio25,     // SPI0 CS (custom)
+            Gpio1,      // Leak Detector
+            Gpio2,      // Leak Alarm
+            Gpio17,     // SPI0 CS
         },
         gpio::{
             Pin,
@@ -72,8 +73,13 @@ mod app {
         PullDown>;
 
     type LeakDetectorPin = Pin<
-        Gpio24,
+        Gpio1,
         FunctionSioInput,
+        PullUp>;
+
+    type LeakAlarmPin = Pin<
+        Gpio2,
+        FunctionSioOutput,
         PullDown>;
 
     // Timing imports
@@ -102,8 +108,8 @@ mod app {
     };
 
     // OLED type aliases
-    type Scl = Pin<Gpio3, FunctionI2C, PullUp>;
-    type Sda = Pin<Gpio2, FunctionI2C, PullUp>;
+    type Scl = Pin<Gpio23, FunctionI2C, PullUp>;
+    type Sda = Pin<Gpio22, FunctionI2C, PullUp>;
     type I2cWithPins = I2C<pac::I2C1, (Sda, Scl)>;
     type OledDisplay = GraphicsMode<I2cInterface<I2cCriticalSectionDev<'static, I2cWithPins>>>;
 
@@ -154,7 +160,7 @@ mod app {
             Spi0Bus,
             DummyCsPin,
             NoDelay>,
-        Pin<Gpio25, FunctionSioOutput, PullDown>,
+        Pin<Gpio17, FunctionSioOutput, PullDown>,
         hal::Timer
     >;
     type SdCardVolumeMgr = embedded_sdmmc::VolumeManager<
@@ -180,6 +186,7 @@ mod app {
         // Components
         led_pin: LedPin,
         leak_detector_pin: LeakDetectorPin,
+        leak_alarm_pin: LeakAlarmPin,
         pixel: (u8, u8),
         dirs: (bool, bool),
         sd_card_volume_mgr: Option<SdCardVolumeMgr>,
@@ -220,13 +227,14 @@ mod app {
             &mut resets,
         );
         let led_pin = pins.gpio13.into_push_pull_output();
-        let leak_detector_pin = pins.gpio24.into_pull_down_input();
+        let leak_detector_pin = pins.gpio1.into_pull_up_input();
+        let leak_alarm_pin = pins.gpio2.into_push_pull_output();
 
         // Peripheral setup -----------------------------------------------------------------------
 
         // I2C
-        let scl = pins.gpio3.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
-        let sda = pins.gpio2.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let scl = pins.gpio23.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let sda = pins.gpio22.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
         let i2c1 = I2C::i2c1(
             cx.device.I2C1,
             sda,
@@ -274,7 +282,7 @@ mod app {
         let spi_sclk: Pin<_, FunctionSpi, PullNone> = pins.gpio18.reconfigure();
         let spi_mosi: Pin<_, FunctionSpi, PullNone> = pins.gpio19.reconfigure();
         let spi_miso: Pin<_, FunctionSpi, PullUp> = pins.gpio20.reconfigure();
-        let spi_cs = pins.gpio25.into_push_pull_output();
+        let spi_cs = pins.gpio17.into_push_pull_output();
 
         let spi_bus = Spi::<_, _, _, 8>::new(cx.device.SPI0, (spi_mosi, spi_miso, spi_sclk));
 
@@ -342,6 +350,7 @@ mod app {
             DataLocal {
                 led_pin: led_pin,
                 leak_detector_pin: leak_detector_pin,
+                leak_alarm_pin: leak_alarm_pin,
                 pixel: (10, 25),
                 dirs: (true, true),
                 sd_card_volume_mgr: volume_mgr,
@@ -377,20 +386,20 @@ mod app {
     }
 
     // Leak detector task -------------------------------------------------------------------------
-    #[task (shared=[leak_detected], local=[leak_detector_pin])]
+    #[task (shared=[leak_detected], local=[leak_detector_pin, leak_alarm_pin])]
     fn update_leak_detector(cx: update_leak_detector::Context) {
         // Read the pin
-        let leak = cx.local.leak_detector_pin.is_high().unwrap();
+        let leak = cx.local.leak_detector_pin.is_low().unwrap();
 
         // Update status
-        if leak { warn!("leak pin high! leak detected!"); } 
-        else { trace!("leak pin low"); }
+        if leak { warn!("leak pin high! leak detected!"); cx.local.leak_alarm_pin.set_high().unwrap(); } 
+        else { trace!("leak pin low"); cx.local.leak_alarm_pin.set_low().unwrap(); }
 
         // Update shared resource
         let mut leak_detected = cx.shared.leak_detected;
         leak_detected.lock(|leak_detected_l| {*leak_detected_l = leak});
 
-        update_leak_detector::spawn_after(1000.millis()).unwrap();
+        update_leak_detector::spawn_after(500.millis()).unwrap();
     }
 
     // OLED update task ---------------------------------------------------------------------------
