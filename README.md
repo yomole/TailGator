@@ -2,7 +2,7 @@
 
 # Introduction
 
-The TailGator Interconnect System (TGIS) project aims to produce a modular connection system and standard for easily connecting, replacing, and upgrading underwater robotics hardware in space-constrained robotics designs. 
+The TailGator Interconnect System (TGIS) project provides a modular connection system and standard for easily connecting, replacing, and upgrading underwater robotics hardware in space-constrained robotics designs. 
 Several other standards exist for modular electronics hardware, including:
 
 - [Adafruit Feather Specification](https://learn.adafruit.com/adafruit-feather/feather-specification)
@@ -12,7 +12,7 @@ Several other standards exist for modular electronics hardware, including:
 
 However, no single standard contains the pin density, physical dimensions, signal integrity, power delivery, and cost effectiveness we are looking for. The TailGator Interconnect System aims to solve this problem for the Machine Intelligence Laboratories' [SubjuGator 9 Autonomous Underwater Vehicle](http://subjugator.org/?page_id=3390) platform while making the design open source to help the robotics community.
 
-Our release candidate demonstration can be found here: https://youtu.be/-oDCMslNhLU
+Our production release demonstration can be found here: https://youtu.be/vW_x0FsKn2Q
 
 # Electrical Specifications
 
@@ -103,15 +103,16 @@ The fuse did work in the overvoltage protection case, but activated after a very
 - The power distribution board has a higher voltage drop across the protection circuitry, meaning that there is still a problem if bypass mode is used without first checking the input voltage.
 
 # Software
-Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system.
+Our work includes the design of firmware for the TGIS's system status board, which can display diagnostic information about the system.
 
-For the beta build, the prototype of this board includes four major components, all connected to an Adafruit Feather RP2040:
+For the production release, the firmware has been fully verified to support all major components on the system status board PCB:
 - OLED display, prototyped on the [Adafruit OLED Feather](https://www.adafruit.com/product/4650) and communicating via I2C;
-- LIS3DH IMU (tested previously in the Alpha Build)
-- Micro SD card reader, using 4-pin SPI to communicate.
+- LIS3DH IMU (tested previously in the Alpha Build);
+- Micro SD card reader, using 4-pin SPI to communicate;
+- Leak alarm, a piezo buzzer activated via GPIO; and
 - Leak detector, prototyped via a push button connected to an input pin on the Feather RP2040.
 
-All of the above components have been updated to work concurrently on `embedded-hal` version 1.0 (except for the IMU which is still undergoing the port to `embedded-hal` 1.0; unfortunately we were unable to run Carsten's example in time to develop the shared I2C bus further).
+All of the above components have been updated to work concurrently on `embedded-hal` version 1.0.
 
 We are using the [RTIC Framework](https://rtic.rs/) to provide concurrent sensor access and display interfacing. This app can be seen in the `RTIC_App` directory of this repo.
 
@@ -121,6 +122,7 @@ Prerequisites:
 - Working Rust toolchain for embedded development on the RP2040 (e.g., capable of running the Embedded Rust lab code)
 - Adafruit Feather RP2040
 - All of the above major components (LIS3DH, OLED, SD card reader) and connectivity to the feather (jumper cables and/or Feather boards)
+- (Note: for testing the CAN demonstration, a pair of RP2040 devices each attached to a CAN transceiver via two GPIO pins for the Rx and Tx lines is required. One device must be flashed with the transmitter code--`CAN_Demo/CAN_Transmsit`--and the other with the receiver code--`CAN_Demo/CAN_Receive`. The transmitter should have a digital input component such as a button attached to the appropriate GPIO pin, and the receiver must be attached to a computer via USB where `minicom` shoud be run to inspect serial output at baud rate 115200.)
 
 Clone this repository: `https://github.com/yomole/TailGator.git`, then open the app (`RTIC_App`) and inspect the code.
 
@@ -129,7 +131,8 @@ From within the app, run `cargo run` from within the `RTIC_App` directory with y
 Alternatively, in .cargo/config, you can set the runner to be `elf2uf2-rs` instead of `probe-rs` by commenting and uncommenting the appropriate lines. `cargo run` will then work with a Feather RP2040 set to receive a UF2 file, but of course you will need a debug probe to see the output.
 
 ## Known Issues
-1. While error handling is in place and largely functional, we have still experienced crashes in testing when disconnecting the OLED. This will be further debugged in future builds. Disconnect handling is functional for the IMU and SD Card (and not required for the leak detector as it is a digital input).
+1. CAN bus communication has not yet been integrated with the system status board firmware due to a need for more up-to-date CAN drivers.
+2. SWD port on the system status board is nonfunctional, and so debug output can only be demonstrated on the testbench via a Feather RP2040 and appropriately wired components. This may require reconfiguring GPIO pin selection for the devices under test.
 
 
 # Time Tracking
