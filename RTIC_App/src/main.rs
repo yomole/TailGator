@@ -34,14 +34,15 @@ mod app {
         watchdog::Watchdog,
         Sio,
         gpio::bank0::{
-            Gpio2,      // Sda
-            Gpio3,      // Scl
+            Gpio22,     // I2C1 Sda
+            Gpio23,     // I2C1 Scl
             Gpio13,     // LED
             Gpio18,     // SPI0 SCK
             Gpio19,     // SPI0 MOSI
             Gpio20,     // SPI0 MISO
-            Gpio24,     // Leak Detector
-            Gpio25,     // SPI0 CS (custom)
+            Gpio1,      // Leak Detector
+            Gpio2,      // Leak Alarm
+            Gpio17,     // SPI0 CS
         },
         gpio::{
             Pin,
@@ -72,8 +73,13 @@ mod app {
         PullDown>;
 
     type LeakDetectorPin = Pin<
-        Gpio24,
+        Gpio1,
         FunctionSioInput,
+        PullUp>;
+
+    type LeakAlarmPin = Pin<
+        Gpio2,
+        FunctionSioOutput,
         PullDown>;
 
     // Timing imports
@@ -98,18 +104,20 @@ mod app {
         },
         pixelcolor::BinaryColor,
         prelude::*,
-        text::Text,
+        text::Text
     };
 
     // OLED type aliases
-    type Scl = Pin<Gpio3, FunctionI2C, PullUp>;
-    type Sda = Pin<Gpio2, FunctionI2C, PullUp>;
+    type Scl = Pin<Gpio23, FunctionI2C, PullUp>;
+    type Sda = Pin<Gpio22, FunctionI2C, PullUp>;
     type I2cWithPins = I2C<pac::I2C1, (Sda, Scl)>;
     type OledDisplay = GraphicsMode<I2cInterface<I2cCriticalSectionDev<'static, I2cWithPins>>>;
 
     // IMU imports
     use lis3dh::{Lis3dh, Lis3dhI2C, SlaveAddr};
     use lis3dh::accelerometer::Accelerometer;
+    use accelerometer::vector::VectorExt;
+
 
     // IMU type aliases
     type I2cBus = Mutex<RefCell<I2cWithPins>>;
@@ -152,7 +160,7 @@ mod app {
             Spi0Bus,
             DummyCsPin,
             NoDelay>,
-        Pin<Gpio25, FunctionSioOutput, PullDown>,
+        Pin<Gpio17, FunctionSioOutput, PullDown>,
         hal::Timer
     >;
     type SdCardVolumeMgr = embedded_sdmmc::VolumeManager<
@@ -168,6 +176,9 @@ mod app {
     struct DataShared {
         accel: Option<Lis3dhAccelerometer>,
         display: Option<OledDisplay>,
+        
+        accel_mag: f32,
+        leak_detected: bool,
     }
 
     #[local]
@@ -175,6 +186,7 @@ mod app {
         // Components
         led_pin: LedPin,
         leak_detector_pin: LeakDetectorPin,
+        leak_alarm_pin: LeakAlarmPin,
         pixel: (u8, u8),
         dirs: (bool, bool),
         sd_card_volume_mgr: Option<SdCardVolumeMgr>,
@@ -215,13 +227,14 @@ mod app {
             &mut resets,
         );
         let led_pin = pins.gpio13.into_push_pull_output();
-        let leak_detector_pin = pins.gpio24.into_pull_down_input();
+        let leak_detector_pin = pins.gpio1.into_pull_up_input();
+        let leak_alarm_pin = pins.gpio2.into_push_pull_output();
 
         // Peripheral setup -----------------------------------------------------------------------
 
         // I2C
-        let scl = pins.gpio3.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
-        let sda = pins.gpio2.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let scl = pins.gpio23.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
+        let sda = pins.gpio22.into_function::<FunctionI2C>().into_pull_type::<PullUp>();
         let i2c1 = I2C::i2c1(
             cx.device.I2C1,
             sda,
@@ -264,11 +277,12 @@ mod app {
             };
         }
 
+
         // SPI
         let spi_sclk: Pin<_, FunctionSpi, PullNone> = pins.gpio18.reconfigure();
         let spi_mosi: Pin<_, FunctionSpi, PullNone> = pins.gpio19.reconfigure();
         let spi_miso: Pin<_, FunctionSpi, PullUp> = pins.gpio20.reconfigure();
-        let spi_cs = pins.gpio25.into_push_pull_output();
+        let spi_cs = pins.gpio17.into_push_pull_output();
 
         let spi_bus = Spi::<_, _, _, 8>::new(cx.device.SPI0, (spi_mosi, spi_miso, spi_sclk));
 
@@ -312,6 +326,9 @@ mod app {
         // Start IMU communication
         update_imu::spawn().unwrap();
 
+        // Start leak detection
+        update_leak_detector::spawn_after(1000.millis()).unwrap();
+
         // Start OLED animation
         update_oled::spawn_after(2000.millis()).unwrap();
         
@@ -326,10 +343,14 @@ mod app {
             DataShared {
                 accel: lis3dh,
                 display: display,
+                
+                accel_mag: 0.0f32,
+                leak_detected: false,
             },
             DataLocal {
                 led_pin: led_pin,
                 leak_detector_pin: leak_detector_pin,
+                leak_alarm_pin: leak_alarm_pin,
                 pixel: (10, 25),
                 dirs: (true, true),
                 sd_card_volume_mgr: volume_mgr,
@@ -341,16 +362,11 @@ mod app {
 
    
     // Heartbeat task -----------------------------------------------------------------------------
-    #[task (local=[leak_detector_pin])]
-    fn heartbeat(cx: heartbeat::Context) {
+    #[task]
+    fn heartbeat(_cx: heartbeat::Context) {
         trace!("heartbeat");
-        if cx.local.leak_detector_pin.is_low().unwrap() {
-            trace!("leak pin low");
-            blink::spawn(1).unwrap();
-        } else {
-            warn!("leak pin high! leak detected!");
-            blink::spawn(2).unwrap();
-        }
+        blink::spawn(1).unwrap();
+
         heartbeat::spawn_after(1000.millis()).unwrap();
     }
 
@@ -369,6 +385,23 @@ mod app {
         }
     }
 
+    // Leak detector task -------------------------------------------------------------------------
+    #[task (shared=[leak_detected], local=[leak_detector_pin, leak_alarm_pin])]
+    fn update_leak_detector(cx: update_leak_detector::Context) {
+        // Read the pin
+        let leak = cx.local.leak_detector_pin.is_low().unwrap();
+
+        // Update status
+        if leak { warn!("leak pin high! leak detected!"); cx.local.leak_alarm_pin.set_high().unwrap(); } 
+        else { trace!("leak pin low"); cx.local.leak_alarm_pin.set_low().unwrap(); }
+
+        // Update shared resource
+        let mut leak_detected = cx.shared.leak_detected;
+        leak_detected.lock(|leak_detected_l| {*leak_detected_l = leak});
+
+        update_leak_detector::spawn_after(500.millis()).unwrap();
+    }
+
     // OLED update task ---------------------------------------------------------------------------
     const FEATHER_DISPLAY_SIZE: Size = Size::new(128, 64);
     const START_POSITION_1: Point = Point::new(0, font.character_size.height as i32 - 3);
@@ -376,17 +409,22 @@ mod app {
     const START_POSITION_2: Point = Point::new(SEPARATOR_POSITION.x, SEPARATOR_POSITION.y + font.character_size.height as i32);
     const START_POSITION_3: Point = Point::new(START_POSITION_2.x, START_POSITION_2.y + font.character_size.height as i32);
     
-    #[task(shared = [display], local = [pixel, dirs])]
+    const VIBRATION_THRESHOLD: f32 = 2.0f32;
+    
+    #[task(shared = [display, accel_mag, leak_detected], local = [pixel, dirs])]
     fn update_oled(cx: update_oled::Context) {
         // Change these values to view the interface prototypes //
         let num_can_devices: u8 = 1;                            //
-        let leak_detected: bool = true;                         //
         // ---------------------------------------------------- //
 
         // 0 = nominal, 1 = warn, 2 = err
         let mut system_state = 0;
         if num_can_devices == 0 { system_state = 1;}
-        if leak_detected { system_state = 2; }
+        
+        let mut leak_detected = cx.shared.leak_detected;
+        let mut is_leak = false;
+        leak_detected.lock(|leak_l| { is_leak = *leak_l; });
+        if is_leak { system_state = 2; }
 
         // Font styles
         let normal = MonoTextStyleBuilder::new()
@@ -449,13 +487,28 @@ mod app {
                     Ok(_) => (),
                     Err(e) => error!("{}", defmt::Debug2Format(&e)),
                 }
+
+                // Vibration detection
+                let mut vibration_detected = false;
+                let mut accel_mag = cx.shared.accel_mag;
+                accel_mag.lock(|accel_mag_l| {
+                    if *accel_mag_l < VIBRATION_THRESHOLD { trace!("acceleration magnitude: {:?}", accel_mag_l); }
+                    else { warn!("Vibration detected! Magnitude: {:?}", accel_mag_l); vibration_detected = true; }
+
+                });
             
-                if leak_detected {
+                // Order implies priority
+                if is_leak {
                     match Text::new("LEAK DETECTED!", START_POSITION_3, highlight).draw(d_l) {
                             Ok(_) => (),
                             Err(e) => error!("{}", defmt::Debug2Format(&e)),
-                        }
                     }
+                } else if vibration_detected {
+                    match Text::new("Vibration detected!", START_POSITION_3, underline).draw(d_l) {
+                        Ok(_) => (),
+                        Err(e) => error!("{}", defmt::Debug2Format(&e)),
+                    }
+                }
 
                 match d_l.flush() {
                     Ok(_) => { trace!("OLED flush succeeded"); },
@@ -468,15 +521,21 @@ mod app {
 
 
     // IMU update task ----------------------------------------------------------------------------
-    #[task(shared = [accel])]
+    #[task(shared = [accel, accel_mag])]
     fn update_imu(cx: update_imu::Context) {
         let mut accel = cx.shared.accel;
         accel.lock(|accel_l| {
             if let Some(ref mut accel_l) = accel_l {
-                match accel_l.accel_norm() {
-                    Ok(accel_vec)   => info!("accel x is now: {:?}", accel_vec.x),
-                    Err(e)  => warn!("unable to read accel from IMU: {}", defmt::Debug2Format(&e)),
-                }
+                let mut accel_mag = cx.shared.accel_mag;
+                accel_mag.lock(|accel_mag_l| {
+                    match accel_l.accel_norm() {
+                        Ok(accel_vec)   => {
+                            *accel_mag_l = accel_vec.magnitude();
+                            trace!("accel magnitude: {:?}", *accel_mag_l);
+                        },
+                        Err(e)  => warn!("unable to read accel from IMU: {}", defmt::Debug2Format(&e)),
+                    };
+                });
             }
         });
         update_imu::spawn_after(1000u64.millis()).unwrap();
