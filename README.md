@@ -92,6 +92,16 @@ Hardware testing for the power input board was performed using a ODP3122 power s
 
 The fuse did work in the overvoltage protection case, but activated after a very long amount of time. We will try to use fast acting automotive fuses in future revisions.
 
+## Known Issues
+- The mezzanine connector used has too small of a pitch to be reliably soldered using reflow. We recommend switching to [conan connectors](https://www.digikey.com/en/product-highlight/a/amphenol-fci/conan-lite-1-00-mm-connectors) since they have a slightly larger (1.0mm) pitch.
+- The BOM has the wrong SWD connector.
+- Some parts on the system status board (like the LEDs) require an active USB connection to function. They should instead be powered from the same source as the RP2040 (which is the selectable power source).
+- The reset circuit on the system status board does not function correctly.
+- The breakout board should be expanded to have plug and receptacle connections like other boards so it can be used in the front or the back.
+- The headers to disable I2C on the termination board should be replaced with 0 ohm resistors that are not placed by default.
+- The mounting holes should be M2.5 as MIL has switched to that screw size being the standard for all boards.
+- The power distribution board has a higher voltage drop across the protection circuitry, meaning that there is still a problem if bypass mode is used without first checking the input voltage.
+
 # Software
 Our work includes the design of a system status board for the TGIS which can display diagnostic information about the system.
 
