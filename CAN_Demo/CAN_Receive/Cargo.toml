@@ -1,0 +1,22 @@
+[package]
+name = "feather-rp2040-blink"
+version = "0.2.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+panic-halt              = "0.2.0"
+cortex-m                = "0.7.7"
+cortex-m-rt             = "0.7.3"
+embedded-hal            = "0.2.7"
+#adafruit-feather-rp2040 = "0.7.0"
+usbd-serial             = "0.1.1"
+usb-device              = "0.2.9"
+critical-section        = "1.1.2"
+
+# can bus
+embedded-can = "0.4.1"
+can2040 = { git = "https://github.com/BlakeSanders10497/can2040.git" }
+rp-pico = "0.8"
+rp2040-hal = { version = "0.9", features = ["rt", "critical-section-impl", "eh1_0_alpha", "defmt"] }
