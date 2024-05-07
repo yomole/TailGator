@@ -1,5 +1,11 @@
 # [TailGator](https://github.com/yomole/TailGator)
 
+> [!NOTE]
+> - If you are a student who has requested to continue this project as part of senior design for MIL, please fork this repository for your project and update the submodules link inside of the MIL Electrical Team SubjuGator 9 repository.
+> - Feel free to reach out to the project's hardware designer (Yovany Molina) for any questions you might have.
+> - Assembled boards and spare PCBs and parts may still be in the lab.
+> - Good Luck!
+
 # Introduction
 
 The TailGator Interconnect System (TGIS) project provides a modular connection system and standard for easily connecting, replacing, and upgrading underwater robotics hardware in space-constrained robotics designs. 
@@ -24,7 +30,7 @@ Reserved lines may be used to supplement the 3.3V or 5V lines. Board designs may
 
 ## Pinout
 
-![image](Documents/Images/Pinout-1-28-24.jpg)
+![image](Documents/Images/pinout-4-27-24.jpg)
 
 # Hardware
 
@@ -38,7 +44,7 @@ Other folders contain incomplete designs for other planned boards.
 ## Documentation
 
 For those without access to [Altium Designer](https://www.altium.com/altium-designer), [Altium Designer Viewer](https://www.altium.com/altium-designer-viewer), or similar compatible applications, documentation for each produced hardware design is available under the `Project Outputs` folder for each respective project. Links are also provided here for convienience:
-- [Power Distribution Board](<PCB/TailGator Interconnect System/TGIS Main/Project Outputs for TGIS Main/TGIS.PDF>)
+- [Power Distribution Board](<PCB/TailGator Interconnect System/TGIS Main/Project Outputs for TGIS Power Distribution Board/TGIS.PDF>)
 - [USB to CAN Board](<PCB/TailGator Interconnect System/TGIS USB to CAN/TGIS USB to CAN/Project Outputs for TGIS USB to CAN/TGIS.PDF>)
 - [System Status Board](<PCB/TailGator Interconnect System/TGIS System Status/Project Outputs for TGIS System Status/TGIS.PDF>)
 - [Termination Board](<PCB/TailGator Interconnect System/TGIS CAN Termination/Project Outputs for TGIS CAN Termination/TGIS.PDF>)
@@ -93,14 +99,17 @@ Hardware testing for the power input board was performed using a ODP3122 power s
 The fuse did work in the overvoltage protection case, but activated after a very long amount of time. We will try to use fast acting automotive fuses in future revisions.
 
 ## Known Issues
-- The mezzanine connector used has too small of a pitch to be reliably soldered using reflow. We recommend switching to [conan connectors](https://www.digikey.com/en/product-highlight/a/amphenol-fci/conan-lite-1-00-mm-connectors) since they have a slightly larger (1.0mm) pitch.
+- The mezzanine connector used has too small of a pitch to be reliably soldered using reflow. We recommend switching to [conan connectors](https://www.digikey.com/en/product-highlight/a/amphenol-fci/conan-lite-1-00-mm-connectors) since they have a slightly larger (1.0mm) pitch. 60 pins should still be enough to have plenty of reserved pins for future expansion.
 - The BOM has the wrong SWD connector.
 - Some parts on the system status board (like the LEDs) require an active USB connection to function. They should instead be powered from the same source as the RP2040 (which is the selectable power source).
 - The reset circuit on the system status board does not function correctly.
 - The breakout board should be expanded to have plug and receptacle connections like other boards so it can be used in the front or the back.
 - The headers to disable I2C on the termination board should be replaced with 0 ohm resistors that are not placed by default.
 - The mounting holes should be M2.5 as MIL has switched to that screw size being the standard for all boards.
-- The power distribution board has a higher voltage drop across the protection circuitry, meaning that there is still a problem if bypass mode is used without first checking the input voltage.
+- The power distribution board has a higher voltage drop across the protection circuitry, meaning that there is still a problem if bypass mode is used without first checking the input voltage. We recommend keeping the crowbar circuit design from V1.
+- CAN signals cannot pass through the USB to CAN board, but can pass through all other boards, including the System Status Board. Further investigation is needed.
+- JTAG chaining was never implemented since no microcontrollers on designed boards supported JTAG. They may need buffers between boards for proper operation.
+- Some JTAG signals (TRACECLK, TRD*, VREF, GNDDetect, JnSRST) may be omitted from the connector or otherwise tied to a constant value.
 
 # Software
 Our work includes the design of firmware for the TGIS's system status board, which can display diagnostic information about the system.
